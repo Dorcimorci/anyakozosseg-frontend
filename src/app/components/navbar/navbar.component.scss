@@ -1,0 +1,36 @@
+.navbar {
+  background: none !important;
+  margin-top: 2.5rem;
+}
+
+.list-container {
+  width: 63%;
+}
+
+.nav-link {
+  font-size: 1.5vw;
+  background-color: #e2d9c2;
+  text-align: center;
+  color: #a3947a;
+  letter-spacing: 0.3vw;
+}
+
+.nav-item {
+  padding: 0.7vw;
+}
+
+@media only screen and (max-width: 575px) {
+  .nav-item {
+    width: auto !important;
+  }
+}
+
+@media only screen and (min-width: 575px) {
+  .nav-link {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+// Searchbar backround: #b86c5c
+// Searchbar font: #e2d9c2
