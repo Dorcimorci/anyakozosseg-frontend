@@ -4,33 +4,130 @@
 }
 
 .list-container {
-  width: 63%;
+  width: 100%;
+  padding-bottom: 1.5vw;
 }
 
 .nav-link {
   font-size: 1.5vw;
   background-color: #e2d9c2;
   text-align: center;
-  color: #a3947a;
+  color: #846345;
   letter-spacing: 0.3vw;
+  padding-top: 0.6vw;
+  padding-bottom: 0.45vw;
+  &:hover {
+    color: #e2d9c2;
+    background-color: #846345;
+  }
 }
 
 .nav-item {
   padding: 0.7vw;
 }
 
+.search-bar-container {
+  background-color: #b86c5c;
+  width: 100%;
+}
+
+.search-input-container {
+  padding: 0.7vw;
+}
+
+.search-input {
+  border: none;
+  padding-left: 0.5rem;
+}
+
+.search-btn,
+.search-bar-container {
+  font-size: 1.5vw;
+  color: #e2d9c2;
+  letter-spacing: 0.1vw;
+}
+
+.navbar-toggler {
+  margin-left: 1rem;
+}
+
+.brand-icon {
+  width: 10vw;
+  height: 10vw;
+}
+
+.user-icon-container {
+  position: relative;
+}
+
+.user-icon {
+  position: absolute;
+  top: 6.5vw;
+  right: 9vw;
+  font-size: 7vw;
+  color: #e2d9c2;
+  transition: color 0.3s ease-out;
+}
+
+.login-item {
+  &:hover {
+    cursor: pointer;
+    color: #f7edd5;
+    transition: color 0.3s ease-out;
+  }
+  &:hover .user-icon {
+    cursor: pointer;
+    color: #f7edd5;
+    transition: color 0.3s ease-out;
+  }
+}
+
+.brand-icon-container {
+  justify-content: end;
+}
+
+// applyed for devices width screen size smaller, than 575px
 @media only screen and (max-width: 575px) {
   .nav-item {
     width: auto !important;
   }
+  .brand-icon-container {
+    justify-content: start;
+  }
+  .search-input-container {
+    margin-right: auto;
+  }
+  .list-container {
+    padding-bottom: 6vw;
+  }
+  .user-icon {
+    top: 33vw;
+    right: 1.5vw;
+  }
 }
 
+// applyed for devices width screen size greater, than 575px
 @media only screen and (min-width: 575px) {
   .nav-link {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
+  .list-container {
+    align-items: end;
+  }
 }
 
-// Searchbar backround: #b86c5c
-// Searchbar font: #e2d9c2
+@media only screen and (min-width: 700px) and (max-width: 900px) {
+  .user-icon {
+    top: 6.75vw;
+    right: 9vw;
+  }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 700px) {
+  .user-icon {
+    top: 7vw;
+    right: 9vw;
+  }
+}
