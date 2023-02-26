@@ -12,10 +12,10 @@
   font-size: 1.5vw;
   background-color: #e2d9c2;
   text-align: center;
-  color: #846345;
   letter-spacing: 0.3vw;
   padding-top: 0.6vw;
   padding-bottom: 0.45vw;
+  color: #9a7b76;
   &:hover {
     color: #e2d9c2;
     background-color: #846345;
@@ -101,7 +101,15 @@
     padding-bottom: 6vw;
   }
   .user-icon {
-    top: 33vw;
+    top: 32vw;
+    right: 1.5vw;
+  }
+}
+
+// applyed for devices width screen size smaller, than 500px
+@media only screen and (max-width: 500px) {
+  .user-icon {
+    top: 32.5vw;
     right: 1.5vw;
   }
 }
