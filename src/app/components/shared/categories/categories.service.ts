@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from './category.model';
 
-const BASE_URL = 'http://localhost:3000/API/';
+const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'categories.php';
 
 @Injectable({
