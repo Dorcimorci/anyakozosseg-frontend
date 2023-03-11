@@ -12,6 +12,9 @@ img {
 
 .card {
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .card-item {

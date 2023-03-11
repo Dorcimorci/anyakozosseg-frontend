@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+a {
+  color: #846345 !important;
+  text-decoration: none;
+  font-size: 2vw;
+  font-weight: 300;
+}
+
+.letter-container:hover,
+.letter-active {
+  cursor: pointer;
+  background-color: #e2d9c2;
+}
+
+.divider {
+  height: 1vw;
+  background-color: #b86c5c;
+}
+
+.letter-initial {
+  color: #b86c5c;
+  font-size: 12vw;
+  font-family: "Playfair Display", serif;
+  line-height: 14vw;
+}
+
+.brand-name {
+  font-weight: 300;
+  font-size: 2vw;
+  letter-spacing: 0.3vw;
+  color: #9a7b76;
+  &:hover {
+    cursor: pointer;
+    background-color: #e2d9c2;
+  }
+}

@@ -1,0 +1,13 @@
+<div
+  class="sidebar-container"
+  [ngStyle]="{ top: applyGreaterTopValue ? '70vw' : '24.5vw' }"
+>
+  <div #sidenav class="sidenav row justify-content-around align-items-center">
+    <div class="col-12 add-new-label" [routerLink]="currentRoute">
+      <p class="p-0 m-0">
+        ÚJ {{ menuItemName.toUpperCase() }} HOZZÁADÁSA &nbsp;
+        <i class="fa fa-file" aria-hidden="true"></i>
+      </p>
+    </div>
+  </div>
+</div>

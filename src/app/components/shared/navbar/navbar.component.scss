@@ -1,6 +1,6 @@
 .navbar {
   background: none !important;
-  margin-top: 2.5rem;
+  // margin-top: 2.5vw;
 }
 
 .list-container {
@@ -17,9 +17,15 @@
   padding-bottom: 0.45vw;
   color: #9a7b76;
   &:hover {
+    cursor: pointer;
     color: #e2d9c2;
     background-color: #846345;
   }
+}
+
+.nav-link-active {
+  color: #e2d9c2;
+  background-color: #846345;
 }
 
 .nav-item {

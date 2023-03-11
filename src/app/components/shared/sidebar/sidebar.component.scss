@@ -1,0 +1,34 @@
+.sidebar-container {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+}
+
+.sidenav {
+  position: absolute;
+  height: 3vw;
+  transition: 0.3s;
+  margin: 0;
+  left: var(--left);
+  text-decoration: none;
+  color: #e2d9c2;
+  background-color: #b86c5c;
+  border-radius: 0 0.2vw 0.2vw 0;
+  &:hover {
+    cursor: pointer;
+    left: 0;
+    // color: #b86c5c;
+    // background-color: #e2d9c2;
+  }
+}
+
+.add-new-label,
+.add-new-icon {
+  white-space: nowrap;
+  font-size: 1vw;
+}
+
+.add-new-label {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}

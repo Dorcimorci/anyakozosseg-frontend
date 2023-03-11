@@ -1,0 +1,37 @@
+<div class="brand-container" *ngIf="brand$ | async as brand">
+  <div class="row">
+    <div class="col-4 mx-auto text-center brand-logo">
+      <img [src]="brand.imagePath" alt="" />
+    </div>
+    <div class="col-8 text-center">
+      <div class="brand-title">
+        {{ brand.name }}
+      </div>
+      <div class="brand-property row">
+        <div class="col-8 text-start">ÁRKATEGÓRIA</div>
+        <div class="col-4 text-end">
+          {{ brand.priceCategory }}
+        </div>
+      </div>
+      <div class="brand-property row">
+        <div class="col-8 text-start">CRUELTY FREE</div>
+        <div class="col-4 text-end">
+          {{ brand.isCrueltyFree }}
+        </div>
+      </div>
+      <div class="brand-property row">
+        <div class="col-8 text-start">VEGAN</div>
+        <div class="col-4 text-end">
+          {{ brand.isVegan }}
+        </div>
+      </div>
+      <div class="brand-property row">
+        <div class="col-8 text-start">ÖSSZESÍTETT ÉRTÉKELÉS</div>
+        <div
+          class="col-4 text-end rating-stars"
+          [innerHTML]="getRatingStars(brand.overallRating)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
