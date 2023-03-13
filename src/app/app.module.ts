@@ -9,6 +9,11 @@ import { BrandsPageComponent } from './components/brands-page/brands-page.compon
 import { AlphabeticalBrandCatalogComponent } from './components/brands-page/alphabetical-brand-catalog/alphabetical-brand-catalog.component';
 import { BrandDetailsComponent } from './components/brands-page/brand-details/brand-details.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+import { BrandsFormComponent } from './components/brands-page/brands-form/brands-form.component';
+import { DropdownComponent } from './components/shared/dropdown/dropdown.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingComponent } from './components/shared/rating/rating.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 @NgModule({
   declarations: [
@@ -19,9 +24,19 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
     AlphabeticalBrandCatalogComponent,
     BrandDetailsComponent,
     SidebarComponent,
+    BrandsFormComponent,
+    DropdownComponent,
+    RatingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxFileDropModule,
+  ],
+  providers: [Location],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

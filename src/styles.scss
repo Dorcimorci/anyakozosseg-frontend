@@ -17,7 +17,37 @@ h1 {
   font-weight: 400;
   font-size: 2vw;
   letter-spacing: 0.3vw;
-  color: #9a7b76;
+  color: $text;
   margin-top: $h1-margin;
   margin-bottom: $h1-margin;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding-left: 0.5vw;
+  color: #846345;
+}
+
+.ngx-file-drop__drop-zone {
+  border-radius: 0 !important;
+  border: none !important;
+  background-color: white;
+  &:hover {
+    cursor: pointer;
+  }
+  height: 4.75vw !important;
+}
+
+.ngx-file-drop__content {
+  height: 100% !important;
+}
+
+.ngx-file-drop__drop-zone-label {
+  font-size: 1.2vw;
+  color: $text;
+}
+
+.invalid-field {
+  outline: 2px solid $primary;
 }
