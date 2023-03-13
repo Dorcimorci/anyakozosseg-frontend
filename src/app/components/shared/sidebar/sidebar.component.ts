@@ -21,7 +21,7 @@ export class SidebarComponent implements AfterViewInit {
   public isNavbarCollapsed: boolean = false;
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
-  public currentRoute: string = '';
+  private currentRoute: string = '';
 
   @ViewChild('sidenav')
   sidenav!: ElementRef;
@@ -60,6 +60,10 @@ export class SidebarComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     setTimeout(() => this.initializeLeftProperty());
+  }
+
+  public getAddNewRouterLink(): string {
+    return `/${this.currentRoute}/${this.currentRoute}-form`;
   }
 
   private initializeLeftProperty(): void {
