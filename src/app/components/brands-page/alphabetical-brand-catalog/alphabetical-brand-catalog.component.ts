@@ -12,10 +12,10 @@ import { BrandsService } from '../brands.service';
   styleUrls: ['./alphabetical-brand-catalog.component.scss'],
 })
 export class AlphabeticalBrandCatalogComponent {
-  public category: Category = {} as Category;
-  public categoryTitlePart: string = '';
+  public category: Category;
+  public categoryTitlePart: string;
   public alphabetLetters: string[] = alphabetLetters;
-  public activeLetter: string | null = '';
+  public activeLetter: string;
 
   public brandList: BrandApiGetResponse[] = [];
 
