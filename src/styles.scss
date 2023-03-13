@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
+@import "styles/colors";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 $h1-margin: 4vw;
 
 body {
