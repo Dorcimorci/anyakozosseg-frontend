@@ -1,3 +1,9 @@
+@import "/src/styles/colors";
+
+form {
+  width: 100%;
+}
+
 .navbar {
   background: none !important;
   // margin-top: 2.5vw;
@@ -10,21 +16,21 @@
 
 .nav-link {
   font-size: 1.5vw;
-  background-color: #e2d9c2;
+  background-color: $secondary;
   text-align: center;
   letter-spacing: 0.3vw;
   padding-top: 0.6vw;
   padding-bottom: 0.45vw;
-  color: #9a7b76;
+  color: $text;
   &:hover {
     cursor: pointer;
-    color: #e2d9c2;
+    color: $secondary;
     background-color: #846345;
   }
 }
 
 .nav-link-active {
-  color: #e2d9c2;
+  color: $secondary;
   background-color: #846345;
 }
 
@@ -33,7 +39,7 @@
 }
 
 .search-bar-container {
-  background-color: #b86c5c;
+  background-color: $primary;
   width: 100%;
 }
 
@@ -41,15 +47,10 @@
   padding: 0.7vw;
 }
 
-.search-input {
-  border: none;
-  padding-left: 0.5rem;
-}
-
 .search-btn,
 .search-bar-container {
   font-size: 1.5vw;
-  color: #e2d9c2;
+  color: $secondary;
   letter-spacing: 0.1vw;
 }
 
@@ -71,7 +72,7 @@
   top: 6.5vw;
   right: 9vw;
   font-size: 7vw;
-  color: #e2d9c2;
+  color: $secondary;
   transition: color 0.3s ease-out;
 }
 
