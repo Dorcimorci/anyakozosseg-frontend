@@ -1,3 +1,5 @@
+@import "/src/styles/colors";
+
 $card-item-label-margin: 2vw;
 $content-margin: 10vw;
 
@@ -37,5 +39,5 @@ img {
   margin-top: $card-item-label-margin;
   margin-bottom: $card-item-label-margin;
   letter-spacing: 0.3vw;
-  color: #9a7b76;
+  color: $text;
 }

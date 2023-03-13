@@ -8,7 +8,7 @@ import { Category } from '../shared/categories/category.model';
   styleUrls: ['./brands-page.component.scss'],
 })
 export class BrandsPageComponent {
-  public categories: Category[] = [];
+  public categories: Category[];
 
   constructor(public categoriesService: CategoriesService) {}
 
