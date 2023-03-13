@@ -1,7 +1,7 @@
 <div class="brand-container" *ngIf="brand$ | async as brand">
   <div class="row">
     <div class="col-4 mx-auto text-center brand-logo">
-      <img [src]="brand.imagePath" alt="" />
+      <img [src]="'data:image/plain;base64,' + brand.imageFile" alt="" />
     </div>
     <div class="col-8 text-center">
       <div class="brand-title">
@@ -27,10 +27,12 @@
       </div>
       <div class="brand-property row">
         <div class="col-8 text-start">ÖSSZESÍTETT ÉRTÉKELÉS</div>
-        <div
-          class="col-4 text-end rating-stars"
-          [innerHTML]="getRatingStars(brand.overallRating)"
-        ></div>
+        <div class="col-4 text-end rating-stars">
+          <app-rating
+            [disabled]="true"
+            [defaultRating]="brand.overallRating"
+          ></app-rating>
+        </div>
       </div>
     </div>
   </div>

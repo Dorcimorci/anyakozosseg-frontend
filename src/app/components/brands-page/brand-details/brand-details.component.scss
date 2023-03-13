@@ -1,3 +1,5 @@
+@import "/src/styles/colors";
+
 img {
   height: 100%;
 }
@@ -13,12 +15,12 @@ img {
 
 .brand-property {
   margin: 1vw 0 1vw 0;
-  background-color: #e2d9c2;
+  background-color: $secondary;
 }
 
 .brand-property,
 .brand-title {
-  color: #9a7b76;
+  color: $text;
   letter-spacing: 0.3vw;
 }
 

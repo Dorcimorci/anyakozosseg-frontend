@@ -1,8 +1,14 @@
 export class Utils {
-  public static mapBoolToHun(bool: boolean): string {
+  public static mapBooleanToText(bool: boolean): string {
     return bool ? 'IGEN' : 'NEM';
   }
+
+  public static mapTextToBoolean(boolHun: string): boolean {
+    return boolHun === 'IGEN';
+  }
 }
+
+export const booleanOptions: string[] = ['IGEN', 'NEM'];
 
 export const alphabetLetters: string[] = 'abcdefghijklmnopqrstuvwxyz'
   .toUpperCase()
