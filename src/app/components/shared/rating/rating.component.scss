@@ -1,0 +1,8 @@
+@import "/src/styles/colors";
+
+.rating {
+  color: $primary;
+  &:hover {
+    cursor: pointer;
+  }
+}

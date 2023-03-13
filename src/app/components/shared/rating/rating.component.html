@@ -1,0 +1,14 @@
+<span
+  *ngFor="let ratingOption of ratingOptions"
+  (click)="onStarClicked(ratingOption)"
+  (mouseenter)="onStarHovered(ratingOption)"
+  (mouseleave)="onStarLeft(ratingOption)"
+  class="rating"
+>
+  <span *ngIf="ratingOption > ratingToShow"
+    ><i class="fa-regular fa-star"></i
+  ></span>
+  <span *ngIf="ratingOption <= ratingToShow"
+    ><i class="fa-solid fa-star"></i
+  ></span>
+</span>

@@ -1,0 +1,29 @@
+@import "/src/styles/colors";
+
+.dropdown-button {
+  width: 100%;
+  border-radius: 0;
+  background-color: white;
+  color: $text;
+  border: none;
+  height: 2vw;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.dropdown-item {
+  color: $text;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+    cursor: pointer;
+  }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: $primary;
+  color: $secondary;
+}
