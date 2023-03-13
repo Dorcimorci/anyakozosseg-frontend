@@ -4,7 +4,8 @@
     <div
       class="card"
       [routerLink]="[
-        'alphabetical-brand-catalog',
+        '/brands/alphabetical-brand-catalog',
+        pageAction$ | async,
         category.name.toLowerCase(),
         'A'
       ]"

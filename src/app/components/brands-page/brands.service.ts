@@ -30,4 +30,8 @@ export class BrandsService {
   public addNewBrand(brand: BrandApiPostRequest): Observable<any> {
     return this.http.post(`${BASE_URL}${COMPONENT_URL}`, brand);
   }
+
+  public deleteById(brandId: number): Observable<any> {
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}?brandId=${brandId}`);
+  }
 }

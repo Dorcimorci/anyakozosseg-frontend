@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { PageAction } from '../enums';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -11,6 +12,10 @@ export class NavbarComponent {
   navbar: ElementRef;
 
   public isNavbarCollapsed: boolean = false;
+
+  public get PageAction() {
+    return PageAction;
+  }
 
   constructor(private readonly navbarService: NavbarService) {}
 

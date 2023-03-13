@@ -1,17 +1,19 @@
 @import "/src/styles/colors";
 
-.sidebar-container {
+$itemWidth: var(--item-width);
+
+.sidebar-item-container {
   z-index: 99;
   position: fixed;
   left: 0;
 }
 
-.sidenav {
+.sidebar {
   position: absolute;
   height: 3vw;
   transition: 0.3s;
   margin: 0;
-  left: var(--left);
+  left: calc(2.5vw - $itemWidth);
   text-decoration: none;
   color: $secondary;
   background-color: $primary;
@@ -22,13 +24,13 @@
   }
 }
 
-.add-new-label,
-.add-new-icon {
+.sidebar-item,
+.sidebar-icon {
   white-space: nowrap;
   font-size: 1vw;
 }
 
-.add-new-label {
+.sidebar-item {
   padding-left: 1vw;
   padding-right: 1vw;
 }

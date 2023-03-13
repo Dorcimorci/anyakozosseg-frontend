@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CategoriesService } from '../shared/categories/categories.service';
 import { Category } from '../shared/categories/category.model';
+import { PageAction } from '../shared/enums';
+import { RouterService } from '../shared/router.service';
 
 @Component({
   selector: 'app-brands-page',
@@ -8,9 +11,17 @@ import { Category } from '../shared/categories/category.model';
   styleUrls: ['./brands-page.component.scss'],
 })
 export class BrandsPageComponent {
+  public get PageAction() {
+    return PageAction;
+  }
+
+  public pageAction$: Observable<PageAction> = this.routerService.pageAction$;
   public categories: Category[];
 
-  constructor(public categoriesService: CategoriesService) {}
+  constructor(
+    private readonly categoriesService: CategoriesService,
+    private readonly routerService: RouterService
+  ) {}
 
   public ngOnInit(): void {
     this.getCategories();

@@ -6,6 +6,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
 import { RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
@@ -23,8 +24,14 @@ export class SidebarComponent implements AfterViewInit {
   private innerWidth: number = 0;
   private currentRoute: string = '';
 
-  @ViewChild('sidenav')
-  sidenav!: ElementRef;
+  public showSidebar: boolean = true;
+
+  public get PageAction() {
+    return PageAction;
+  }
+
+  @ViewChild('sidebar')
+  sidebar: ElementRef;
 
   // needed for responsiveness
   @HostListener('window:resize', [])
@@ -45,6 +52,14 @@ export class SidebarComponent implements AfterViewInit {
     this.routerService.currentRoute$.subscribe((currentRoute: string) => {
       this.menuItemName = routeToSingularTranslation[currentRoute];
       this.currentRoute = currentRoute;
+
+      this.showSidebar = ['brands', 'ingredients', 'products'].includes(
+        currentRoute
+      );
+    });
+
+    this.routerService.pageAction$.subscribe((pageAction: PageAction) => {
+      console.log(pageAction);
     });
 
     // needed for responsiveness
@@ -63,12 +78,15 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   public getAddNewRouterLink(): string {
-    return `/${this.currentRoute}/${this.currentRoute}-form`;
+    return `${this.currentRoute}/${this.currentRoute}-form/${PageAction.Create}`;
   }
 
   private initializeLeftProperty(): void {
-    const widthInPx: number = this.sidenav.nativeElement.clientWidth;
-    const sidenavStyle = this.sidenav.nativeElement.style;
-    sidenavStyle.setProperty('--left', `-${widthInPx * 0.85}px`);
+    const sidebarItems: HTMLElement[] =
+      this.sidebar.nativeElement.querySelectorAll('.sidebar');
+    sidebarItems.forEach((item: HTMLElement) => {
+      const widthInPx: number = item.clientWidth;
+      item.style.setProperty('--item-width', `${widthInPx}px`);
+    });
   }
 }

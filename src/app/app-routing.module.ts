@@ -12,11 +12,11 @@ const routes: Routes = [
     component: WelcomePageComponent,
   },
   {
-    path: 'brands',
+    path: 'brands/:action',
     component: BrandsPageComponent,
   },
   {
-    path: 'brands/alphabetical-brand-catalog/:categoryName/:abcLetter',
+    path: 'brands/alphabetical-brand-catalog/:action/:categoryName/:abcLetter',
     component: AlphabeticalBrandCatalogComponent,
   },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     component: BrandDetailsComponent,
   },
   {
-    path: 'brands/brands-form',
+    path: 'brands/brands-form/:action',
     component: BrandsFormComponent,
   },
 ];

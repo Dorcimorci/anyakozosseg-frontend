@@ -36,7 +36,7 @@ export class BrandsFormComponent {
 
   public get CategoryOptions(): string[] {
     const categoryOptions: string[] = [];
-    this.categories.forEach((category: Category) =>
+    this.categories?.forEach((category: Category) =>
       categoryOptions.push(category.name)
     );
     return categoryOptions;
@@ -107,7 +107,7 @@ export class BrandsFormComponent {
     const brandApiPostRequest: BrandApiPostRequest = {
       isCrueltyFree: Utils.mapTextToBoolean(this.brand.isCrueltyFree),
       isVegan: Utils.mapTextToBoolean(this.brand.isVegan),
-      name: this.brand.name,
+      name: this.brand.name.toUpperCase(),
       overallRating: this.brand.overallRating,
       priceCategoryId: this.getPriceCategoryId(this.brand.priceCategory),
       imageFile: this.brand.imageFile,

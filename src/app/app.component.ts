@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, Event } from '@angular/router';
-import { filter, startWith } from 'rxjs';
 import { RouterService } from './components/shared/router.service';
 
 @Component({

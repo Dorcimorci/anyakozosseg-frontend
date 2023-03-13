@@ -6,7 +6,12 @@ form {
 
 .navbar {
   background: none !important;
+  display: block;
   // margin-top: 2.5vw;
+}
+
+.navbar-nav {
+  background-color: white;
 }
 
 .list-container {

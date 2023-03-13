@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, first, map } from 'rxjs';
 import { Category } from '../../shared/categories/category.model';
 import { alphabetLetters } from '../../shared/constants';
+import { PageAction } from '../../shared/enums';
 import { BrandApiGetResponse } from '../brand.api';
 import { BrandsService } from '../brands.service';
 
@@ -11,18 +12,25 @@ import { BrandsService } from '../brands.service';
   templateUrl: './alphabetical-brand-catalog.component.html',
   styleUrls: ['./alphabetical-brand-catalog.component.scss'],
 })
-export class AlphabeticalBrandCatalogComponent {
+export class AlphabeticalBrandCatalogComponent implements OnInit {
   public category: Category;
   public categoryTitlePart: string;
   public alphabetLetters: string[] = alphabetLetters;
   public activeLetter: string;
+
+  public pageAction: PageAction;
+  public get PageAction() {
+    return PageAction;
+  }
 
   public brandList: BrandApiGetResponse[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private brandsService: BrandsService
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     combineLatest([
       this.activatedRoute.paramMap.pipe(
         first(),
@@ -31,6 +39,7 @@ export class AlphabeticalBrandCatalogComponent {
       this.activatedRoute.paramMap,
     ]).subscribe(([routeData, paramMap]) => {
       this.activeLetter = paramMap.get('abcLetter');
+      this.pageAction = paramMap.get('action') as PageAction;
       this.category = {
         id: routeData.id,
         name: routeData.name,
@@ -52,5 +61,11 @@ export class AlphabeticalBrandCatalogComponent {
     } else if (category.name?.endsWith('K')) {
       this.categoryTitlePart = `${category.name}ET FORGALMAZÓ`;
     }
+  }
+
+  public onDelete(brandId: number): void {
+    this.brandsService.deleteById(brandId).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }
