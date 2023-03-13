@@ -46,18 +46,13 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
   );
 
   public writeValue(option: string) {
-    console.log('writeValue', this.options, option);
     this.onSelect(option);
   }
 
   public registerOnChange(onChange: Function): void {
-    this.selectedOption$
-      .pipe(
-        tap((selectedOption) => {
-          console.log('onchange:', selectedOption);
-        })
-      )
-      .subscribe((selectedOption: string) => onChange(selectedOption));
+    this.selectedOption$.subscribe((selectedOption: string) =>
+      onChange(selectedOption)
+    );
   }
   public registerOnTouched(fn: any): void {}
   public setDisabledState?(isDisabled: boolean): void {
