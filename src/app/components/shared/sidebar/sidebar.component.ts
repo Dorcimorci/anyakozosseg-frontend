@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
@@ -17,7 +18,7 @@ import { routeToSingularTranslation } from '../utils';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements AfterViewInit {
+export class SidebarComponent implements AfterViewChecked {
   public menuItemName: string = '';
 
   public isNavbarCollapsed: boolean = false;
@@ -27,7 +28,7 @@ export class SidebarComponent implements AfterViewInit {
   public previousRoute$: Observable<RouteHistory> =
     this.routerService.previousRoute$;
 
-  public showSidebar: boolean = true;
+  public showSidebar: boolean = false;
 
   public get PageAction() {
     return PageAction;
@@ -72,8 +73,8 @@ export class SidebarComponent implements AfterViewInit {
     });
   }
 
-  public ngAfterViewInit(): void {
-    setTimeout(() => this.initializeLeftProperty());
+  public ngAfterViewChecked(): void {
+    this.initializeLeftProperty();
   }
 
   public getAddNewRouterLink(): string {
