@@ -31,7 +31,7 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   @ViewChild('sidebar')
-  sidebar: ElementRef;
+  sidebar!: ElementRef;
 
   // needed for responsiveness
   @HostListener('window:resize', [])

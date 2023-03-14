@@ -21,7 +21,7 @@ export class BrandDetailsComponent {
     private readonly brandsService: BrandsService,
     private readonly priceCategoryService: PriceCategoryService
   ) {
-    const brandId: string =
+    const brandId: string | null =
       this.activatedRoute.snapshot.paramMap.get('brandId');
     if (brandId) {
       this.brand$ = combineLatest([

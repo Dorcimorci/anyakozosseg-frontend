@@ -16,7 +16,7 @@ export class BrandsPageComponent {
   }
 
   public pageAction$: Observable<PageAction> = this.routerService.pageAction$;
-  public categories: Category[];
+  public categories: Category[] = [];
 
   constructor(
     private readonly categoriesService: CategoriesService,

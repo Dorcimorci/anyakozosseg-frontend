@@ -17,9 +17,9 @@ import { PriceCategoryService } from '../price-category.service';
   styleUrls: ['./brands-form.component.scss'],
 })
 export class BrandsFormComponent {
-  public priceCategories: PriceCategory[];
+  public priceCategories: PriceCategory[] = [];
 
-  public categories: Category[];
+  public categories: Category[] = [];
 
   public booleanOptions: string[] = booleanOptions;
 
@@ -82,7 +82,7 @@ export class BrandsFormComponent {
 
   public onFileUpload(event: Event) {
     const inputElement: HTMLInputElement = event.target as HTMLInputElement;
-    const uploadedFile: File = inputElement.files
+    const uploadedFile: File | null = inputElement.files
       ? inputElement.files[0]
       : null;
     if (uploadedFile) {
@@ -117,7 +117,7 @@ export class BrandsFormComponent {
   }
 
   public getCategoryId(name: string): number {
-    return this.categories.find((category: Category) => category.name === name)
+    return this.categories.find((category: Category) => category.name === name)!
       .id;
   }
 
@@ -125,13 +125,13 @@ export class BrandsFormComponent {
     return this.priceCategories.find(
       (priceCategory: PriceCategory) =>
         priceCategory.priceCategoryName === option
-    ).id;
+    )!.id;
   }
 
   public getPriceCategoryName(id: number): string {
     return this.priceCategories.find(
       (priceCategory: PriceCategory) => priceCategory.id === id
-    ).priceCategoryName;
+    )!.priceCategoryName;
   }
 
   public onSubmit(): void {

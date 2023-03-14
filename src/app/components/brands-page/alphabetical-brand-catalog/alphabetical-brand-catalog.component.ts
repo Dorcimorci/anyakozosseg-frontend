@@ -13,12 +13,12 @@ import { BrandsService } from '../brands.service';
   styleUrls: ['./alphabetical-brand-catalog.component.scss'],
 })
 export class AlphabeticalBrandCatalogComponent implements OnInit {
-  public category: Category;
-  public categoryTitlePart: string;
+  public category: Category = {} as Category;
+  public categoryTitlePart: string = '';
   public alphabetLetters: string[] = alphabetLetters;
-  public activeLetter: string;
+  public activeLetter: string | null = null;
 
-  public pageAction: PageAction;
+  public pageAction: PageAction = {} as PageAction;
   public get PageAction() {
     return PageAction;
   }

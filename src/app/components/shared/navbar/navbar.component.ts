@@ -9,7 +9,7 @@ import { NavbarService } from './navbar.service';
 })
 export class NavbarComponent {
   @ViewChild('navbar')
-  navbar: ElementRef;
+  navbar!: ElementRef;
 
   public isNavbarCollapsed: boolean = false;
 
