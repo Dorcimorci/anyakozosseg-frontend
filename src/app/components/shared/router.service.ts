@@ -5,7 +5,15 @@ import {
   Event,
   RoutesRecognized,
 } from '@angular/router';
-import { filter, map, Observable, pairwise, shareReplay, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  filter,
+  map,
+  Observable,
+  pairwise,
+  shareReplay,
+  Subject,
+} from 'rxjs';
 import { PageAction } from './enums';
 
 export interface RouteHistory {
@@ -19,7 +27,8 @@ export interface RouteHistory {
 export class RouterService {
   public readonly currentRoute$: Observable<string>;
   public readonly previousRoute$: Observable<RouteHistory>;
-  private readonly pageActionSub: Subject<PageAction> = new Subject();
+  private readonly pageActionSub: BehaviorSubject<PageAction> =
+    new BehaviorSubject<PageAction>(PageAction.Read);
   public readonly pageAction$: Observable<PageAction> = this.pageActionSub
     .asObservable()
     .pipe(shareReplay());
