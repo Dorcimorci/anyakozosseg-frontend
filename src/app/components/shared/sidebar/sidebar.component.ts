@@ -3,12 +3,13 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Renderer2,
   ViewChild,
 } from '@angular/core';
-import { PageAction } from '../enums';
+import { Navigation } from '@angular/router';
+import { Observable } from 'rxjs';
+import { PageAction, RouteSegment } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
-import { RouterService } from '../router.service';
+import { RouteHistory, RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
 
 @Component({
@@ -23,6 +24,8 @@ export class SidebarComponent implements AfterViewInit {
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
   private currentRoute: string = '';
+  public previousRoute$: Observable<RouteHistory> =
+    this.routerService.previousRoute$;
 
   public showSidebar: boolean = true;
 
@@ -58,10 +61,6 @@ export class SidebarComponent implements AfterViewInit {
       );
     });
 
-    this.routerService.pageAction$.subscribe((pageAction: PageAction) => {
-      console.log(pageAction);
-    });
-
     // needed for responsiveness
     this.navbarService.isCollapsed$.subscribe((isCollapsed: boolean) => {
       this.isNavbarCollapsed = isCollapsed;
@@ -78,7 +77,7 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   public getAddNewRouterLink(): string {
-    return `${this.currentRoute}/${this.currentRoute}-form/${PageAction.Create}`;
+    return `${this.currentRoute}/form/${PageAction.Create}`;
   }
 
   private initializeLeftProperty(): void {

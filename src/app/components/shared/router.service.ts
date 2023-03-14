@@ -3,28 +3,24 @@ import {
   NavigationEnd,
   Router,
   Event,
-  ActivatedRoute,
-  ParamMap,
+  RoutesRecognized,
 } from '@angular/router';
-import {
-  filter,
-  first,
-  map,
-  Observable,
-  share,
-  shareReplay,
-  Subject,
-  tap,
-} from 'rxjs';
+import { filter, map, Observable, pairwise, shareReplay, Subject } from 'rxjs';
 import { PageAction } from './enums';
+
+export interface RouteHistory {
+  state: any;
+  url: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouterService {
   public readonly currentRoute$: Observable<string>;
-  private readonly pageActionSubject: Subject<PageAction> = new Subject();
-  public readonly pageAction$: Observable<PageAction> = this.pageActionSubject
+  public readonly previousRoute$: Observable<RouteHistory>;
+  private readonly pageActionSub: Subject<PageAction> = new Subject();
+  public readonly pageAction$: Observable<PageAction> = this.pageActionSub
     .asObservable()
     .pipe(shareReplay());
 
@@ -39,9 +35,25 @@ export class RouterService {
           Object.values(PageAction).includes(route as PageAction)
         );
         if (action) {
-          this.pageActionSubject.next(action);
+          this.pageActionSub.next(action);
         }
         return routes[1];
+      })
+    );
+
+    this.previousRoute$ = this.router.events.pipe(
+      filter((evt: any) => evt instanceof RoutesRecognized),
+      pairwise(),
+      map((events: RoutesRecognized[]) => {
+        const previousUrl: string = events[0].urlAfterRedirects;
+        // const currentUrl: string = events[1].urlAfterRedirects;
+        const previousRoute: RouteHistory = {
+          state:
+            this.router.getCurrentNavigation()?.previousNavigation?.extras
+              .state,
+          url: previousUrl,
+        };
+        return previousRoute;
       })
     );
   }

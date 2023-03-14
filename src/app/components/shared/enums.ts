@@ -10,3 +10,9 @@ export enum PageAction {
   Update = 'update',
   Delete = 'delete',
 }
+
+export enum RouteSegment {
+  Form = 'form',
+  Details = 'details',
+  Catalog = 'catalog',
+}

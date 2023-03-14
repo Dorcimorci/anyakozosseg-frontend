@@ -15,7 +15,7 @@
 
   <div
     class="sidebar-item-container"
-    [ngStyle]="{ top: applyGreaterTopValue ? '75vw' : '28vw' }"
+    [ngStyle]="{ top: applyGreaterTopValue ? '73.5vw' : '28vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
       <div
@@ -28,5 +28,25 @@
         </p>
       </div>
     </div>
+  </div>
+
+  <!-- *ngIf="(previousRoute$ | async)?.includes(SecondaryRoute.Catalog)" -->
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div
+        class="col-12 sidebar-item"
+        [routerLink]="(previousRoute$ | async)?.url"
+        [state]="(previousRoute$ | async)?.state"
+      >
+        <p class="p-0 m-0">
+          VISSZA &nbsp;
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </p>
+      </div>
+    </div>
+    {{ previousRoute$ | async }}
   </div>
 </div>
