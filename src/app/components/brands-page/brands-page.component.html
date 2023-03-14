@@ -4,9 +4,9 @@
     <div
       class="card"
       [routerLink]="[
-        '/brands/alphabetical-brand-catalog',
+        '/brands/catalog',
         pageAction$ | async,
-        category.name.toLowerCase(),
+        removeAccents(category.name.toLowerCase()),
         'A'
       ]"
       [state]="{ id: category.id, name: category.name }"

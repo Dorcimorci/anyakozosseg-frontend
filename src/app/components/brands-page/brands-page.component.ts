@@ -4,6 +4,7 @@ import { CategoriesService } from '../shared/categories/categories.service';
 import { Category } from '../shared/categories/category.model';
 import { PageAction } from '../shared/enums';
 import { RouterService } from '../shared/router.service';
+import { Utils } from '../shared/utils';
 
 @Component({
   selector: 'app-brands-page',
@@ -33,5 +34,9 @@ export class BrandsPageComponent {
       .subscribe((categories: Category[]) => {
         this.categories = categories;
       });
+  }
+
+  public removeAccents(textWithAccents: string): string {
+    return Utils.removeAccents(textWithAccents);
   }
 }

@@ -5,9 +5,9 @@
       class="col text-center letter-container"
       *ngFor="let letter of alphabetLetters"
       [routerLink]="[
-        '/brands/alphabetical-brand-catalog',
+        '/brands/catalog',
         pageAction,
-        category.name.toLowerCase(),
+        removeAccents(category.name.toLowerCase()),
         letter
       ]"
       [state]="{ id: category.id, name: category.name }"
@@ -19,22 +19,33 @@
   <div class="divider"></div>
 
   <div class="row vw-90">
-    <div class="col-3">
-      <p class="letter-initial text-center">{{ activeLetter }}</p>
+    <div class="col-3 row letter-row">
+      <div class="row">
+        <div
+          class="col text-center"
+          [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
+        >
+          <p class="letter-initial text-center">{{ activeLetter }}</p>
+        </div>
+        <div
+          class="col-2 delete-button-container"
+          *ngIf="pageAction === PageAction.Delete"
+        ></div>
+      </div>
     </div>
-    <div class="col"></div>
   </div>
 
   <div class="row vw-90">
-    <div class="col-3 row brand-name-container" *ngFor="let brand of brandList">
-      <div class="brand row">
+    <div class="col-3 row brand-name-row" *ngFor="let brand of brandList">
+      <div
+        class="brand row"
+        [routerLink]="['/brands/details', pageAction, brand.id]"
+      >
         <div
           class="col brand-name text-center"
           [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
         >
-          <a [routerLink]="['/brands/brand-details', brand.id]">{{
-            brand.name
-          }}</a>
+          <a>{{ brand.name }}</a>
         </div>
         <div
           class="col-2 delete-button-container"

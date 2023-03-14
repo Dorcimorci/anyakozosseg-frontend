@@ -4,6 +4,7 @@ import { combineLatest, first, map } from 'rxjs';
 import { Category } from '../../shared/categories/category.model';
 import { alphabetLetters } from '../../shared/constants';
 import { PageAction } from '../../shared/enums';
+import { Utils } from '../../shared/utils';
 import { BrandApiGetResponse } from '../brand.api';
 import { BrandsService } from '../brands.service';
 
@@ -67,5 +68,9 @@ export class AlphabeticalBrandCatalogComponent implements OnInit {
     this.brandsService.deleteById(brandId).subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  public removeAccents(textWithAccents: string): string {
+    return Utils.removeAccents(textWithAccents);
   }
 }

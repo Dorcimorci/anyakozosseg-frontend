@@ -16,15 +16,15 @@ const routes: Routes = [
     component: BrandsPageComponent,
   },
   {
-    path: 'brands/alphabetical-brand-catalog/:action/:categoryName/:abcLetter',
+    path: 'brands/catalog/:action/:categoryName/:abcLetter',
     component: AlphabeticalBrandCatalogComponent,
   },
   {
-    path: 'brands/brand-details/:brandId',
+    path: 'brands/details/:action/:brandId',
     component: BrandDetailsComponent,
   },
   {
-    path: 'brands/brands-form/:action',
+    path: 'brands/form/:action',
     component: BrandsFormComponent,
   },
 ];

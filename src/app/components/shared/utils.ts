@@ -6,6 +6,10 @@ export class Utils {
   public static mapTextToBoolean(boolHun: string): boolean {
     return boolHun === 'IGEN';
   }
+
+  public static removeAccents(textWithAccents: string): string {
+    return textWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
 }
 
 export const booleanOptions: string[] = ['IGEN', 'NEM'];
