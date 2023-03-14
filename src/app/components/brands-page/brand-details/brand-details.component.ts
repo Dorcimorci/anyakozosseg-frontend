@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Utils } from '../../shared/utils';
-import { BrandApiGetResponse } from '../brand.api';
 import { Brand } from '../brand.model';
 import { BrandsService } from '../brands.service';
 import { PriceCategory } from '../price-category.model';
