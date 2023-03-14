@@ -1,3 +1,4 @@
+import { Category } from '../shared/categories/category.model';
 import { PriceCategoryOption } from '../shared/enums';
 
 export interface Brand {
@@ -8,5 +9,5 @@ export interface Brand {
   overallRating: number;
   priceCategory: PriceCategoryOption;
   imageFile: string;
-  category: string;
+  categoryName?: string;
 }

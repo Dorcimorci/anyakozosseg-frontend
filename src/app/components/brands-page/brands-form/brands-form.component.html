@@ -1,6 +1,8 @@
 <div class="form-container text-center">
   <form #brandForm="ngForm">
-    <h1 class="form-title">MÁRKA HOZZÁADÁSA</h1>
+    <h1 class="form-title">
+      MÁRKA {{ mapPageActionToTitleSegment(pageAction) }}
+    </h1>
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
@@ -37,7 +39,7 @@
       <div class="col-8 text-start">
         <app-dropdown
           [options]="CategoryOptions"
-          [(ngModel)]="brand.category"
+          [(ngModel)]="brand.categoryName"
           name="category"
         ></app-dropdown>
       </div>
@@ -121,13 +123,12 @@
     </div>
 
     <button
-      type="submit"
       class="add-new-button"
       [disabled]="brandForm.form.invalid"
       [ngClass]="{ 'btn-disabled': brandForm.form.invalid }"
       (click)="onSubmit()"
     >
-      HOZZÁADOM A MÁRKÁT
+      MÁRKA {{ mapPageActionToSubmitButtonLabelSegment(pageAction) }}
     </button>
   </form>
 </div>

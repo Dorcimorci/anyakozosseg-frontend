@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'brands/form/:action',
     component: BrandsFormComponent,
   },
+  {
+    path: 'brands/form/:action/:brandId',
+    component: BrandsFormComponent,
+  },
 ];
 
 @NgModule({

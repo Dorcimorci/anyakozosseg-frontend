@@ -19,7 +19,7 @@ export class AlphabeticalBrandCatalogComponent implements OnInit {
   public alphabetLetters: string[] = alphabetLetters;
   public activeLetter: string | null = null;
 
-  public pageAction: PageAction = {} as PageAction;
+  public pageAction: PageAction = PageAction.Read;
   public get PageAction() {
     return PageAction;
   }

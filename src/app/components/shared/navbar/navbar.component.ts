@@ -22,12 +22,5 @@ export class NavbarComponent {
   public toggleNavbar(): void {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     this.navbarService.isCollapsed$.next(this.isNavbarCollapsed);
-    const value = getComputedStyle(this.navbar.nativeElement).getPropertyValue(
-      'display'
-    );
-    console.log(value);
-
-    const classes = this.navbar.nativeElement.classList;
-    console.log('classes:', classes);
   }
 }

@@ -46,11 +46,23 @@
           <a>{{ brand.name }}</a>
         </div>
         <div
-          class="col-2 delete-button-container"
           *ngIf="pageAction === PageAction.Delete"
+          class="col-2 delete-button-container"
         >
           <button class="delete-button" (click)="onDelete(brand.id)">
             <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div
+          *ngIf="pageAction === PageAction.Update"
+          class="col-2 delete-button-container"
+        >
+          <button
+            class="delete-button"
+            [routerLink]="['/brands/form', PageAction.Update, brand.id]"
+          >
+            <i class="fa-solid fa-pen"></i>
           </button>
         </div>
       </div>

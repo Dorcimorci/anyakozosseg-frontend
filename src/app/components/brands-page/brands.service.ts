@@ -12,6 +12,13 @@ const COMPONENT_URL = 'brands.php';
 export class BrandsService {
   constructor(private http: HttpClient) {}
 
+  public addNewBrand(brand: BrandApiPostRequest): Observable<any> {
+    return this.http.post<BrandApiPostRequest>(
+      `${BASE_URL}${COMPONENT_URL}`,
+      brand
+    );
+  }
+
   public fetchBrands(
     categoryId: number,
     letter: string | null
@@ -27,8 +34,8 @@ export class BrandsService {
     );
   }
 
-  public addNewBrand(brand: BrandApiPostRequest): Observable<any> {
-    return this.http.post<BrandApiPostRequest>(
+  public updateBrand(brand: BrandApiPostRequest): Observable<any> {
+    return this.http.put<BrandApiPostRequest>(
       `${BASE_URL}${COMPONENT_URL}`,
       brand
     );

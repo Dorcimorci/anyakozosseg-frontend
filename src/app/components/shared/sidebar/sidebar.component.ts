@@ -82,11 +82,13 @@ export class SidebarComponent implements AfterViewChecked {
   }
 
   private initializeLeftProperty(): void {
-    const sidebarItems: HTMLElement[] =
-      this.sidebar.nativeElement.querySelectorAll('.sidebar');
-    sidebarItems.forEach((item: HTMLElement) => {
-      const widthInPx: number = item.clientWidth;
-      item.style.setProperty('--item-width', `${widthInPx}px`);
-    });
+    if (this.sidebar) {
+      const sidebarItems: HTMLElement[] =
+        this.sidebar.nativeElement.querySelectorAll('.sidebar');
+      sidebarItems.forEach((item: HTMLElement) => {
+        const widthInPx: number = item.clientWidth;
+        item.style.setProperty('--item-width', `${widthInPx}px`);
+      });
+    }
   }
 }

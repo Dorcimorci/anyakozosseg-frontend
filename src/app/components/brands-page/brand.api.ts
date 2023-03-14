@@ -8,6 +8,7 @@ export interface BrandApiGetResponse {
   overallRating: number;
   priceCategoryId: number;
   imageFile: string;
+  categoryId: number;
 }
 
 export interface BrandApiPostRequest {
@@ -18,4 +19,15 @@ export interface BrandApiPostRequest {
   priceCategoryId: number;
   imageFile: string;
   categoryId: number;
+}
+
+export interface BrandApiPutRequest {
+  isCrueltyFree: boolean;
+  isVegan: boolean;
+  name: string;
+  overallRating: number;
+  priceCategoryId: number;
+  imageFile: string;
+  categoryId: number;
+  id: number;
 }
