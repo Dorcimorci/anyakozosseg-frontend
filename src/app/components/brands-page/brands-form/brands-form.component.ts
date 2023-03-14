@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
-import { PriceCategoryOption } from '../../shared/enums';
+import { PageAction, PriceCategoryOption } from '../../shared/enums';
 import { booleanOptions, Utils } from '../../shared/utils';
 import { BrandApiPostRequest } from '../brand.api';
 import { Brand } from '../brand.model';
@@ -137,8 +137,12 @@ export class BrandsFormComponent {
   public onSubmit(): void {
     this.brandService
       .addNewBrand(this.mapModelToPostRequest())
-      .subscribe((brandId: number) => {
-        this.router.navigate(['/brands/brand-details', brandId]);
+      .subscribe((response: any) => {
+        this.router.navigate([
+          '/brands/details',
+          PageAction.Read,
+          response.brandId,
+        ]);
       });
   }
 }

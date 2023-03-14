@@ -37,13 +37,11 @@
 
   <div class="row vw-90">
     <div class="col-3 row brand-name-row" *ngFor="let brand of brandList">
-      <div
-        class="brand row"
-        [routerLink]="['/brands/details', pageAction, brand.id]"
-      >
+      <div class="brand row">
         <div
           class="col brand-name text-center"
           [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
+          [routerLink]="['/brands/details', pageAction, brand.id]"
         >
           <a>{{ brand.name }}</a>
         </div>
