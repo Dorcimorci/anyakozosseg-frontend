@@ -17,6 +17,7 @@ $itemWidth: var(--item-width);
   text-decoration: none;
   color: $secondary;
   background-color: $primary;
+  border: 1px solid $secondary;
   border-radius: 0 0.2vw 0.2vw 0;
   &:hover {
     cursor: pointer;
