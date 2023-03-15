@@ -1,6 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+@import "styles/colors";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$h1-margin: 4vw;
 
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5vw;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 2vw;
+  letter-spacing: 0.3vw;
+  color: $text;
+  margin-top: $h1-margin;
+  margin-bottom: $h1-margin;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding-left: 0.5vw;
+  color: $tertiary;
+}
+
+.ngx-file-drop__drop-zone {
+  border-radius: 0 !important;
+  border: none !important;
+  background-color: white;
+  &:hover {
+    cursor: pointer;
+  }
+  height: 4.75vw !important;
+}
+
+.ngx-file-drop__content {
+  height: 100% !important;
+}
+
+.ngx-file-drop__drop-zone-label {
+  font-size: 1.2vw;
+  color: $text;
+}
+
+.invalid-field {
+  outline: 2px solid $primary;
 }

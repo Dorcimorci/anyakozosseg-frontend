@@ -1,0 +1,68 @@
+<div *ngIf="showSidebar" #sidebar>
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '70vw' : '24.5vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div class="col-12 sidebar-item" [routerLink]="[getAddNewRouterLink()]">
+        <p class="p-0 m-0">
+          ÚJ {{ menuItemName.toUpperCase() }} HOZZÁADÁSA &nbsp;
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '73.5vw' : '28vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div
+        class="col-12 sidebar-item"
+        [routerLink]="['/brands', PageAction.Update]"
+      >
+        <p class="p-0 m-0">
+          {{ menuItemName.toUpperCase() }} SZERKESZTÉSE &nbsp;
+          <i class="fa-solid fa-pen"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div
+        class="col-12 sidebar-item"
+        [routerLink]="['/brands', PageAction.Delete]"
+      >
+        <p class="p-0 m-0">
+          {{ menuItemName.toUpperCase() }} TÖRLÉSE &nbsp;
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- *ngIf="(previousRoute$ | async)?.includes(SecondaryRoute.Catalog)" -->
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div
+        class="col-12 sidebar-item"
+        [routerLink]="(previousRoute$ | async)?.url"
+        [state]="(previousRoute$ | async)?.state"
+      >
+        <p class="p-0 m-0">
+          VISSZA &nbsp;
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

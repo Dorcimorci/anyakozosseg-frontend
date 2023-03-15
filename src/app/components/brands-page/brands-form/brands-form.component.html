@@ -1,0 +1,134 @@
+<div class="form-container text-center">
+  <form #brandForm="ngForm">
+    <h1 class="form-title">
+      MÁRKA {{ mapPageActionToTitleSegment(pageAction) }}
+    </h1>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label for="exampleInputEmail1" class="form-label">Márkanév:</label>
+      </div>
+      <div class="col-8 text-start">
+        <input
+          type="text"
+          required
+          #brandName="ngModel"
+          [(ngModel)]="brand.name"
+          name="brandName"
+          [ngClass]="{
+            'invalid-field': brandName.touched && brandName.invalid
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="row" *ngIf="brandName.touched && brandName.invalid">
+      <div class="col-4"></div>
+      <div class="col">
+        <p class="alert alert-danger">
+          Nem adtál meg márkanevet
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label for="exampleInputEmail1" class="form-label">Kategória:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="CategoryOptions"
+          [(ngModel)]="brand.categoryName"
+          name="category"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label for="exampleInputEmail1" class="form-label">Árkategória:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="PriceCategoryOptions"
+          [(ngModel)]="brand.priceCategory"
+          name="priceCategory"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label for="exampleInputEmail1" class="form-label">Cruelty free:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="booleanOptions"
+          [(ngModel)]="brand.isCrueltyFree"
+          name="isCrueltyFree"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label for="exampleInputEmail1" class="form-label">Vegan:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="booleanOptions"
+          [(ngModel)]="brand.isVegan"
+          name="isVegan"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 text-end">
+        <label for="exampleInputEmail1" class="form-label"
+          >Összesített értékelés:</label
+        >
+      </div>
+      <div class="col-6 text-end">
+        <app-rating
+          [(ngModel)]="brand.overallRating"
+          name="overallRating"
+        ></app-rating>
+      </div>
+    </div>
+
+    <input type="file" id="file-upload" (change)="onFileUpload($event)" />
+    <label for="file-upload" class="file-upload-label"
+      >FELTÖLTÖK EGY KÉPET</label
+    >
+
+    <div class="row">
+      <div class="col-3 uploaded-image-col" *ngIf="brand.imageFile">
+        <div class="uploaded-image-container text-end">
+          <img
+            class="uploaded-image"
+            [src]="'data:image/plain;base64,' + brand.imageFile"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="col text-end">
+        <ngx-file-drop
+          dropZoneLabel="Húzd ide a feltölteni kívánt képet!"
+          [multiple]="false"
+          (onFileDrop)="onFileDrop($event)"
+        ></ngx-file-drop>
+      </div>
+    </div>
+
+    <button
+      class="add-new-button"
+      [disabled]="brandForm.form.invalid"
+      [ngClass]="{ 'btn-disabled': brandForm.form.invalid }"
+      (click)="onSubmit()"
+    >
+      MÁRKA {{ mapPageActionToSubmitButtonLabelSegment(pageAction) }}
+    </button>
+  </form>
+</div>
