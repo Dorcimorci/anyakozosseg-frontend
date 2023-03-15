@@ -2,6 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
+## Steps for getting updates from the current develop branch
+
+On the frontend side:
+
+- Stash your work if you have local changes
+- Checkout the develop branch
+- Fetch
+- Pull
+- Run `npm i`
+
+On the backend side:
+
+- Stash your work if you have local changes
+- Checkout the develop branch
+- Fetch
+- Pull
+- Backup (export) your database in phpMyAdmin
+- Run the following query in a phpMyAdmin SQL console:  
+  `DROP DATABASE mother_community;`
+- Within phpMyAdmin Import the `Database/mother_community.sql` file from your local backend repository
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
