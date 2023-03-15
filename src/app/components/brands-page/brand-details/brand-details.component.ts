@@ -36,7 +36,7 @@ export class BrandDetailsComponent {
           priceCategory: priceCategories.find(
             (priceCategory: PriceCategory) =>
               priceCategory.id === brand.priceCategoryId
-          )!.priceCategoryName,
+          )!.name,
           imageFile: brand.imageFile,
           category: '',
         }))
