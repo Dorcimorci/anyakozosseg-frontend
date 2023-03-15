@@ -196,8 +196,7 @@ export class BrandsFormComponent implements OnInit {
   public getPriceCategoryId(option: PriceCategoryOption): number {
     const foundPriceCategory: PriceCategory | undefined =
       this.priceCategories.find(
-        (priceCategory: PriceCategory) =>
-          priceCategory.priceCategoryName === option
+        (priceCategory: PriceCategory) => priceCategory.name === option
       );
 
     return foundPriceCategory
@@ -211,8 +210,8 @@ export class BrandsFormComponent implements OnInit {
         (priceCategory: PriceCategory) => priceCategory.id === id
       );
     return foundPriceCategory
-      ? (foundPriceCategory.priceCategoryName as PriceCategoryOption)
-      : (this.priceCategories[0].priceCategoryName as PriceCategoryOption);
+      ? (foundPriceCategory.name as PriceCategoryOption)
+      : (this.priceCategories[0].name as PriceCategoryOption);
   }
 
   public mapPageActionToTitleSegment(pageAction: PageAction): string {
