@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { BrandApiGetResponse, BrandApiPostRequest } from '../brand-model/brand.api';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
-const COMPONENT_URL = 'brands.php';
+const COMPONENT_URL = 'brands';
 
 @Injectable({
   providedIn: 'root',
