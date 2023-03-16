@@ -14,10 +14,10 @@ import { PriceCategoryService } from '../price-category.service';
 
 @Component({
   selector: 'app-brands-form',
-  templateUrl: './brands-form.component.html',
-  styleUrls: ['./brands-form.component.scss'],
+  templateUrl: './brand-form.component.html',
+  styleUrls: ['./brand-form.component.scss'],
 })
-export class BrandsFormComponent implements OnInit {
+export class BrandFormComponent implements OnInit {
   public get Utils() {
     return Utils;
   }

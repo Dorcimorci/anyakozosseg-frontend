@@ -10,10 +10,10 @@ import { BrandsService } from '../brands.service';
 
 @Component({
   selector: 'app-alphabetical-brand-catalog',
-  templateUrl: './alphabetical-brand-catalog.component.html',
-  styleUrls: ['./alphabetical-brand-catalog.component.scss'],
+  templateUrl: './brand-catalog.component.html',
+  styleUrls: ['./brand-catalog.component.scss'],
 })
-export class AlphabeticalBrandCatalogComponent implements OnInit {
+export class BrandCatalogComponent implements OnInit {
   public category: Category = {} as Category;
   public categoryTitlePart: string = '';
   public alphabetLetters: string[] = alphabetLetters;

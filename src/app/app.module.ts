@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
-import { AlphabeticalBrandCatalogComponent } from './components/brands-page/alphabetical-brand-catalog/alphabetical-brand-catalog.component';
+import { BrandCatalogComponent } from './components/brands-page/brand-catalog/brand-catalog.component';
 import { BrandDetailsComponent } from './components/brands-page/brand-details/brand-details.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
-import { BrandsFormComponent } from './components/brands-page/brands-form/brands-form.component';
+import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
 import { DropdownComponent } from './components/shared/dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './components/shared/rating/rating.component';
@@ -21,10 +21,10 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     NavbarComponent,
     WelcomePageComponent,
     BrandsPageComponent,
-    AlphabeticalBrandCatalogComponent,
+    BrandCatalogComponent,
     BrandDetailsComponent,
     SidebarComponent,
-    BrandsFormComponent,
+    BrandFormComponent,
     DropdownComponent,
     RatingComponent,
   ],
