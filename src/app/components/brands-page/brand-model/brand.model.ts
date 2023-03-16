@@ -1,5 +1,5 @@
-import { Category } from '../shared/categories/category.model';
-import { PriceCategoryOption } from '../shared/enums';
+import { Category } from '../../shared/categories/category.model';
+import { PriceCategoryOption } from '../../shared/enums';
 
 export interface Brand {
   id: number;

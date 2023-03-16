@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Utils } from '../../shared/utils';
-import { Brand } from '../brand.model';
-import { BrandsService } from '../brands.service';
-import { PriceCategory } from '../price-category.model';
-import { PriceCategoryService } from '../price-category.service';
+import { Brand } from '../brand-model/brand.model';
+import { BrandsService } from '../brands-service/brands.service';
+import { PriceCategory } from '../price-category/price-category.model';
+import { PriceCategoryService } from '../price-category/price-category.service';
 
 @Component({
   selector: 'app-brand-details',

@@ -1,4 +1,4 @@
-import { PriceCategoryOption } from '../shared/enums';
+import { PriceCategoryOption } from '../../shared/enums';
 
 export interface BrandApiGetResponse {
   id: number;

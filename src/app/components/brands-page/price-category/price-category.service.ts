@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PriceCategoryOption } from '../shared/enums';
+import { PriceCategoryOption } from '../../shared/enums';
 import { PriceCategory } from './price-category.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
