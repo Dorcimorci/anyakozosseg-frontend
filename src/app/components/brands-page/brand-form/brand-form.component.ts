@@ -6,11 +6,11 @@ import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
 import { PageAction, PriceCategoryOption } from '../../shared/enums';
 import { booleanOptions, Utils } from '../../shared/utils';
-import { BrandApiPostRequest, BrandApiPutRequest } from '../brand.api';
-import { Brand } from '../brand.model';
-import { BrandsService } from '../brands.service';
-import { PriceCategory } from '../price-category.model';
-import { PriceCategoryService } from '../price-category.service';
+import { BrandApiPostRequest, BrandApiPutRequest } from '../brand-model/brand.api';
+import { Brand } from '../brand-model/brand.model';
+import { BrandsService } from '../brands-service/brands.service';
+import { PriceCategory } from '../price-category/price-category.model';
+import { PriceCategoryService } from '../price-category/price-category.service';
 
 @Component({
   selector: 'app-brands-form',
