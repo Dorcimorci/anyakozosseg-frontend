@@ -16,6 +16,10 @@ const routes: Routes = [
     component: BrandsPageComponent,
   },
   {
+    path: 'brands/:action',
+    component: BrandsPageComponent,
+  },
+  {
     path: 'brands/catalog/:action/:categoryName/:abcLetter',
     component: BrandCatalogComponent,
   },

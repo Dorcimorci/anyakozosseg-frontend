@@ -14,7 +14,6 @@ export class Utils {
   }
 
   public static mapPageActionToTitleSegment(pageAction: PageAction): string {
-    console.log('pageAction:', pageAction);
     switch (pageAction) {
       case PageAction.Create:
         return 'HOZZÁADÁSA';
@@ -22,6 +21,19 @@ export class Utils {
         return 'SZERKESZTÉSE';
       default:
         return '';
+    }
+  }
+
+  public static validateAndGetFile(
+    file: File,
+    onLoadCallback: (this: FileReader, ev: ProgressEvent<FileReader>) => any
+  ): void {
+    if (file.type.match(/image\/*/) == null) {
+      console.error('Only images are supported.');
+    } else {
+      const reader = new FileReader();
+      reader.onloadend = onLoadCallback;
+      reader.readAsDataURL(file);
     }
   }
 }
