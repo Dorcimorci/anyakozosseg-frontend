@@ -45,6 +45,8 @@ export class RouterService {
         );
         if (action) {
           this.pageActionSub.next(action);
+        } else {
+          this.pageActionSub.next(PageAction.Read);
         }
         return routes[1];
       })
