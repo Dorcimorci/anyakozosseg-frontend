@@ -5,7 +5,7 @@ import { PriceCategoryOption } from '../shared/enums';
 import { PriceCategory } from './price-category.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
-const COMPONENT_URL = 'price-categories.php';
+const COMPONENT_URL = 'price-categories';
 
 @Injectable({
   providedIn: 'root',

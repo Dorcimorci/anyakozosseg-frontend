@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const BASE_URL = 'http://localhost:3000/API/';
-const COMPONENT_URL = 'categories.php';
+const COMPONENT_URL = 'categories';
 
 @Injectable({
   providedIn: 'root',
