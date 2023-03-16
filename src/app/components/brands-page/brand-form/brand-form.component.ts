@@ -6,7 +6,10 @@ import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
 import { PageAction, PriceCategoryOption } from '../../shared/enums';
 import { booleanOptions, Utils } from '../../shared/utils';
-import { BrandApiPostRequest, BrandApiPutRequest } from '../brand-model/brand.api';
+import {
+  BrandApiPostRequest,
+  BrandApiPutRequest,
+} from '../brand-model/brand.api';
 import { Brand } from '../brand-model/brand.model';
 import { BrandsService } from '../brands-service/brands.service';
 import { PriceCategory } from '../price-category/price-category.model';
@@ -123,8 +126,14 @@ export class BrandFormComponent implements OnInit {
     const droppedFile: NgxFileDropEntry = file[0];
     if (droppedFile.fileEntry.isFile) {
       const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-      fileEntry.file((file: File) => {
-        this.processFile(file);
+      fileEntry.file((droppedFile: File) => {
+        Utils.validateAndGetFile(
+          droppedFile,
+          (event: ProgressEvent<FileReader>) => {
+            const fileContent: string = event.target?.result as string;
+            this.brand.imageFile = fileContent.split(',')[1];
+          }
+        );
       });
     }
   }
@@ -135,20 +144,13 @@ export class BrandFormComponent implements OnInit {
       ? inputElement.files[0]
       : null;
     if (uploadedFile) {
-      this.processFile(uploadedFile);
-    }
-  }
-
-  public processFile(file: File) {
-    if (file.type.match(/image\/*/) == null) {
-      console.error('Only images are supported.');
-      return;
-    } else {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (_event) => {
-        this.brand.imageFile = (reader.result as string).split(',')[1];
-      };
+      Utils.validateAndGetFile(
+        uploadedFile,
+        (event: ProgressEvent<FileReader>) => {
+          const fileContent: string = event.target?.result as string;
+          this.brand.imageFile = fileContent.split(',')[1];
+        }
+      );
     }
   }
 
