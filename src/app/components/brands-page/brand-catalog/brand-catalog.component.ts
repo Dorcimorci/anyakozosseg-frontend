@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, first, map } from 'rxjs';
 import { Category } from '../../shared/categories/category.model';
-import { alphabetLetters } from '../../shared/constants';
 import { PageAction } from '../../shared/enums';
-import { Utils } from '../../shared/utils';
+import { alphabetLetters, Utils } from '../../shared/utils';
 import { BrandApiGetResponse } from '../brand-model/brand.api';
 import { BrandsService } from '../brands-service/brands.service';
 
