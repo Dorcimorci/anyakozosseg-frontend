@@ -131,7 +131,7 @@ export class BrandFormComponent implements OnInit {
           droppedFile,
           (event: ProgressEvent<FileReader>) => {
             const fileContent: string = event.target?.result as string;
-            this.brand.imageFile = fileContent.split(',')[1];
+            this.brand.imageFile = fileContent;
           }
         );
       });
@@ -148,7 +148,7 @@ export class BrandFormComponent implements OnInit {
         uploadedFile,
         (event: ProgressEvent<FileReader>) => {
           const fileContent: string = event.target?.result as string;
-          this.brand.imageFile = fileContent.split(',')[1];
+          this.brand.imageFile = fileContent;
         }
       );
     }

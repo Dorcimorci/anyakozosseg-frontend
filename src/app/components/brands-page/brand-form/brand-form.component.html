@@ -106,11 +106,7 @@
     <div class="row">
       <div class="col-3 uploaded-image-col" *ngIf="brand.imageFile">
         <div class="uploaded-image-container text-end">
-          <img
-            class="uploaded-image"
-            [src]="'data:image/plain;base64,' + brand.imageFile"
-            alt=""
-          />
+          <img class="uploaded-image" [src]="brand.imageFile" alt="" />
         </div>
       </div>
       <div class="col text-end">
