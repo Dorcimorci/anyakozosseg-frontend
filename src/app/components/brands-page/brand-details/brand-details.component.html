@@ -1,7 +1,7 @@
 <div class="brand-container" *ngIf="brand$ | async as brand">
   <div class="row">
     <div class="col-4 mx-auto text-center brand-logo">
-      <img [src]="'data:image/plain;base64,' + brand.imageFile" alt="" />
+      <img [src]="brand.imageFile" alt="" />
     </div>
     <div class="col-8 text-center">
       <div class="brand-title">
