@@ -26,7 +26,7 @@ export class BrandsService {
     categoryId: number,
     letter: string
   ): Observable<BrandApiGetResponse[]> {
-    const params = new HttpParams()
+    const params: HttpParams = new HttpParams()
       .set('categoryId', categoryId)
       .set('abcLetter', letter);
     return this.http.get<BrandApiGetResponse[]>(`${BASE_URL}${COMPONENT_URL}`, {
@@ -35,7 +35,7 @@ export class BrandsService {
   }
 
   public fetchBrandById(brandId: number): Observable<BrandApiGetResponse> {
-    const params = new HttpParams().set('brandId', brandId);
+    const params: HttpParams = new HttpParams().set('brandId', brandId);
     return this.http.get<BrandApiGetResponse>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
     });
@@ -49,6 +49,7 @@ export class BrandsService {
   }
 
   public deleteById(brandId: number): Observable<any> {
-    return this.http.delete(`${BASE_URL}${COMPONENT_URL}?brandId=${brandId}`);
+    const params: HttpParams = new HttpParams().set('brandId', brandId);
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, { params });
   }
 }
