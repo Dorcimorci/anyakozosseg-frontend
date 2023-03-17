@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Category } from './category.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
-const COMPONENT_URL = 'categories.php';
+const COMPONENT_URL = 'categories';
 
 @Injectable({
   providedIn: 'root',
