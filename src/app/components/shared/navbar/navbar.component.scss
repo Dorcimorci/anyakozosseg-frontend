@@ -4,6 +4,10 @@ form {
   width: 100%;
 }
 
+.row {
+  margin: 0;
+}
+
 .navbar {
   background: none !important;
   display: block;
@@ -50,6 +54,7 @@ form {
 
 .search-input-container {
   padding: 0.7vw;
+  line-height: 2.7vw;
 }
 
 .search-btn,
@@ -74,9 +79,9 @@ form {
 
 .user-icon {
   position: absolute;
-  top: 6.5vw;
-  right: 9vw;
-  font-size: 7vw;
+  bottom: 0.5vw;
+  left: 0.4vw;
+  font-size: 8vw;
   color: $secondary;
   transition: color 0.3s ease-out;
 }
@@ -112,18 +117,6 @@ form {
   .list-container {
     padding-bottom: 6vw;
   }
-  .user-icon {
-    top: 32vw;
-    right: 1.5vw;
-  }
-}
-
-// applyed for devices width screen size smaller, than 500px
-@media only screen and (max-width: 500px) {
-  .user-icon {
-    top: 32.5vw;
-    right: 1.5vw;
-  }
 }
 
 // applyed for devices width screen size greater, than 575px
@@ -135,19 +128,5 @@ form {
 
   .list-container {
     align-items: end;
-  }
-}
-
-@media only screen and (min-width: 700px) and (max-width: 900px) {
-  .user-icon {
-    top: 6.75vw;
-    right: 9vw;
-  }
-}
-
-@media only screen and (min-width: 575px) and (max-width: 700px) {
-  .user-icon {
-    top: 7vw;
-    right: 9vw;
   }
 }
