@@ -16,7 +16,7 @@ export class BrandCatalogComponent implements OnInit {
   public category: Category = {} as Category;
   public categoryTitlePart: string = '';
   public alphabetLetters: string[] = alphabetLetters;
-  public activeLetter: string | null = null;
+  public activeLetter: string = 'a';
 
   public pageAction: PageAction = PageAction.Read;
   public get PageAction() {
@@ -38,7 +38,10 @@ export class BrandCatalogComponent implements OnInit {
       ),
       this.activatedRoute.paramMap,
     ]).subscribe(([routeData, paramMap]) => {
-      this.activeLetter = paramMap.get('abcLetter');
+      const abcLetter = paramMap.get('abcLetter');
+      if (abcLetter) {
+        this.activeLetter = abcLetter;
+      }
       this.pageAction = paramMap.get('action') as PageAction;
       this.category = {
         id: routeData.id,
