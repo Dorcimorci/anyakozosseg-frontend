@@ -1,14 +1,27 @@
 <span
-  *ngFor="let ratingOption of ratingOptions"
-  (click)="onStarClicked(ratingOption)"
-  (mouseenter)="onStarHovered(ratingOption)"
-  (mouseleave)="onStarLeft(ratingOption)"
-  class="rating"
+  *ngFor="let ratingStep of ratingSteps"
+  (click)="onStarClicked(ratingStep)"
+  (mouseenter)="onStarHovered(ratingStep)"
+  (mouseleave)="onStarLeft(ratingStep)"
+  [ngClass]="{ rating: !isDisabled }"
 >
-  <span *ngIf="ratingOption > ratingToShow"
-    ><i class="fa-regular fa-star"></i
-  ></span>
-  <span *ngIf="ratingOption <= ratingToShow"
-    ><i class="fa-solid fa-star"></i
-  ></span>
+  <span *ngIf="ratingStep <= ratingToShow">
+    <i class="fa-solid fa-star"></i>
+  </span>
+  <span
+    *ngIf="
+      ratingStep === Math.floor(roundToHalf(ratingToShow)) &&
+      ratingToShow % 1 !== 0
+    "
+  >
+    <i class="fas fa-star-half-alt"></i>
+  </span>
+  <span
+    *ngIf="
+      ratingStep > +ratingToShow + 1 ||
+      (ratingToShow % 1 === 0 && ratingStep > ratingToShow)
+    "
+  >
+    <i class="fa-regular fa-star"></i>
+  </span>
 </span>

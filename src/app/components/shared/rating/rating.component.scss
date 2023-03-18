@@ -6,3 +6,10 @@
     cursor: pointer;
   }
 }
+
+.rating-disabed {
+  color: $primary;
+  &:hover {
+    cursor: not-allowed;
+  }
+}
