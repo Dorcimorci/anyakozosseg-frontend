@@ -1,14 +1,12 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
   ViewChild,
 } from '@angular/core';
-import { Navigation } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PageAction, RouteSegment } from '../enums';
+import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
 import { RouteHistory, RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
@@ -24,7 +22,7 @@ export class SidebarComponent implements AfterViewChecked {
   public isNavbarCollapsed: boolean = false;
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
-  private currentRoute: string = '';
+  public currentRoute: string = '';
   public previousRoute$: Observable<RouteHistory> =
     this.routerService.previousRoute$;
 
@@ -79,10 +77,6 @@ export class SidebarComponent implements AfterViewChecked {
 
   public getAddNewRouterLink(): string {
     return `${this.currentRoute}/form/${PageAction.Create}`;
-  }
-
-  public getEditRouterLink(): string {
-    return `${this.currentRoute}/form/${PageAction.Update}`;
   }
 
   private initializeLeftProperty(): void {
