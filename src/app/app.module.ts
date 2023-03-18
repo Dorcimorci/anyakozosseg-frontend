@@ -14,6 +14,9 @@ import { DropdownComponent } from './components/shared/dropdown/dropdown.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './components/shared/rating/rating.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
+import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
+import { ProductListComponent } from './components/products-page/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     BrandFormComponent,
     DropdownComponent,
     RatingComponent,
+    ProductsPageComponent,
+    ProductCatalogComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,

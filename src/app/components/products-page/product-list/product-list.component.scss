@@ -1,0 +1,94 @@
+@import "/src/styles/colors";
+
+$badgeSizaFactor: 0.75;
+
+img {
+  max-height: 11vw;
+  max-width: 100%;
+}
+
+hr {
+  margin: 0.5vw 0 0.5vw 0;
+}
+
+.bolder-hr {
+  border: 2px solid $primary;
+  // border-radius: 100%;
+}
+
+i {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  font-size: calc(2vw * $badgeSizaFactor);
+  font-weight: lighter;
+  padding-right: 0.5vw;
+  margin-left: 0.5vw;
+}
+
+.badge-after {
+  position: absolute;
+}
+
+.badge-after,
+.custom-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $secondary;
+  border: 0.1vw solid $secondary;
+  height: calc(1.3vw * $badgeSizaFactor);
+  width: calc(1.3vw * $badgeSizaFactor);
+  font-size: calc(0.75vw * $badgeSizaFactor);
+  top: calc(-0.2vw * $badgeSizaFactor);
+  right: 0;
+  text-align: center;
+  margin: auto;
+  border-radius: 30%;
+}
+
+.products-container {
+  height: 10vw;
+}
+
+.product {
+  background-color: $secondary;
+  color: $text;
+  padding: 1vw;
+}
+
+.product-data {
+  padding-left: 2vw;
+}
+
+.product-name {
+  font-size: 1.3vw;
+  margin-bottom: 0;
+  color: $primary;
+}
+
+.product-body {
+  font-size: 1vw;
+}
+
+.rating-data {
+  color: $text;
+}
+
+.rating-stars {
+  color: $primary;
+}
+
+.rating-number {
+  display: inline;
+  font-size: 0.8vw;
+}
+
+.comment {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -4,6 +4,8 @@ import { BrandCatalogComponent } from './components/brands-page/brand-catalog/br
 import { BrandDetailsComponent } from './components/brands-page/brand-details/brand-details.component';
 import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
+import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 const routes: Routes = [
@@ -34,6 +36,14 @@ const routes: Routes = [
   {
     path: 'brands/form/:action/:brandId',
     component: BrandFormComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsPageComponent,
+  },
+  {
+    path: 'products/catalog/:action/:abcLetter',
+    component: ProductCatalogComponent,
   },
 ];
 

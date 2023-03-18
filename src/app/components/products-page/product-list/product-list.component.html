@@ -1,0 +1,39 @@
+<div class="products-container row justify-content-center">
+  <div *ngFor="let product of products" class="col-8 product">
+    <div class="row">
+      <div class="col p-0 m-0 d-flex justify-content-center align-items-center">
+        <img
+          src="https://cdn.notinoimg.com/detail_main_mq/avon/2800017893163_01-o/avon-clearskin-pore-shine-control-tisztito-maszk-aktiv-szennel_.jpg"
+          alt=""
+        />
+      </div>
+      <div class="col-10 product-data">
+        <hr class="bolder-hr" />
+        <p class="product-name">{{ product.name }}</p>
+        <hr class="bolder-hr" />
+        <div class="product-body">
+          <div class="rating-data">
+            <app-rating
+              [disabled]="true"
+              [(ngModel)]="product.avgRating"
+              class="rating-stars"
+            ></app-rating>
+            <p class="rating-number">
+              ({{ product.avgRating | number : "1.1-1" }})
+            </p>
+            <i class="fa fa-comment" aria-hidden="true"
+              ><div class="badge-after">{{ product.numberOfRatings }}</div></i
+            >
+          </div>
+          <hr />
+          <div>
+            <p class="comment p-0 m-0">
+              <b> {{ product.lastRating.username }}</b
+              >: {{ product.lastRating.comment }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
