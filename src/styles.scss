@@ -4,7 +4,12 @@
 @import "styles/colors";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-$h1-margin: 4vw;
+$h1-margin: 1.5vw;
+
+.row {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: "Montserrat", sans-serif;
