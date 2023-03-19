@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrandCatalogComponent } from './components/brands-page/brand-catalog/brand-catalog.component';
@@ -5,6 +6,8 @@ import { BrandDetailsComponent } from './components/brands-page/brand-details/br
 import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegPageComponent } from './components/reg-page/reg-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +37,14 @@ const routes: Routes = [
   {
     path: 'brands/form/:action/:brandId',
     component: BrandFormComponent,
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+  },
+  {
+    path: 'register',
+    component: RegPageComponent,
   },
 ];
 
