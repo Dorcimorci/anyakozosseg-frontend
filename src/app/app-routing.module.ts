@@ -15,7 +15,7 @@ const routes: Routes = [
     component: WelcomePageComponent,
   },
   {
-    path: 'brands/:action',
+    path: 'brands',
     component: BrandsPageComponent,
   },
   {

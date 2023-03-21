@@ -1,11 +1,13 @@
 @import "/src/styles/colors";
 
 .dropdown-button {
+  font-size: 1.1vw;
   width: 100%;
   border-radius: 0;
   background-color: white;
   color: $text;
   border: none;
+  padding: 0.4vw;
 }
 
 .dropdown-menu {
@@ -13,6 +15,7 @@
 }
 
 .dropdown-item {
+  font-size: 1.1vw;
   color: $text;
   &:hover {
     background-color: $primary;

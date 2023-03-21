@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BrandApiGetResponse, BrandApiPostRequest } from '../brand-model/brand.api';
+import {
+  BrandApiGetResponse,
+  BrandApiPostRequest,
+} from '../brand-model/brand.api';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
-const COMPONENT_URL = 'brands.php';
+const COMPONENT_URL = 'brands';
 
 @Injectable({
   providedIn: 'root',
@@ -21,17 +24,21 @@ export class BrandsService {
 
   public fetchBrands(
     categoryId: number,
-    letter: string | null
+    letter: string
   ): Observable<BrandApiGetResponse[]> {
-    return this.http.get<BrandApiGetResponse[]>(
-      `${BASE_URL}${COMPONENT_URL}?categoryId=${categoryId}&abcLetter=${letter}`
-    );
+    const params: HttpParams = new HttpParams()
+      .set('categoryId', categoryId)
+      .set('abcLetter', letter);
+    return this.http.get<BrandApiGetResponse[]>(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+    });
   }
 
   public fetchBrandById(brandId: number): Observable<BrandApiGetResponse> {
-    return this.http.get<BrandApiGetResponse>(
-      `${BASE_URL}${COMPONENT_URL}?brandId=${brandId}`
-    );
+    const params: HttpParams = new HttpParams().set('brandId', brandId);
+    return this.http.get<BrandApiGetResponse>(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+    });
   }
 
   public updateBrand(brand: BrandApiPostRequest): Observable<any> {
@@ -42,6 +49,7 @@ export class BrandsService {
   }
 
   public deleteById(brandId: number): Observable<any> {
-    return this.http.delete(`${BASE_URL}${COMPONENT_URL}?brandId=${brandId}`);
+    const params: HttpParams = new HttpParams().set('brandId', brandId);
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, { params });
   }
 }

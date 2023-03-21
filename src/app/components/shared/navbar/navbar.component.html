@@ -18,8 +18,10 @@
       id="navbarSupportedContent"
     >
       <ul class="navbar-nav list-container row justify-content-around">
-        <li class="nav-item col-2 pb-0 d-flex brand-icon-container">
-          <a class="navbar-brand" [routerLink]="['']"
+        <li
+          class="nav-item col-2 pb-0 d-flex brand-icon-container justify-content-center"
+        >
+          <a class="navbar-brand m-0" [routerLink]="['']"
             ><img
               src="../../../../assets/brand_icon_square.png"
               class="brand-icon"
@@ -39,7 +41,7 @@
         <li class="nav-item col-2">
           <a
             class="nav-link"
-            [routerLink]="['brands', PageAction.Read]"
+            [routerLink]="['brands']"
             routerLinkActive="nav-link-active"
             >MÁRKÁK</a
           >
@@ -63,7 +65,7 @@
           >
         </li>
 
-        <li class="nav-item col-2 user-icon-container">
+        <li class="nav-item col-2">
           <!-- <img src="assets/user_transparent.png" class="user-icon" alt="" /> -->
         </li>
       </ul>
@@ -79,11 +81,14 @@
         </div>
 
         <div class="col-4 nav-item"></div>
-        <div class="col-2 nav-item my-auto login-item">
-          <i class="fa-solid fa-user user-icon"></i>
-          <a
+        <div
+          class="col-2 nav-item my-auto login-item"
           [routerLink]="['login']"
-          >BELÉPÉS</a>
+        >
+          <div class="nav-item col-2 user-icon-container">
+            <i class="fa-solid fa-user user-icon"></i>
+          </div>
+          BELÉPÉS
         </div>
       </div>
     </div>

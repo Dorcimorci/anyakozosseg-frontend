@@ -5,15 +5,19 @@ input {
   width: 100%;
 }
 
+.page-form {
+  background-color: $secondary;
+  padding: 2vw 3vw 2vw 3vw;
+}
+
 .row {
   height: 2vw;
-  margin-bottom: 1vw;
+  margin-bottom: 1.5vw;
 }
 
 .form-container {
-  background-color: $secondary;
-  padding: 2vw 3vw 2vw 3vw;
-  margin: 2vw 30vw 2vw 30vw;
+  height: auto;
+  margin: 2vw 0 2vw 0;
 }
 
 .form-title {
@@ -37,7 +41,6 @@ input {
 
 .form-label {
   text-align: left;
-  margin: 0 0 1.5vw 0;
   color: $text;
 }
 
