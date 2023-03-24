@@ -112,21 +112,23 @@ img {
 
 .rating-form-data {
   padding: 1vw 2vw 2vw 2vw;
-  border: solid $primary-soft-smoke;
+  border: solid $primary;
   border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
   border-radius: 0.5vw;
-  background-color: whitesmoke;
+  background-color: white;
   font-size: 1vw;
   textarea {
     font-size: 1vw;
     font-family: "Montserrat", sans-serif;
     color: $text;
+    background-color: white;
+    border: solid $primary-smoke;
   }
 }
 
 .rating-form-btn {
   cursor: pointer;
-  background-color: transparent;
+  background-color: white;
   color: $primary;
   border: 0.1vw solid $primary;
   border-radius: 0.25vw;
