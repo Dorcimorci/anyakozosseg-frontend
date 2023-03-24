@@ -28,7 +28,6 @@ export class ProductListComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.commentElements.changes.subscribe(() => {
       this.commentElements.forEach((comment: ElementRef, i: number) => {
-        const commentText = comment.nativeElement.innerText;
         const isOverflowing =
           comment.nativeElement.scrollHeight >
           comment.nativeElement.clientHeight;
@@ -49,11 +48,9 @@ export class ProductListComponent implements AfterViewInit {
   }
   public onMouseOver(): void {
     this.showFullCommentBtnHovered = true;
-    console.log(this.showFullCommentBtnHovered);
   }
 
   public onMouseLeave(): void {
     this.showFullCommentBtnHovered = false;
-    console.log(this.showFullCommentBtnHovered);
   }
 }

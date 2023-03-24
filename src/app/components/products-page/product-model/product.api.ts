@@ -16,3 +16,10 @@ export interface ProductListItem {
   lastRating: Rating;
   imageFile: string;
 }
+
+export interface RatingPostRequest {
+  userId: number;
+  productId: number;
+  rating: number;
+  comment: string;
+}

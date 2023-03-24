@@ -20,12 +20,18 @@ img {
   margin-top: 5.5vw;
 }
 
-.product-container {
+.item-container {
   margin: 0 17vw;
   position: relative;
   background-color: white;
   color: $text;
   padding: 1vw;
+}
+
+.product-rating {
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .product-property {
@@ -93,33 +99,50 @@ img {
   padding: 1vw;
 }
 
-.product-data {
+.rating-data {
   padding: 1vw;
   padding-left: 2vw;
   border: solid $primary-soft-smoke;
   border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
   border-radius: 0.5vw;
   background-color: $secondary-smoke;
+  font-size: 1vw;
+  color: $text;
+}
+
+.rating-form-data {
+  padding: 1vw 2vw 2vw 2vw;
+  border: solid $primary-soft-smoke;
+  border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
+  border-radius: 0.5vw;
+  background-color: whitesmoke;
+  font-size: 1vw;
+  textarea {
+    font-size: 1vw;
+    font-family: "Montserrat", sans-serif;
+    color: $text;
+  }
+}
+
+.rating-form-btn {
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 0.25vw;
+  font-size: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+  }
 }
 
 .product-name {
   font-size: 1.3vw;
   margin-bottom: 0;
   color: $primary;
-}
-
-.product-body {
-  font-size: 1vw;
-}
-
-.rating {
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.rating-data {
-  color: $text;
 }
 
 .rating-stars {
@@ -129,6 +152,22 @@ img {
 .rating-number {
   display: inline;
   font-size: 0.8vw;
+}
+
+.write-rating-btn {
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 1vw;
+  font-size: 1.3vw;
+  margin-top: 0.5vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+  }
 }
 
 .comment-container {
@@ -150,24 +189,4 @@ img {
 .comment-full {
   display: block;
   overflow: visible;
-}
-
-.show-full-btn {
-  position: absolute;
-  bottom: 2.3vw;
-  right: 2vw;
-  cursor: pointer;
-  background-color: transparent;
-  color: $primary;
-  border: 0.1vw solid $primary;
-  border-radius: 1vw;
-  font-size: 0.6vw;
-  margin-top: 0.5vw;
-  padding-left: 0.5vw;
-  padding-right: 0.5vw;
-  width: 2vw;
-  &:hover {
-    background-color: $primary;
-    color: $secondary;
-  }
 }

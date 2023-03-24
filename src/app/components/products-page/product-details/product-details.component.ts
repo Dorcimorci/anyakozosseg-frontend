@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { Rating, RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
+import { RatingService } from '../rating-service/rating.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,11 +14,18 @@ import { ProductService } from '../product-service/product.service';
 })
 export class ProductDetailsComponent {
   public product$: Observable<Product>;
+  public showRatingForm: boolean = false;
+
+  public newRating: RatingPostRequest = {
+    rating: 0,
+    userId: 1,
+  } as RatingPostRequest;
 
   constructor(
-    private readonly productService: ProductService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly navbarService: NavbarService
+    private readonly productService: ProductService,
+    private readonly ratingService: RatingService,
+    private cd: ChangeDetectorRef
   ) {
     const productId: number =
       +this.activatedRoute.snapshot.paramMap.get('productId')!;
@@ -29,5 +38,28 @@ export class ProductDetailsComponent {
       top: offset,
       behavior: 'smooth',
     });
+  }
+
+  public openRatingForm(): void {
+    this.showRatingForm = true;
+    this.cd.detectChanges();
+  }
+
+  public closeRatingForm(): void {
+    this.showRatingForm = false;
+    this.cd.detectChanges();
+  }
+
+  public submitRating(productId: number): void {
+    this.newRating.productId = productId;
+
+    this.ratingService
+      .submitRating(this.newRating)
+      .subscribe(() => this.refresh(productId));
+  }
+
+  private refresh(productId: number): void {
+    this.product$ = this.productService.fetchProductDetailsById(productId);
+    this.showRatingForm = false;
   }
 }
