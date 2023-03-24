@@ -1,9 +1,11 @@
-interface Rating {
+export interface Rating {
   id: number;
   username: string;
   rating: number;
   comment: string;
   addedOn: Date;
+  showFully: boolean;
+  isEllipsisActive: boolean;
 }
 
 export interface ProductListItem {
@@ -13,11 +15,4 @@ export interface ProductListItem {
   numberOfRatings: number;
   lastRating: Rating;
   imageFile: string;
-}
-
-export interface Product {
-  id: number;
-  name: string;
-  imageFile: string;
-  categoryName: string;
 }

@@ -17,6 +17,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
 import { ProductListComponent } from './components/products-page/product-list/product-list.component';
+import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProductListComponent } from './components/products-page/product-list/pr
     ProductsPageComponent,
     ProductCatalogComponent,
     ProductListComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

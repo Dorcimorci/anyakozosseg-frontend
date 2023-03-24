@@ -1,0 +1,85 @@
+<div *ngIf="product$ | async as product">
+  <div #productContainer class="product-container">
+    <div class="row">
+      <div class="product-title col-12 text-center">{{ product.name }}</div>
+
+      <div class="col-md-3 text-center">
+        <img
+          src="https://cdn.notinoimg.com/detail_main_mq/avon/2800017893163_01-o/avon-clearskin-pore-shine-control-tisztito-maszk-aktiv-szennel_.jpg"
+          alt="{{ product.name }}"
+        />
+        <div class="rating" (click)="scrollToRatings(productContainer)">
+          <div class="rating-stars">
+            <app-rating
+              [disabled]="true"
+              [ngModel]="product.avgRating"
+            ></app-rating>
+          </div>
+          <div class="rating-text">
+            ({{ product.numberOfRatings }} felhasználó értékelése alapján)
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9 text-center">
+        <div class="product-property d-flex justify-content-between">
+          <span class="text-start">ÁRKATEGÓRIA:</span>
+          <span class="text-end"
+            >{{ product.priceRangeMin }}Ft - {{ product.priceRangeMax }}Ft</span
+          >
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KISZERELÉS:</span>
+          <span class="text-end">{{ product.packaging }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">SEGÍTHET:</span>
+          <span class="text-end">{{ product.canHelp }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KATEGÓRIÁK:</span>
+          <span class="text-end">{{
+            product.productCategories.join(", ")
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>VÉLEMÉNYEK A TERMÉKRŐL</h2>
+  <div class="row justify-content-center">
+    <hr class="w-50" />
+    <div *ngFor="let rating of product.ratings">
+      <div class="row product-container">
+        <div
+          class="col-12 product-data"
+          [routerLink]="['/products/details', product.id]"
+        >
+          <div class="product-body">
+            <div class="rating-data d-flex justify-content-between">
+              <app-rating
+                [disabled]="true"
+                [ngModel]="rating.rating"
+                class="rating-stars"
+              ></app-rating>
+              <span>{{ rating.addedOn | date : "yyyy.MM.dd" }}</span>
+            </div>
+            <hr />
+            <span class="comment-container">
+              <p
+                class="comment m-0"
+                [ngClass]="{ 'comment-full': rating.showFully }"
+              >
+                <b> {{ rating.username }}</b
+                >: {{ rating.comment }}
+              </p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

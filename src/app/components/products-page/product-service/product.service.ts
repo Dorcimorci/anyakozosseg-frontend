@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductListItem } from '../product-model/product.api';
+import { Product } from '../product-model/product.model';
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'products';
 
@@ -25,6 +26,13 @@ export class ProductService {
   ): Observable<ProductListItem[]> {
     const params: HttpParams = new HttpParams().set('abcLetter', firstLetter);
     return this.http.get<ProductListItem[]>(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+    });
+  }
+
+  public fetchProductDetailsById(id: number): Observable<Product> {
+    const params: HttpParams = new HttpParams().set('productId', id);
+    return this.http.get<Product>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
     });
   }

@@ -6,15 +6,11 @@
 
 $h1-margin: 1.5vw;
 
-.row {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -27,11 +23,26 @@ h1 {
   margin-bottom: $h1-margin;
 }
 
+h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.5vw;
+  letter-spacing: 0.3vw;
+  color: $text;
+  margin-top: $h1-margin;
+  margin-bottom: $h1-margin;
+}
+
 input {
   border: none;
   outline: none;
   padding-left: 0.5vw;
   color: $tertiary;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
 }
 
 .ngx-file-drop__drop-zone {
