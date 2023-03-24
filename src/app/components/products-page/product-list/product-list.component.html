@@ -1,13 +1,18 @@
-<div class="products-container row justify-content-center">
+<div class="row justify-content-center">
   <div *ngFor="let product of products" class="col-8 product">
-    <div class="row">
-      <div class="col p-0 m-0 d-flex justify-content-center align-items-center">
+    <div #productContainer class="row product-container">
+      <div
+        class="col p-0 m-0 img-container d-flex justify-content-center align-items-start"
+      >
         <img
           src="https://cdn.notinoimg.com/detail_main_mq/avon/2800017893163_01-o/avon-clearskin-pore-shine-control-tisztito-maszk-aktiv-szennel_.jpg"
           alt=""
         />
       </div>
-      <div class="col-10 product-data">
+      <div
+        class="col-10 product-data"
+        [routerLink]="['/products/details', product.id]"
+      >
         <hr class="bolder-hr" />
         <p class="product-name">{{ product.name }}</p>
         <hr class="bolder-hr" />
@@ -15,25 +20,46 @@
           <div class="rating-data">
             <app-rating
               [disabled]="true"
-              [(ngModel)]="product.avgRating"
+              [ngModel]="product.avgRating"
               class="rating-stars"
             ></app-rating>
-            <p class="rating-number">
+            <p class="rating-number" *ngIf="product.avgRating">
               ({{ product.avgRating | number : "1.1-1" }})
             </p>
-            <i class="fa fa-comment" aria-hidden="true"
-              ><div class="badge-after">{{ product.numberOfRatings }}</div></i
-            >
+            <i class="fa fa-comment comment-badge-icon" aria-hidden="true">
+              <div class="badge-after">{{ product.numberOfRatings }}</div>
+            </i>
           </div>
           <hr />
-          <div>
-            <p class="comment p-0 m-0">
+          <span class="comment-container" *ngIf="product.lastRating">
+            <p
+              #comment
+              class="comment m-0"
+              [ngClass]="{ 'comment-full': product.lastRating.showFully }"
+            >
               <b> {{ product.lastRating.username }}</b
               >: {{ product.lastRating.comment }}
             </p>
-          </div>
+          </span>
         </div>
       </div>
+
+      <span
+        *ngIf="product.lastRating && product.lastRating.isEllipsisActive"
+        class="show-full-btn text-center"
+        (click)="onCommentClick(product.lastRating)"
+      >
+        <i
+          *ngIf="!product.lastRating.showFully"
+          class="fas fa-angle-double-down"
+          aria-hidden="true"
+        ></i>
+        <i
+          *ngIf="product.lastRating.showFully"
+          class="fas fa-angle-double-up"
+          aria-hidden="true"
+        ></i>
+      </span>
     </div>
   </div>
 </div>
