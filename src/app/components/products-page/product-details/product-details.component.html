@@ -18,7 +18,7 @@
               ({{ product.avgRating | number : "1.1-2" }})
             </p>
           </div>
-          <div class="rating-text">
+          <div *ngIf="product.ratings.length > 0" class="rating-text">
             ({{ product.numberOfRatings }} felhasználó értékelése alapján)
           </div>
         </div>
@@ -96,34 +96,36 @@
     </div>
   </div>
 
-  <h2>VÉLEMÉNYEK A TERMÉKRŐL</h2>
-  <div class="row justify-content-center">
-    <hr class="w-50" />
-    <div *ngFor="let rating of product.ratings">
-      <div class="row item-container">
-        <div
-          class="col-12 rating-data"
-          [routerLink]="['/products/details', product.id]"
-        >
-          <div class="product-body">
-            <div class="d-flex justify-content-between">
-              <app-rating
-                [disabled]="true"
-                [ngModel]="rating.rating"
-                class="rating-stars"
-              ></app-rating>
-              <span>{{ rating.addedOn | date : "yyyy.MM.dd" }}</span>
+  <div *ngIf="product.ratings.length > 0">
+    <h2>VÉLEMÉNYEK A TERMÉKRŐL</h2>
+    <div class="row justify-content-center">
+      <hr class="w-50" />
+      <div *ngFor="let rating of product.ratings">
+        <div class="row item-container">
+          <div
+            class="col-12 rating-data"
+            [routerLink]="['/products/details', product.id]"
+          >
+            <div class="product-body">
+              <div class="d-flex justify-content-between">
+                <app-rating
+                  [disabled]="true"
+                  [ngModel]="rating.rating"
+                  class="rating-stars"
+                ></app-rating>
+                <span>{{ rating.addedOn | date : "yyyy.MM.dd" }}</span>
+              </div>
+              <hr />
+              <span class="comment-container">
+                <p
+                  class="comment m-0"
+                  [ngClass]="{ 'comment-full': rating.showFully }"
+                >
+                  <b> {{ rating.username }}</b
+                  >: {{ rating.comment }}
+                </p>
+              </span>
             </div>
-            <hr />
-            <span class="comment-container">
-              <p
-                class="comment m-0"
-                [ngClass]="{ 'comment-full': rating.showFully }"
-              >
-                <b> {{ rating.username }}</b
-                >: {{ rating.comment }}
-              </p>
-            </span>
           </div>
         </div>
       </div>
