@@ -33,7 +33,7 @@ export class RatingComponent
   public ratingToShow = 0;
   public rating = 0;
 
-  // The length of this array should equal the number of all stars to display
+  // The number of stars to display
   public ratingSteps: number[] = [1, 2, 3, 4, 5];
 
   public rating$: BehaviorSubject<number> = new BehaviorSubject(0);
@@ -52,6 +52,7 @@ export class RatingComponent
       this.rating = rating;
     });
   }
+
   public registerOnTouched(fn: any): void {}
   public setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {
@@ -93,5 +94,21 @@ export class RatingComponent
 
   public roundToHalf(num: number) {
     return Math.round(num * 2) / 2;
+  }
+
+  public getStarClass(ratingStep: number): string {
+    const roundedRating = Math.round(this.ratingToShow);
+    const roundedHalf = this.roundToHalf(this.ratingToShow);
+
+    if (ratingStep <= roundedHalf) {
+      return 'fa-solid fa-star';
+    } else if (
+      ratingStep === Math.floor(roundedHalf) + 1 &&
+      Math.abs(roundedRating - roundedHalf) === 0.5
+    ) {
+      return 'fas fa-star-half-alt';
+    } else {
+      return 'fa-regular fa-star';
+    }
   }
 }
