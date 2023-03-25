@@ -4,4 +4,5 @@
   (mouseenter)="onStarHovered(ratingStep)"
   (mouseleave)="onStarLeft(ratingStep)"
   [class]="getStarClass(ratingStep)"
+  [ngClass]="{ 'rating-disabled': isDisabled, rating: !isDisabled }"
 ></i>
