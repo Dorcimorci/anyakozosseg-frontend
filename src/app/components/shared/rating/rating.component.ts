@@ -33,7 +33,10 @@ export class RatingComponent
   public ratingToShow = 0;
   public rating = 0;
 
-  // The number of stars to display
+  /**
+   * An array of numbers representing the possible rating steps for the rating component.
+   * For example, a value of [1, 2, 3, 4, 5] would indicate a maximum rating of 5 stars.
+   */
   public ratingSteps: number[] = [1, 2, 3, 4, 5];
 
   public rating$: BehaviorSubject<number> = new BehaviorSubject(0);
