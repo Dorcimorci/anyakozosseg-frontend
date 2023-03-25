@@ -6,6 +6,7 @@ import { BrandFormComponent } from './components/brands-page/brand-form/brand-fo
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
 import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
 import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
+import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsPageComponent,
+  },
+  {
+    path: 'products/:categoryId',
+    component: ProductsByCategoryComponent,
   },
   {
     path: 'products/catalog/:action/:abcLetter',
