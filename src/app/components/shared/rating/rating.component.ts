@@ -96,6 +96,11 @@ export class RatingComponent
     return Math.round(num * 2) / 2;
   }
 
+  /**
+    Returns the appropriate CSS class for a star icon based on the current rating step.
+    @param ratingStep - The current rating step.
+    @returns The CSS class for the star icon.
+  */
   public getStarClass(ratingStep: number): string {
     const roundedRating = Math.round(this.ratingToShow);
     const roundedHalf = this.roundToHalf(this.ratingToShow);
