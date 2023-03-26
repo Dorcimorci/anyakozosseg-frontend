@@ -5,8 +5,9 @@
         class="col p-0 m-0 img-container d-flex justify-content-center align-items-start"
       >
         <img
-          src="https://cdn.notinoimg.com/detail_main_mq/avon/2800017893163_01-o/avon-clearskin-pore-shine-control-tisztito-maszk-aktiv-szennel_.jpg"
+          [src]="product.imageFile"
           alt=""
+          (error)="showDummyProduct($event)"
         />
       </div>
       <div

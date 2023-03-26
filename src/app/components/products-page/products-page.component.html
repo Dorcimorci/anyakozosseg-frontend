@@ -3,7 +3,7 @@
   <div *ngFor="let category of categories" class="col-6 col-sm-3 card-item">
     <div
       class="card"
-      [routerLink]="['/products', category.id]"
+      [routerLink]="['/products/category', category.id]"
       [state]="{ id: category.id, name: category.name }"
     >
       <div class="card-block">

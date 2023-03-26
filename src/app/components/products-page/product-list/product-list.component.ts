@@ -53,4 +53,8 @@ export class ProductListComponent implements AfterViewInit {
   public onMouseLeave(): void {
     this.showFullCommentBtnHovered = false;
   }
+
+  public showDummyProduct(event: ErrorEvent): void {
+    (event.target as HTMLImageElement).src = 'assets/dummy_product.png';
+  }
 }

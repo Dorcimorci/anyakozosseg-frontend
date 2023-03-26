@@ -19,6 +19,7 @@ import { ProductCatalogComponent } from './components/products-page/product-cata
 import { ProductListComponent } from './components/products-page/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
 import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
+import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProductsByCategoryComponent } from './components/products-page/products
     ProductListComponent,
     ProductDetailsComponent,
     ProductsByCategoryComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,

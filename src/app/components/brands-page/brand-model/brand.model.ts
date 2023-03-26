@@ -11,3 +11,8 @@ export interface Brand {
   imageFile: string;
   categoryName?: string;
 }
+
+export interface MinimalBrand {
+  id: number;
+  name: string;
+}

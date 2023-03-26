@@ -5,6 +5,7 @@ import {
   BrandApiGetResponse,
   BrandApiPostRequest,
 } from '../brand-model/brand.api';
+import { MinimalBrand } from '../brand-model/brand.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'brands';
@@ -22,7 +23,7 @@ export class BrandsService {
     );
   }
 
-  public fetchBrands(
+  public fetchBrandsByCategoryAndLetter(
     categoryId: number,
     letter: string
   ): Observable<BrandApiGetResponse[]> {
@@ -32,6 +33,10 @@ export class BrandsService {
     return this.http.get<BrandApiGetResponse[]>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
     });
+  }
+
+  public fetchAllBrands(): Observable<MinimalBrand[]> {
+    return this.http.get<MinimalBrand[]>(`${BASE_URL}${COMPONENT_URL}`);
   }
 
   public fetchBrandById(brandId: number): Observable<BrandApiGetResponse> {

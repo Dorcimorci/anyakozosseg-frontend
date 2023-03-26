@@ -21,13 +21,6 @@ export interface BrandApiPostRequest {
   categoryId: number;
 }
 
-export interface BrandApiPutRequest {
-  isCrueltyFree: boolean;
-  isVegan: boolean;
-  name: string;
-  overallRating: number;
-  priceCategoryId: number;
-  imageFile: string;
-  categoryId: number;
+export interface BrandApiPutRequest extends BrandApiPostRequest {
   id: number;
 }

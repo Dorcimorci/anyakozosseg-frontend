@@ -14,7 +14,7 @@ import { ProductService } from '../product-service/product.service';
 export class ProductCatalogComponent {
   public products$: Observable<ProductListItem[]>;
   public alphabetLetters: string[] = alphabetLetters;
-  public activeLetter: string = 'a';
+  public activeLetter: string = 'A';
 
   public pageAction: PageAction = PageAction.Read;
   public get PageAction() {

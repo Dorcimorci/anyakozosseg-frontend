@@ -5,8 +5,9 @@
 
       <div class="col-md-3 text-center">
         <img
-          src="https://cdn.notinoimg.com/detail_main_mq/avon/2800017893163_01-o/avon-clearskin-pore-shine-control-tisztito-maszk-aktiv-szennel_.jpg"
-          alt="{{ product.name }}"
+          [src]="product.imageFile"
+          alt=""
+          (error)="showDummyProduct($event)"
         />
         <div class="product-rating" (click)="scrollToRatings(productContainer)">
           <div class="rating-stars" *ngIf="product.avgRating">
@@ -27,9 +28,9 @@
       <div class="col-md-9 text-center">
         <div class="product-property d-flex justify-content-between">
           <span class="text-start">ÁRKATEGÓRIA:</span>
-          <span class="text-end"
-            >{{ product.priceRangeMin }}Ft - {{ product.priceRangeMax }}Ft</span
-          >
+          <span class="text-end">
+            {{ product.priceRange.min }}Ft - {{ product.priceRange.max }}Ft
+          </span>
         </div>
 
         <div class="product-property d-flex justify-content-between px-5vw">

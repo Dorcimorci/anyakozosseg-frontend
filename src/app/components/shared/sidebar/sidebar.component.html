@@ -7,7 +7,7 @@
     <div class="sidebar row justify-content-around align-items-center">
       <div
         class="col-12 sidebar-item"
-        [routerLink]="['/products/catalog', PageAction.Read, 'a']"
+        [routerLink]="['/products/catalog', PageAction.Read, 'A']"
       >
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} KERESÉSE ABC SZERINT &nbsp;
@@ -36,10 +36,7 @@
     [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
-      <div
-        class="col-12 sidebar-item"
-        [routerLink]="['/brands', PageAction.Update]"
-      >
+      <div class="col-12 sidebar-item" [routerLink]="[getEditLink()]">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} SZERKESZTÉSE &nbsp;
           <i class="fa-solid fa-pen"></i>
@@ -53,10 +50,7 @@
     [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
-      <div
-        class="col-12 sidebar-item"
-        [routerLink]="['/brands', PageAction.Delete]"
-      >
+      <div class="col-12 sidebar-item" [routerLink]="[getDeleteLink()]">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} TÖRLÉSE &nbsp;
           <i class="fa fa-trash" aria-hidden="true"></i>

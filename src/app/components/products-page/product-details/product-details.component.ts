@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { Rating, RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
@@ -18,7 +18,7 @@ export class ProductDetailsComponent {
 
   public newRating: RatingPostRequest = {
     rating: 0,
-    userId: 1,
+    userId: 2,
   } as RatingPostRequest;
 
   constructor(
@@ -56,6 +56,10 @@ export class ProductDetailsComponent {
     this.ratingService
       .submitRating(this.newRating)
       .subscribe(() => this.refresh(productId));
+  }
+
+  public showDummyProduct(event: ErrorEvent): void {
+    (event.target as HTMLImageElement).src = 'assets/dummy_product.png';
   }
 
   private refresh(productId: number): void {

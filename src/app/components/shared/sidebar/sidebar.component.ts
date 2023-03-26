@@ -79,6 +79,14 @@ export class SidebarComponent implements AfterViewChecked {
     return `${this.currentRoute}/form/${PageAction.Create}`;
   }
 
+  public getEditLink(): string {
+    return `${this.currentRoute}/${PageAction.Update}`;
+  }
+
+  public getDeleteLink(): string {
+    return `${this.currentRoute}/${PageAction.Delete}`;
+  }
+
   private initializeLeftProperty(): void {
     if (this.sidebar) {
       const sidebarItems: HTMLElement[] =

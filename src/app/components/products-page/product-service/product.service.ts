@@ -1,7 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductListItem } from '../product-model/product.api';
+import {
+  ProductApiPostRequest,
+  ProductListItem,
+} from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
@@ -36,5 +39,9 @@ export class ProductService {
     return this.http.get<Product>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
     });
+  }
+
+  public addNewProduct(product: ProductApiPostRequest): Observable<any> {
+    return this.http.post(`${BASE_URL}${COMPONENT_URL}`, product);
   }
 }
