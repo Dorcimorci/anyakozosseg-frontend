@@ -1,178 +1,85 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap");@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-}
-p{
-text-align: center;
-}
-body{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  font-weight: 100;
-}
-.container{
-  max-width: 700px;
+@import "/src/styles/colors";
+
+input {
+  font-size: 1.3vw;
   width: 100%;
-  background-color: #E1D9C0;
-  padding: 25px 30px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  font-weight: 100;
 }
-.container .title{
-  font-size: 25px;
-  font-weight: 500;
-  position: relative;
-  color: #BB6A5E;
-  font-weight: 300;
-  letter-spacing: 4px;
+
+.page-form {
+  background-color: $secondary;
+  padding: 2vw 3vw 2vw 3vw;
 }
-.container .title::before{
-  content: "";
-  position: center;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  background: #BB6A5E;
-  font-weight: 100;
+
+.row {
+  height: 2vw;
+  margin-bottom: 1.5vw;
 }
-.content form .user-details{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px 0 12px 0;
-  font-weight: 200;
+
+.form-container {
+  height: auto;
+  margin: 2vw 0 2vw 0;
 }
-form .user-details .input-box{
-  margin-bottom: 15px;
-  width: calc(100% );
-  color:#866043;
-  letter-spacing: 3px;
-  font-size: 20px;
+
+.form-title {
+  color: $primary;
+  margin-top: 1vw;
 }
-form .input-box span.details{
+
+.add-new-button {
+  border: none;
+  background-color: $primary;
+  color: $secondary;
+  padding: 0.5vw 1.5vw 0.5vw 1.5vw;
+  margin-top: 3vw;
+}
+
+.block {
   display: block;
-  font-weight: 300;
-  margin-bottom: 5px;
-
-}
-.user-details .input-box input{
-  height: 45px;
+  margin: auto;
   width: 100%;
-  outline: none;
-  font-size: 16px;
-  padding-left: 15px;
-  border: 1px solid #E1D9C0;
-
-
-  transition: all 0.3s ease;
-  font-weight: 200;
-}
-.user-details .input-box input:focus,
-.user-details .input-box input:valid{
-  border-color: #E1D9C0;
-  font-weight: 200;
-
-}
- form .gender-details .gender-title{
-  font-size: 15px;
-  font-weight: 300;
-  color:#866043;
-
- }
- form .category{
-   display: flex;
-   width: 80%;
-   margin: 14px 0 ;
-   justify-content: space-between;
-   font-weight: 300;
-
- }
- form .category label{
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-   font-weight: 300;
-   color: #866043;
-
-
- }
- form .category label .dot{
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #ffff;
-  border: 5px solid transparent;
-  transition: all 0.3s ease;
-  font-weight: 300;
-
-
-
-
-}
- #dot-1:checked ~ .category label .one,
- #dot-2:checked ~ .category label .two{
-   background: #E1D9C0;
-   border-color: #866043;
-   font-weight: 300;
-   color:#866043;
-
- }
- form input[type="radio"]{
-   display: none;
- }
- form .button{
-   height: 45px;
-   margin: 35px 0
- }
- form .button input{
-  align-content: center;
-   height: 100%;
-   width: 100%;
-   border: none;
-   color: #E1D9C0;
-   font-size: 18px;
-   font-weight: 300;
-   letter-spacing: 3px;
-   cursor: pointer;
-   transition: all 0.3s ease;
-   background-color: #BB6A5E;
- }
- form .button input:hover{
-  background: #866043;
-  color:#E1D9C0;
-  }
- @media(max-width: 584px){
- .container{
-  max-width: 100%;
 }
 
-form .user-details .input-box{
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  form .category{
-    width: 100%;
-  }
-  .content form .user-details{
-    max-height: 300px;
-    overflow-y: scroll;
-  }
-  .user-details::-webkit-scrollbar{
-    width: 5px;
-  }
+.form-label {
+  text-align: left;
+  color: $text;
+}
 
-  }
-  @media(max-width: 459px){
-  .container .content .category{
-    flex-direction: column;
-  }
+.uploaded-image-col {
+  width: fit-content;
+}
 
+.uploaded-image {
+  height: 4.75vw;
+  box-sizing: border-box;
+}
+
+.alert {
+  background-color: $text;
+  font-size: 0.7vw;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  color: $secondary;
+  letter-spacing: 0.2vw;
+}
+
+.btn-disabled {
+  background-color: $text;
+}
+
+.file-upload-label {
+  border: none;
+  background-color: $primary;
+  color: $secondary;
+  padding: 0.5vw 1.5vw 0.5vw 1.5vw;
+  margin: 1vw 0 1vw 0;
+  font-size: 1vw;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#file-upload {
+  display: none;
 }

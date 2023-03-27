@@ -1,69 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="reg-page.component.scss">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
-  <div class="container">
-    <div class="title">REGISZTRÁCIÓ</div>
-    <div class="content">
-      <form action="#">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Teljes név</span>
-            <input type="text" placeholder="Teljes név" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Felhasználónév</span>
-            <input type="text" placeholder="Válassz egy felhasználónevet!" required>
-          </div>
-          <div class="input-box">
-            <span class="details">E-mail cím</span>
-            <input type="text" placeholder="E-mail cím" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Születési idő</span>
-            <input type="date" placeholder="Születési idő" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Jelszó</span>
-            <input type="text" placeholder="Jelszó" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Jelszó megerősítése</span>
-            <input type="text" placeholder="Jelszó megerősítése" required>
-          </div>
-        </div>
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <span class="gender-title">Nem</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Nő</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Férfi</span>
-          </label>
-          </div>
-        </div>
-        <div class="button">
-          <input type="submit" value="REGISZTRÁLOK">
-        </div>
-        <div>
-          <p>Már regisztráltál? </p>
-        </div>
-        <div class="button">
-          <input type="button" onclick="window.location.href='/login'" value="BELÉPEK" />
-        </div>
-      </form>
+<div class="form-container text-center row justify-content-center">
+  <form #loginForm="ngForm" class="col-sm-6 col-10 page-form">
+    <h1 class="form-title">BELÉPÉS</h1>
+
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Felhasználónév:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="text"
+          [(ngModel)]="user.username"
+          required
+          name="username"
+        />
+      </div>
     </div>
-  </div>
 
-</body>
-</html>
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Jelszó:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          required
+          name="password"
+        />
+      </div>
+    </div>
+
+
+    <div>
+      <button
+        class="add-new-button col-4"
+        [routerLink]="['/login']"
+      >
+        BELÉPEK
+      </button>
+    </div>
+
+    <div>
+      <button
+        class="add-new-button col-4"
+        [disabled]="loginForm.form.invalid"
+        [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
+        (click)="register()"
+      >
+        REGISZTRÁLOK
+      </button>
+    </div>
+  </form>
+</div>

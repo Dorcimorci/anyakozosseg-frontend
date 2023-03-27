@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrandCatalogComponent } from './components/brands-page/brand-catalog/brand-catalog.component';
@@ -40,6 +39,10 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    component: LoginPageComponent,
+  },
+  {
+    path: 'login/:userId',
     component: LoginPageComponent,
   },
   {

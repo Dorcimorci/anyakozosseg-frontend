@@ -1,39 +1,50 @@
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
+<div class="form-container text-center row justify-content-center">
+  <form #loginForm="ngForm" class="col-sm-6 col-10 page-form">
+    <h1 class="form-title">{{title}}</h1>
 
-    <link rel="stylesheet" href="login-page.component.scss">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
-  <div class="container">
-    <div class="title">BELÉPÉS</div>
-    <div class="content">
-      <form action="#">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Felhasználónév</span>
-            <input type="text" placeholder="Felhasználónév" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Jelszó</span>
-            <input type="text" placeholder="Jelszó" required>
-          </div>
-
-        </div>
-
-        <div class="button">
-          <input type="submit" value="BELÉPEK">
-        </div>
-        <div>
-          <p>Még nem regisztráltál? </p>
-        </div>
-        <div class="button">
-          <input type="button" onclick="window.location.href='/register'" value="REGISZTRÁLOK" />
-        </div>
-      </form>
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Felhasználónév:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="text"
+          [(ngModel)]="user.username"
+          required
+          name="username"
+        />
+      </div>
     </div>
-  </div>
 
-</body>
-</html>
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Jelszó:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          required
+          name="password"
+        />
+      </div>
+    </div>
+
+    <div>
+      <button
+        class="add-new-button col-4"
+        [disabled]="loginForm.form.invalid"
+        [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
+        (click)="login()"
+      >
+        BELÉPEK
+      </button>
+    </div>
+
+    <div>
+      <button class="add-new-button col-4" [routerLink]="['/register']">
+        REGISZTRÁLOK
+      </button>
+    </div>
+  </form>
+</div>
