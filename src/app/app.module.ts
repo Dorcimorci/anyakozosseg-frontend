@@ -14,6 +14,7 @@ import { DropdownComponent } from './components/shared/dropdown/dropdown.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './components/shared/rating/rating.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     BrandFormComponent,
     DropdownComponent,
     RatingComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@ import { BrandDetailsComponent } from './components/brands-page/brand-details/br
 import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
-
+import { AboutUsComponent } from './components/about-us/about-us.component';
 const routes: Routes = [
   {
     path: '',
@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'brands/form/:action/:brandId',
     component: BrandFormComponent,
+  },
+  {
+    path: 'aboutus',
+    component: AboutUsComponent,
   },
 ];
 
