@@ -6,7 +6,7 @@
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Terméknév:</label>
+        <label class="form-label">Terméknév:</label>
       </div>
       <div class="col-8 text-start">
         <input
@@ -34,23 +34,37 @@
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Kategória:</label>
+        <label class="form-label">Kategória:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
           [options]="categoryOptions"
           [(ngModel)]="product.categoryName"
+          (onSelectionChange)="fetchSubcategories($event)"
           name="category"
         ></app-dropdown>
       </div>
     </div>
 
-    <!-- TODO Add "TERMEKKATEGORIÄK" input field. Consider using for this and/or for brands: ngx-bootstrap Typeahead component 
-      @See https://valor-software.com/ngx-bootstrap/#/components/typeahead?tab=overview -->
+    <div class="row multiselect-row">
+      <div class="col-4 text-end">
+        <label class="form-label">Alkategóriák:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
+          [settings]="dropdownSettings"
+          [data]="subcategories"
+          [(ngModel)]="selectedSubcategories"
+          name="subcategories"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Márka:</label>
+        <label class="form-label">Márka:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
@@ -63,7 +77,7 @@
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Árkategória:</label>
+        <label class="form-label">Árkategória:</label>
       </div>
       <div class="col text-start">
         <input
@@ -94,7 +108,7 @@
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Kiszerelés:</label>
+        <label class="form-label">Kiszerelés:</label>
       </div>
       <div class="col-8 text-start">
         <input type="text" [(ngModel)]="product.packaging" name="packaging" />
@@ -103,7 +117,7 @@
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Segíthet:</label>
+        <label class="form-label">Segíthet:</label>
       </div>
       <div class="col-8 text-start">
         <input type="text" [(ngModel)]="product.canHelp" name="can-help" />

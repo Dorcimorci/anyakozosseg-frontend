@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { PageAction } from '../../shared/enums';
+import { RouterService } from '../../shared/router.service';
 import { alphabetLetters } from '../../shared/utils';
 import { ProductListItem } from '../product-model/product.api';
+import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 
 @Component({
@@ -17,13 +19,16 @@ export class ProductCatalogComponent {
   public activeLetter: string = 'A';
 
   public pageAction: PageAction = PageAction.Read;
+
   public get PageAction() {
     return PageAction;
   }
 
   constructor(
     private readonly productService: ProductService,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly routerService: RouterService,
+    private readonly router: Router
   ) {
     this.products$ = this.activatedRoute.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
@@ -33,5 +38,16 @@ export class ProductCatalogComponent {
         );
       })
     );
+    this.routerService.pageAction$.subscribe((pageAction: PageAction) => {
+      this.pageAction = pageAction;
+    });
   }
+
+  public handleProductClick = (product: Product) => {
+    if (this.pageAction === PageAction.Read) {
+      this.router.navigate(['/products/details', product.id]);
+    } else if (this.pageAction === PageAction.Update) {
+      this.router.navigate(['/products/form', this.pageAction, product.id]);
+    }
+  };
 }

@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, switchMap, take } from 'rxjs';
 import { Brand, MinimalBrand } from '../../brands-page/brand-model/brand.model';
 import { BrandsService } from '../../brands-page/brands-service/brands.service';
 import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
+import { OptionItem } from '../../shared/dropdown/option.model';
 import { PageAction } from '../../shared/enums';
 import { Utils } from '../../shared/utils';
 import {
   ProductApiPostRequest,
   ProductApiPutRequest,
+  Subcategory,
 } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
@@ -21,15 +24,25 @@ import { ProductService } from '../product-service/product.service';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent {
+  selectedSubcategories: Subcategory[] = [];
+  dropdownSettings: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name',
+    enableCheckAll: false,
+    allowSearchFilter: false,
+  };
+
   public categories: Category[] = [];
   public brands: MinimalBrand[] = [];
+  public subcategories: Subcategory[] = [];
 
   public product: Product = {
     id: 0,
     name: '',
     categoryName: '',
     imageFile: '',
-    productCategories: [],
+    subcategories: [],
     priceRange: { min: 2000, max: 5000 },
     brandName: '',
     canHelp: '',
@@ -68,15 +81,76 @@ export class ProductFormComponent {
       'action'
     ) as PageAction;
 
-    this.categoryService.getCategories().subscribe((categories: Category[]) => {
-      this.categories = categories;
-      this.product.categoryName = categories[0].name;
-    });
+    // Fetch categories and brands in parallel
+    forkJoin([
+      this.categoryService.getCategories(),
+      this.brandService.fetchAllBrands(),
+    ])
+      .pipe(
+        // Use switchMap to chain the subcategories request
+        switchMap(([categories, brands]) => {
+          this.categories = categories;
+          this.product.categoryName = categories[0].name;
+          this.brands = brands.length
+            ? brands
+            : [{ id: 0, name: 'No brands available' }];
+          this.product.brandName = this.brands[0].name;
 
-    this.brandService.fetchAllBrands().subscribe((brands: MinimalBrand[]) => {
-      this.brands = brands;
-      this.product.brandName = brands[0].name;
-    });
+          // Fetch subcategories for the first category
+          return this.productService.fetchSubcategories(
+            this.getCategoryId(this.product.categoryName)
+          );
+        })
+      )
+      .subscribe((subcategories: Subcategory[]) => {
+        this.subcategories = subcategories;
+      });
+
+    if (this.pageAction === PageAction.Update) {
+      forkJoin([
+        this.categoryService.getCategories(),
+        this.brandService.fetchAllBrands(),
+      ])
+        .pipe(
+          switchMap(([categories, brands]) => {
+            this.categories = categories;
+            this.brands = brands.length
+              ? brands
+              : [{ id: 0, name: 'No brands available' }];
+            this.product.brandName = this.brands[0].name;
+            const productId: number =
+              +this.activatedRoute.snapshot.paramMap.get('productId')!;
+            return this.productService.fetchProductDetailsById(productId);
+          }),
+          switchMap((product: Product) => {
+            this.product = product;
+            return this.productService.fetchSubcategories(
+              this.getCategoryId(this.product.categoryName)
+            );
+          })
+        )
+        .subscribe((subcategories: Subcategory[]) => {
+          this.subcategories = subcategories;
+          this.selectedSubcategories = this.product.subcategories.map(
+            (subcategoryName: string) =>
+              this.subcategories.find(
+                (subcategory: Subcategory) =>
+                  subcategory.name === subcategoryName
+              )!
+          );
+          console.log('selected:', this.selectedSubcategories);
+        });
+    }
+  }
+
+  public fetchSubcategories(categoryName: string) {
+    if (this.categories.length > 0) {
+      this.productService
+        .fetchSubcategories(this.getCategoryId(categoryName))
+        .subscribe(
+          (subcategories: Subcategory[]) => (this.subcategories = subcategories)
+        );
+    }
   }
 
   public onFileDrop(file: NgxFileDropEntry[]) {
@@ -133,6 +207,7 @@ export class ProductFormComponent {
       ...product,
       categoryId: this.getCategoryId(product.categoryName),
       brandId: this.getBrandId(product.brandName),
+      subcategories: this.selectedSubcategories,
     };
     return productApiPostRequest;
   }
@@ -142,6 +217,7 @@ export class ProductFormComponent {
       ...product,
       categoryId: this.getCategoryId(product.categoryName),
       brandId: this.getBrandId(product.brandName),
+      subcategories: this.selectedSubcategories,
     };
     return productApiPostRequest;
   }
@@ -174,6 +250,26 @@ export class ProductFormComponent {
     return foundBrand ? foundBrand.name : this.brands[0].name;
   }
 
+  public getProductCategoryId(name: string): number {
+    const foundProductCategory: Subcategory | undefined =
+      this.subcategories.find(
+        (productCategory: Subcategory) => productCategory.name === name
+      );
+    return foundProductCategory
+      ? foundProductCategory.id
+      : this.subcategories[0].id;
+  }
+
+  public getProductCategoryName(id: number): string {
+    const foundProductCategory: Subcategory | undefined =
+      this.subcategories.find(
+        (productCategory: Subcategory) => productCategory.id === id
+      );
+    return foundProductCategory
+      ? foundProductCategory.name
+      : this.subcategories[0].name;
+  }
+
   public onSubmit(): void {
     if (this.pageAction === PageAction.Create) {
       this.productService
@@ -182,6 +278,11 @@ export class ProductFormComponent {
           this.router.navigate(['/products/details', response.productId])
         );
     } else if (this.pageAction === PageAction.Update) {
+      this.productService
+        .updateProduct(this.mapModelToPutRequest(this.product))
+        .subscribe((response: { productId: number }) =>
+          this.router.navigate(['/products/details', response.productId])
+        );
     }
   }
 }

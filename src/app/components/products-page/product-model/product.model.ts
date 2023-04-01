@@ -12,7 +12,7 @@ export interface Product {
   categoryName: string;
   brandName: string;
   imageFile: string;
-  productCategories: string[];
+  subcategories: string[];
   priceRange: PriceRange;
   canHelp: string;
   packaging: string;

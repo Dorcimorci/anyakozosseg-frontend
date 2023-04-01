@@ -5,6 +5,7 @@ import {
   HostListener,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
@@ -48,6 +49,7 @@ export class SidebarComponent implements AfterViewChecked {
   }
 
   constructor(
+    private readonly router: Router,
     private readonly routerService: RouterService,
     private readonly navbarService: NavbarService
   ) {
@@ -79,8 +81,17 @@ export class SidebarComponent implements AfterViewChecked {
     return `${this.currentRoute}/form/${PageAction.Create}`;
   }
 
-  public getEditLink(): string {
-    return `${this.currentRoute}/${PageAction.Update}`;
+  public navigateToEditPage(): void {
+    switch (this.currentRoute) {
+      case 'products':
+        this.router.navigate([
+          `${this.currentRoute}/catalog/${PageAction.Update}`,
+          'A',
+        ]);
+        break;
+      default:
+        this.router.navigate([`${this.currentRoute}/${PageAction.Update}`]);
+    }
   }
 
   public getDeleteLink(): string {

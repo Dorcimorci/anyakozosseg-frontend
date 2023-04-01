@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   ProductApiPostRequest,
+  Subcategory,
   ProductListItem,
+  ProductApiPutRequest,
 } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'products';
+const SUBCATEGORIES_URL = 'subcategories';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +44,18 @@ export class ProductService {
     });
   }
 
+  public fetchSubcategories(categoryId: number): Observable<Subcategory[]> {
+    const params: HttpParams = new HttpParams().set('categoryId', categoryId);
+    return this.http.get<Subcategory[]>(`${BASE_URL}${SUBCATEGORIES_URL}`, {
+      params,
+    });
+  }
+
   public addNewProduct(product: ProductApiPostRequest): Observable<any> {
     return this.http.post(`${BASE_URL}${COMPONENT_URL}`, product);
+  }
+
+  public updateProduct(product: ProductApiPutRequest): Observable<any> {
+    return this.http.put(`${BASE_URL}${COMPONENT_URL}`, product);
   }
 }

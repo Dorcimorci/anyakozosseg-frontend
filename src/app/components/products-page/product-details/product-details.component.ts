@@ -18,7 +18,7 @@ export class ProductDetailsComponent {
 
   public newRating: RatingPostRequest = {
     rating: 0,
-    userId: 2,
+    userId: 1,
   } as RatingPostRequest;
 
   constructor(

@@ -45,10 +45,6 @@ const routes: Routes = [
     component: ProductsPageComponent,
   },
   {
-    path: 'products/:action',
-    component: ProductCatalogComponent,
-  },
-  {
     path: 'products/category/:categoryId',
     component: ProductsByCategoryComponent,
   },
@@ -65,7 +61,7 @@ const routes: Routes = [
     component: ProductFormComponent,
   },
   {
-    path: 'products/form/:action/:brandId',
+    path: 'products/form/:action/:productId',
     component: ProductFormComponent,
   },
 ];

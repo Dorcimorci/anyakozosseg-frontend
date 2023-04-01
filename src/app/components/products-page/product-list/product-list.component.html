@@ -2,7 +2,7 @@
   <div *ngFor="let product of products" class="col-8 product">
     <div #productContainer class="row product-container">
       <div
-        class="col p-0 m-0 img-container d-flex justify-content-center align-items-start"
+        class="col m-0 img-container d-flex justify-content-center align-items-start"
       >
         <img
           [src]="product.imageFile"
@@ -10,10 +10,7 @@
           (error)="showDummyProduct($event)"
         />
       </div>
-      <div
-        class="col-10 product-data"
-        [routerLink]="['/products/details', product.id]"
-      >
+      <div class="col-10 product-data" (click)="onClick(product)">
         <hr class="bolder-hr" />
         <p class="product-name">{{ product.name }}</p>
         <hr class="bolder-hr" />

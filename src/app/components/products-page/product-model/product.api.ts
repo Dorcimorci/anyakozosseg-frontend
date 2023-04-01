@@ -31,7 +31,7 @@ export interface ProductApiPostRequest {
   categoryId: number;
   brandId: number;
   imageFile: string;
-  productCategories: string[];
+  subcategories: Subcategory[];
   priceRange: PriceRange;
   canHelp: string;
   packaging: string;
@@ -40,4 +40,9 @@ export interface ProductApiPostRequest {
 
 export interface ProductApiPutRequest extends ProductApiPostRequest {
   id: number;
+}
+
+export interface Subcategory {
+  id: number;
+  name: string;
 }

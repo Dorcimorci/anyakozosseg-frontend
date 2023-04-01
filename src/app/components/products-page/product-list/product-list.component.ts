@@ -8,6 +8,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { ProductListItem, Rating } from '../product-model/product.api';
 
@@ -20,10 +21,12 @@ export class ProductListComponent implements AfterViewInit {
   @ViewChildren('comment') commentElements!: QueryList<ElementRef>;
 
   @Input() products: ProductListItem[] = [];
+  @Input() onClick: Function = (product: ProductListItem) =>
+    this.router.navigate(['/products/details', product.id]);
 
   public showFullCommentBtnHovered: boolean = false;
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, private readonly router: Router) {}
 
   public ngAfterViewInit(): void {
     this.commentElements.changes.subscribe(() => {
