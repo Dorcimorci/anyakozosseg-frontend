@@ -20,6 +20,7 @@ import { ProductListComponent } from './components/products-page/product-list/pr
 import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
 import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
 import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ProductFormComponent } from './components/products-page/product-form/pr
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [Location],
   bootstrap: [AppComponent],
