@@ -7,6 +7,7 @@ export interface Brand {
   isVegan: string;
   name: string;
   overallRating: number;
+  numberOfRatings?: number;
   priceCategory: PriceCategoryOption;
   imageFile: string;
   categoryName?: string;

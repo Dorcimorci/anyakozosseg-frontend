@@ -4,6 +4,7 @@ export interface BrandApiGetResponse {
   isVegan: boolean;
   name: string;
   overallRating: number;
+  numberOfRatings?: number;
   priceCategoryId: number;
   imageFile: string;
   categoryId: number;

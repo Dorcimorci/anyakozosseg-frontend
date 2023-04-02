@@ -22,6 +22,7 @@ import { ProductsByCategoryComponent } from './components/products-page/products
 import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BadgeIconComponent } from './components/shared/badge-icon/badge-icon.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     ProductsByCategoryComponent,
     ProductFormComponent,
     AboutUsComponent,
+    BadgeIconComponent,
   ],
   imports: [
     BrowserModule,
