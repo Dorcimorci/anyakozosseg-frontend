@@ -63,6 +63,8 @@ const routes: Routes = [
   {
     path: 'products/form/:action/:productId',
     component: ProductFormComponent,
+  },
+  {
     path: 'aboutus',
     component: AboutUsComponent,
   },
