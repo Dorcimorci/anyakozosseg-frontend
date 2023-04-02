@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { forkJoin, Observable, switchMap, take } from 'rxjs';
-import { Brand, MinimalBrand } from '../../brands-page/brand-model/brand.model';
+import { forkJoin, switchMap } from 'rxjs';
+import { MinimalBrand } from '../../brands-page/brand-model/brand.model';
 import { BrandsService } from '../../brands-page/brands-service/brands.service';
 import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
-import { OptionItem } from '../../shared/dropdown/option.model';
 import { PageAction } from '../../shared/enums';
 import { Utils } from '../../shared/utils';
 import {

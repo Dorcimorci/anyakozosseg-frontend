@@ -138,3 +138,25 @@ hr {
     color: $secondary;
   }
 }
+
+.product-data-with-icon:hover {
+  background-color: $secondary-smoke;
+  position: relative;
+}
+
+.product-data-with-icon:hover::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 4vw;
+  color: $primary;
+}
+
+.product-data-with-icon:hover::before {
+  content: attr(data-icon);
+}

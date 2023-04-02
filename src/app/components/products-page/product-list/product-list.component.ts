@@ -5,7 +5,6 @@ import {
   ElementRef,
   Input,
   QueryList,
-  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,6 +22,7 @@ export class ProductListComponent implements AfterViewInit {
   @Input() products: ProductListItem[] = [];
   @Input() onClick: Function = (product: ProductListItem) =>
     this.router.navigate(['/products/details', product.id]);
+  @Input() hoverIconClass: string = '';
 
   public showFullCommentBtnHovered: boolean = false;
 

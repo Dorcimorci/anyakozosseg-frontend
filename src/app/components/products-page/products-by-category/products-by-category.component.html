@@ -1,2 +1,7 @@
 <h1>{{ getCategoryTitle(category) }}</h1>
-<app-product-list [products]="(products$ | async)!"></app-product-list>
+
+<div class="row justify-content-center">
+  <div class="col-10">
+    <app-product-list [products]="(products$ | async)!"></app-product-list>
+  </div>
+</div>

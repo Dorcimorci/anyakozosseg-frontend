@@ -94,8 +94,17 @@ export class SidebarComponent implements AfterViewChecked {
     }
   }
 
-  public getDeleteLink(): string {
-    return `${this.currentRoute}/${PageAction.Delete}`;
+  public navigateToDeletePage(): void {
+    switch (this.currentRoute) {
+      case 'products':
+        this.router.navigate([
+          `${this.currentRoute}/catalog/${PageAction.Delete}`,
+          'A',
+        ]);
+        break;
+      default:
+        this.router.navigate([`${this.currentRoute}/${PageAction.Delete}`]);
+    }
   }
 
   private initializeLeftProperty(): void {

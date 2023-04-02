@@ -50,7 +50,7 @@
     [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
-      <div class="col-12 sidebar-item" [routerLink]="[getDeleteLink()]">
+      <div class="col-12 sidebar-item" (click)="navigateToDeletePage()">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} TÖRLÉSE &nbsp;
           <i class="fa fa-trash" aria-hidden="true"></i>
