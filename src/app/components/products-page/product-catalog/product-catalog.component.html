@@ -11,5 +11,17 @@
     </div>
   </div>
   <div class="divider"></div>
-  <app-product-list [products]="(products$ | async)!"></app-product-list>
+
+  <div class="row vw-90">
+    <div class="col-1 row letter-row">
+      <p class="letter-initial">{{ activeLetter }}</p>
+    </div>
+    <div class="col-10 product-list">
+      <app-product-list
+        [products]="(products$ | async)!"
+        [onClick]="handleProductClick"
+      ></app-product-list>
+    </div>
+    <div class="col-1"></div>
+  </div>
 </div>
