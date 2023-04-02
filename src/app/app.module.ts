@@ -21,6 +21,7 @@ import { ProductDetailsComponent } from './components/products-page/product-deta
 import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
 import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ProductDetailsComponent,
     ProductsByCategoryComponent,
     ProductFormComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

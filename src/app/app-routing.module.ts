@@ -10,7 +10,7 @@ import { ProductFormComponent } from './components/products-page/product-form/pr
 import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
-
+import { AboutUsComponent } from './components/about-us/about-us.component';
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +63,10 @@ const routes: Routes = [
   {
     path: 'products/form/:action/:productId',
     component: ProductFormComponent,
+  },
+  {
+    path: 'aboutus',
+    component: AboutUsComponent,
   },
 ];
 
