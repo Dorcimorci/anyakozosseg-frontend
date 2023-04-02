@@ -46,6 +46,8 @@ export class ProductCatalogComponent implements OnInit {
         this.hoverIconClass = '\uf2ed';
       } else if (pageAction === PageAction.Update) {
         this.hoverIconClass = '\uf303';
+      } else {
+        this.hoverIconClass = '';
       }
       this.pageAction = pageAction;
     });
