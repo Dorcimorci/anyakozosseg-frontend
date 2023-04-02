@@ -29,9 +29,9 @@
             <p class="rating-number" *ngIf="product.avgRating">
               ({{ product.avgRating | number : "1.1-2" }})
             </p>
-            <i class="fa fa-comment comment-badge-icon" aria-hidden="true">
-              <div class="badge-after">{{ product.numberOfRatings }}</div>
-            </i>
+            <app-badge-icon
+              [numberToShow]="product.numberOfRatings"
+            ></app-badge-icon>
           </div>
           <hr />
           <span class="comment-container" *ngIf="product.lastRating">

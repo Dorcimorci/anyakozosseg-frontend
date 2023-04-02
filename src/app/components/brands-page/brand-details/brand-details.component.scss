@@ -25,5 +25,47 @@ img {
 }
 
 .rating-stars {
-  color: #b86c5c !important;
+  position: relative;
+  color: $primary !important;
+}
+
+.app-rating:hover + .info-box {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+.app-rating:hover {
+  cursor: pointer;
+}
+
+.info-box {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 2.5vw;
+  left: 0;
+  background: $secondary;
+  color: $text;
+  padding: 0.5vw;
+  margin: 0;
+  border: 0.1vw solid $primary;
+  line-height: normal;
+  border-radius: 0.3vw;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.rating-number-label {
+  display: inline;
+  font-size: 0.8vw;
+  letter-spacing: normal;
+  color: $text;
+  padding: 0;
+  margin: 0;
+}
+
+.rating-number {
+  color: $primary;
+  font-weight: bold;
 }

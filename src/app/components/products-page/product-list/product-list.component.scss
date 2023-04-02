@@ -1,7 +1,5 @@
 @import "/src/styles/colors";
 
-$badgeSizaFactor: 0.75;
-
 img {
   max-height: 11vw;
   max-width: 100%;
@@ -19,41 +17,6 @@ hr {
 
 .bolder-hr {
   border: 0.1vw solid $primary;
-}
-
-.comment-badge-icon {
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-  font-size: calc(2vw * $badgeSizaFactor);
-  font-weight: lighter;
-  padding-right: 0.5vw;
-  margin-left: 0.5vw;
-}
-
-.badge-after {
-  position: absolute;
-}
-
-.badge-after,
-.custom-badge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $primary;
-  color: $secondary;
-  border: 0.1vw solid white;
-  height: calc(1.3vw * $badgeSizaFactor);
-  width: calc(1.3vw * $badgeSizaFactor);
-  font-size: calc(0.75vw * $badgeSizaFactor);
-  top: calc(-0.2vw * $badgeSizaFactor);
-  right: 0;
-  text-align: center;
-  margin: auto;
-  border-radius: 30%;
-}
-
-.product {
 }
 
 .product-container {
