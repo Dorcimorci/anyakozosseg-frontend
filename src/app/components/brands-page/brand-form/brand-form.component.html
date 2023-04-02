@@ -84,10 +84,14 @@
       </div>
     </div>
 
-    <input type="file" id="file-upload" (change)="onFileUpload($event)" />
-    <label for="file-upload" class="file-upload-label"
-      >FELTÖLTÖK EGY KÉPET</label
-    >
+    <div class="row upload-btn-row">
+      <div class="col-12">
+        <input type="file" id="file-upload" (change)="onFileUpload($event)" />
+        <label for="file-upload" class="file-upload-label"
+          >FELTÖLTÖK EGY KÉPET</label
+        >
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-3 uploaded-image-col" *ngIf="brand.imageFile">

@@ -14,6 +14,13 @@ import { DropdownComponent } from './components/shared/dropdown/dropdown.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './components/shared/rating/rating.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
+import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
+import { ProductListComponent } from './components/products-page/product-list/product-list.component';
+import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
+import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
+import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
@@ -28,6 +35,12 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     BrandFormComponent,
     DropdownComponent,
     RatingComponent,
+    ProductsPageComponent,
+    ProductCatalogComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    ProductsByCategoryComponent,
+    ProductFormComponent,
     AboutUsComponent,
   ],
   imports: [
@@ -37,6 +50,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [Location],
   bootstrap: [AppComponent],

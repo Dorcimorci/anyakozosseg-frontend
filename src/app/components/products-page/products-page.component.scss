@@ -1,0 +1,43 @@
+@import "/src/styles/colors";
+
+$card-item-label-margin: 2vw;
+$content-margin: 10vw;
+
+img {
+  width: 100%;
+}
+
+.row {
+  margin-left: $content-margin;
+  margin-right: $content-margin;
+}
+
+.card {
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.card-item {
+  padding: 1vw;
+}
+
+.card-title,
+.card-block {
+  text-align: center;
+  width: 100%;
+}
+
+.card-block {
+  margin: auto;
+}
+
+.card-title {
+  font-size: 1.5vw;
+  font-weight: 400;
+  margin-top: $card-item-label-margin;
+  margin-bottom: $card-item-label-margin;
+  letter-spacing: 0.3vw;
+  color: $text;
+}

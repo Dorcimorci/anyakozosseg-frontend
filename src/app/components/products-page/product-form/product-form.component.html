@@ -1,0 +1,156 @@
+<div class="form-container text-center row justify-content-center">
+  <form #productForm="ngForm" class="col-sm-6 col-10 page-form">
+    <h1 class="form-title">
+      TERMÉK {{ mapPageActionToTitleSegment(pageAction) }}
+    </h1>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label class="form-label">Terméknév:</label>
+      </div>
+      <div class="col-8 text-start">
+        <input
+          type="text"
+          required
+          #productName="ngModel"
+          [(ngModel)]="product.name"
+          name="product-name"
+          [ngClass]="{
+            'invalid-field': productName.touched && productName.invalid
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="row" *ngIf="productName.touched && productName.invalid">
+      <div class="col-4"></div>
+      <div class="col">
+        <p class="alert alert-danger">
+          Nem adtál meg terméknevet
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Kategória:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="categoryOptions"
+          [(ngModel)]="product.categoryName"
+          (onSelectionChange)="fetchSubcategories($event)"
+          name="category"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row multiselect-row">
+      <div class="col-4 text-end">
+        <label class="form-label">Alkategóriák:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
+          [settings]="dropdownSettings"
+          [data]="subcategories"
+          [(ngModel)]="selectedSubcategories"
+          name="subcategories"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Márka:</label>
+      </div>
+      <div class="col-8 text-start">
+        <app-dropdown
+          [options]="brandOptions"
+          [(ngModel)]="product.brandName"
+          name="brand"
+        ></app-dropdown>
+      </div>
+    </div>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label class="form-label">Árkategória:</label>
+      </div>
+      <div class="col text-start">
+        <input
+          type="number"
+          required
+          [(ngModel)]="product.priceRange.min"
+          name="price-range-min"
+          [ngClass]="{
+            'invalid-field': productName.touched && productName.invalid
+          }"
+        />
+      </div>
+      <div class="col-1 text-start px-0"><p>Ft -</p></div>
+      <div class="col text-start">
+        <input
+          type="number"
+          required
+          #productName="ngModel"
+          [(ngModel)]="product.priceRange.max"
+          name="price-range-max"
+          [ngClass]="{
+            'invalid-field': productName.touched && productName.invalid
+          }"
+        />
+      </div>
+      <div class="col-1 text-start px-0"><p>Ft</p></div>
+    </div>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label class="form-label">Kiszerelés:</label>
+      </div>
+      <div class="col-8 text-start">
+        <input type="text" [(ngModel)]="product.packaging" name="packaging" />
+      </div>
+    </div>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label class="form-label">Segíthet:</label>
+      </div>
+      <div class="col-8 text-start">
+        <input type="text" [(ngModel)]="product.canHelp" name="can-help" />
+      </div>
+    </div>
+
+    <input type="file" id="file-upload" (change)="onFileUpload($event)" />
+    <label for="file-upload" class="file-upload-label"
+      >FELTÖLTÖK EGY KÉPET</label
+    >
+
+    <div class="row">
+      <div class="col-3 uploaded-image-col" *ngIf="product.imageFile">
+        <div class="uploaded-image-container text-end">
+          <img class="uploaded-image" [src]="product.imageFile" alt="" />
+        </div>
+      </div>
+      <div class="col text-end">
+        <ngx-file-drop
+          dropZoneLabel="Húzd ide a feltölteni kívánt képet!"
+          [multiple]="false"
+          (onFileDrop)="onFileDrop($event)"
+        ></ngx-file-drop>
+      </div>
+    </div>
+
+    <button
+      class="add-new-button"
+      [disabled]="productForm.form.invalid"
+      [ngClass]="{ 'btn-disabled': productForm.form.invalid }"
+      (click)="onSubmit()"
+    >
+      TERMÉK {{ mapPageActionToSubmitButtonLabelSegment(pageAction) }}
+    </button>
+  </form>
+</div>

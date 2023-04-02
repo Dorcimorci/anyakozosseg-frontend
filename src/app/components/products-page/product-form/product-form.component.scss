@@ -15,9 +15,14 @@ input {
   margin-bottom: 1.5vw;
 }
 
+.multiselect-row {
+  height: fit-content;
+}
+
 .form-container {
   height: auto;
   margin: 2vw 0 2vw 0;
+  color: $text;
 }
 
 .form-title {

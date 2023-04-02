@@ -1,0 +1,214 @@
+@import "/src/styles/colors";
+
+$badgeSizaFactor: 0.75;
+
+h2 {
+  margin-bottom: 0.5vw;
+}
+
+img {
+  max-height: 15vw;
+  max-width: 100%;
+}
+
+.img-container {
+  padding-top: 1vw !important;
+}
+
+.product-logo {
+  height: 7vw;
+  margin-top: 5.5vw;
+}
+
+.item-container {
+  margin: 0 17vw;
+  position: relative;
+  background-color: white;
+  color: $text;
+  padding: 1vw;
+}
+
+.product-rating {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.product-property {
+  margin: 1vw 0 1vw 0;
+  background-color: $secondary;
+}
+
+.product-property,
+.product-title {
+  color: $text;
+  letter-spacing: 0.3vw;
+  padding: 0 0.5vw;
+}
+
+.product-title {
+  padding-bottom: 1vw;
+}
+
+.details-container {
+  padding: 1vw;
+}
+
+.rating-text {
+  font-size: 0.8vw;
+}
+
+.divider {
+  height: 1vw;
+  background-color: $primary;
+}
+
+.comment-badge-icon {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  font-size: calc(2vw * $badgeSizaFactor);
+  font-weight: lighter;
+  padding-right: 0.5vw;
+  margin-left: 0.5vw;
+}
+
+.badge-after {
+  position: absolute;
+}
+
+.badge-after,
+.custom-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $secondary;
+  border: 0.1vw solid white;
+  height: calc(1.3vw * $badgeSizaFactor);
+  width: calc(1.3vw * $badgeSizaFactor);
+  font-size: calc(0.75vw * $badgeSizaFactor);
+  top: calc(-0.2vw * $badgeSizaFactor);
+  right: 0;
+  text-align: center;
+  margin: auto;
+  border-radius: 30%;
+}
+
+.product {
+  padding: 1vw;
+}
+
+.rating-data {
+  padding: 1vw;
+  padding-left: 2vw;
+  border: solid $primary-soft-smoke;
+  border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
+  border-radius: 0.5vw;
+  background-color: $secondary-smoke;
+  font-size: 1vw;
+  color: $text;
+}
+
+.rating-form-data {
+  padding: 1vw 2vw 2vw 2vw;
+  border: solid $primary;
+  border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
+  border-radius: 0.5vw;
+  background-color: white;
+  font-size: 1vw;
+  textarea {
+    font-size: 1vw;
+    font-family: "Montserrat", sans-serif;
+    color: $text;
+    background-color: white;
+    border: solid $primary-smoke;
+  }
+}
+
+.rating-form-btn {
+  cursor: pointer;
+  background-color: white;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 0.25vw;
+  font-size: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+    transform: translateY(-0.05vw);
+    box-shadow: 0 0 0.5vw rgba($primary, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+    background-color: darken($primary, 10%);
+    color: $secondary;
+  }
+}
+
+.product-name {
+  font-size: 1.3vw;
+  margin-bottom: 0;
+  color: $primary;
+}
+
+.rating-stars {
+  color: $primary;
+}
+
+.rating-number {
+  display: inline;
+  font-size: 0.8vw;
+}
+
+.write-rating-btn {
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 1vw;
+  font-size: 1.3vw;
+  margin-top: 0.5vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+    transform: translateY(-0.05vw);
+    box-shadow: 0 0 0.5vw rgba($primary, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+    background-color: darken($primary, 10%);
+    color: $secondary;
+  }
+}
+
+.comment-container {
+  position: relative;
+}
+
+.comment {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding: 0;
+  padding-right: 2vw;
+  text-align: justify;
+  text-justify: newspaper;
+}
+
+.comment-full {
+  display: block;
+  overflow: visible;
+}

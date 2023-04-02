@@ -1,0 +1,27 @@
+<div class="page-container">
+  <h1 class="vw-90">TERMÉKEK ABC SZERINT</h1>
+  <div class="d-flex vw-90 justify-content-start">
+    <div
+      class="col text-center letter-container"
+      *ngFor="let letter of alphabetLetters"
+      [routerLink]="['/products/catalog', pageAction, letter]"
+      routerLinkActive="letter-active"
+    >
+      <a>{{ letter }}</a>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="row vw-90">
+    <div class="col-1 row letter-row">
+      <p class="letter-initial">{{ activeLetter }}</p>
+    </div>
+    <div class="col-10 product-list">
+      <app-product-list
+        [products]="(products$ | async)!"
+        [onClick]="handleProductClick"
+      ></app-product-list>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>

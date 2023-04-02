@@ -1,18 +1,12 @@
 import {
   Component,
-  EventEmitter,
-  forwardRef,
   Input,
   OnDestroy,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormBuilder,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import { BehaviorSubject, tap } from 'rxjs';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-dropdown',
@@ -37,6 +31,12 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
    */
   @Input() defaultItemIndex: number = 0;
 
+  /**
+   * Callback for when selection changes
+   */
+  @Output() onSelectionChange: EventEmitter<string> =
+    new EventEmitter<string>();
+
   constructor() {}
 
   public isDisabled: boolean = false;
@@ -50,11 +50,14 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
   }
 
   public registerOnChange(onChange: Function): void {
-    this.selectedOption$.subscribe((selectedOption: string) =>
-      onChange(selectedOption)
-    );
+    this.selectedOption$.subscribe((selectedOption: string) => {
+      onChange(selectedOption);
+      this.onSelectionChange.emit(selectedOption); // Emit the selected option
+    });
   }
+
   public registerOnTouched(fn: any): void {}
+
   public setDisabledState?(isDisabled: boolean): void {
     if (isDisabled) {
       this.isDisabled = true;

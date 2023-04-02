@@ -185,7 +185,7 @@ export class BrandFormComponent implements OnInit {
     const foundCategory: Category | undefined = this.categories.find(
       (category: Category) => category.name === name
     );
-    return foundCategory ? foundCategory.id : this.priceCategories[0].id;
+    return foundCategory ? foundCategory.id : this.categories[0].id;
   }
 
   public getCategoryName(id: number): string {
@@ -247,7 +247,7 @@ export class BrandFormComponent implements OnInit {
     } else if (this.pageAction === PageAction.Update) {
       this.brandService
         .updateBrand(this.mapModelToPutRequest(this.brand))
-        .subscribe((response: any) => {
+        .subscribe((response: { brandId: number }) => {
           this.router.navigate([
             '/brands/details',
             PageAction.Read,

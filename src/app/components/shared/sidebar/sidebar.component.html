@@ -1,7 +1,25 @@
 <div *ngIf="showSidebar" #sidebar>
   <div
+    *ngIf="currentRoute === 'products'"
     class="sidebar-item-container"
     [ngStyle]="{ top: applyGreaterTopValue ? '70vw' : '24.5vw' }"
+  >
+    <div class="sidebar row justify-content-around align-items-center">
+      <div
+        class="col-12 sidebar-item"
+        [routerLink]="['/products/catalog', PageAction.Read, 'A']"
+      >
+        <p class="p-0 m-0">
+          {{ menuItemName.toUpperCase() }} KERESÉSE ABC SZERINT &nbsp;
+          <i class="fa-solid fa-arrow-down-a-z"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="sidebar-item-container"
+    [ngStyle]="{ top: applyGreaterTopValue ? '73.5vw' : '28vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
       <div class="col-12 sidebar-item" [routerLink]="[getAddNewRouterLink()]">
@@ -15,13 +33,10 @@
 
   <div
     class="sidebar-item-container"
-    [ngStyle]="{ top: applyGreaterTopValue ? '73.5vw' : '28vw' }"
+    [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
-      <div
-        class="col-12 sidebar-item"
-        [routerLink]="['/brands', PageAction.Update]"
-      >
+      <div class="col-12 sidebar-item" (click)="navigateToEditPage()">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} SZERKESZTÉSE &nbsp;
           <i class="fa-solid fa-pen"></i>
@@ -32,13 +47,10 @@
 
   <div
     class="sidebar-item-container"
-    [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
+    [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
-      <div
-        class="col-12 sidebar-item"
-        [routerLink]="['/brands', PageAction.Delete]"
-      >
+      <div class="col-12 sidebar-item" [routerLink]="[getDeleteLink()]">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} TÖRLÉSE &nbsp;
           <i class="fa fa-trash" aria-hidden="true"></i>
@@ -47,10 +59,9 @@
     </div>
   </div>
 
-  <!-- *ngIf="(previousRoute$ | async)?.includes(SecondaryRoute.Catalog)" -->
   <div
     class="sidebar-item-container"
-    [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
+    [ngStyle]="{ top: applyGreaterTopValue ? '84vw' : '38.5vw' }"
   >
     <div class="sidebar row justify-content-around align-items-center">
       <div

@@ -38,32 +38,31 @@ export class BrandCatalogComponent implements OnInit {
       ),
       this.activatedRoute.paramMap,
     ]).subscribe(([routeData, paramMap]) => {
-      const abcLetter = paramMap.get('abcLetter');
-      if (abcLetter) {
-        this.activeLetter = abcLetter;
-      }
+      this.activeLetter = paramMap.get('abcLetter') ?? this.activeLetter;
       this.pageAction = paramMap.get('action') as PageAction;
       this.category = {
         id: routeData.id,
         name: routeData.name,
         imagePath: '',
       };
-      this.setCategoryTitlePart(this.category);
+      this.categoryTitlePart = this.getCategoryTitlePart(this.category);
 
       this.brandsService
-        .fetchBrands(this.category.id, this.activeLetter)
+        .fetchBrandsByCategoryAndLetter(this.category.id, this.activeLetter)
         .subscribe(
           (brands: BrandApiGetResponse[]) => (this.brandList = brands)
         );
     });
   }
 
-  public setCategoryTitlePart(category: Category): void {
+  public getCategoryTitlePart(category: Category): string {
+    let categoryTitlePart: string = '';
     if (category.name?.endsWith('S')) {
-      this.categoryTitlePart = `${category.name}I TERMÉKEKET`;
+      categoryTitlePart = `${category.name}I TERMÉKEKET`;
     } else if (category.name?.endsWith('K')) {
-      this.categoryTitlePart = `${category.name}ET FORGALMAZÓ`;
+      categoryTitlePart = `${category.name}ET FORGALMAZÓ`;
     }
+    return categoryTitlePart;
   }
 
   public onDelete(brandId: number): void {

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Pipe } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
@@ -26,10 +26,18 @@ export class RatingComponent
     this.setDisabledState(value);
   }
 
+  public get Math() {
+    return Math;
+  }
+
   public ratingToShow = 0;
   public rating = 0;
 
-  public ratingOptions: number[] = [1, 2, 3, 4, 5];
+  /**
+   * An array of numbers representing the possible rating steps for the rating component.
+   * For example, a value of [1, 2, 3, 4, 5] would indicate a maximum rating of 5 stars.
+   */
+  public ratingSteps: number[] = [1, 2, 3, 4, 5];
 
   public rating$: BehaviorSubject<number> = new BehaviorSubject(0);
   public ratingToShow$: BehaviorSubject<number> = new BehaviorSubject(0);
@@ -47,6 +55,7 @@ export class RatingComponent
       this.rating = rating;
     });
   }
+
   public registerOnTouched(fn: any): void {}
   public setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {
@@ -83,6 +92,31 @@ export class RatingComponent
   public onStarLeft(rating: number) {
     if (!this.isDisabled) {
       this.ratingToShow = this.rating;
+    }
+  }
+
+  public roundToHalf(num: number) {
+    return Math.round(num * 2) / 2;
+  }
+
+  /**
+    Returns the appropriate CSS class for a star icon based on the current rating step.
+    @param ratingStep - The current rating step.
+    @returns The CSS class for the star icon.
+  */
+  public getStarClass(ratingStep: number): string {
+    const roundedRating = Math.round(this.ratingToShow);
+    const roundedHalf = this.roundToHalf(this.ratingToShow);
+
+    if (ratingStep <= roundedHalf) {
+      return 'fa-solid fa-star';
+    } else if (
+      ratingStep === Math.floor(roundedHalf) + 1 &&
+      Math.abs(roundedRating - roundedHalf) === 0.5
+    ) {
+      return 'fas fa-star-half-alt';
+    } else {
+      return 'fa-regular fa-star';
     }
   }
 }

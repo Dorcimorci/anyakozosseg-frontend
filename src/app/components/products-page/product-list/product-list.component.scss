@@ -1,0 +1,140 @@
+@import "/src/styles/colors";
+
+$badgeSizaFactor: 0.75;
+
+img {
+  max-height: 11vw;
+  max-width: 100%;
+}
+
+hr {
+  margin: 0.5vw 0 0.5vw 0;
+}
+
+.img-container {
+  padding-top: 1vw;
+  padding-right: 1vw;
+  padding-bottom: 1vw;
+}
+
+.bolder-hr {
+  border: 0.1vw solid $primary;
+}
+
+.comment-badge-icon {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  font-size: calc(2vw * $badgeSizaFactor);
+  font-weight: lighter;
+  padding-right: 0.5vw;
+  margin-left: 0.5vw;
+}
+
+.badge-after {
+  position: absolute;
+}
+
+.badge-after,
+.custom-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $secondary;
+  border: 0.1vw solid white;
+  height: calc(1.3vw * $badgeSizaFactor);
+  width: calc(1.3vw * $badgeSizaFactor);
+  font-size: calc(0.75vw * $badgeSizaFactor);
+  top: calc(-0.2vw * $badgeSizaFactor);
+  right: 0;
+  text-align: center;
+  margin: auto;
+  border-radius: 30%;
+}
+
+.product {
+}
+
+.product-container {
+  position: relative;
+  background-color: white;
+  color: $text;
+  padding: 1vw;
+}
+
+.product-data {
+  padding: 1vw;
+  padding-left: 2vw;
+  border: solid $primary-soft-smoke;
+  border-width: 0.1vw 0.1vw 0.1vw 0.2vw;
+  border-radius: 0.5vw;
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary-smoke;
+  }
+}
+
+.product-name {
+  font-size: 1.3vw;
+  margin-bottom: 0;
+  color: $primary;
+}
+
+.product-body {
+  font-size: 1vw;
+}
+
+.rating-data {
+  color: $text;
+}
+
+.rating-stars {
+  color: $primary;
+}
+
+.rating-number {
+  display: inline;
+  font-size: 0.8vw;
+}
+
+.comment-container {
+  position: relative;
+}
+
+.comment {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding: 0;
+  padding-right: 2vw;
+  text-align: justify;
+  text-justify: newspaper;
+}
+
+.comment-full {
+  display: block;
+  overflow: visible;
+}
+
+.show-full-btn {
+  position: absolute;
+  bottom: 2.3vw;
+  right: 2vw;
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 1vw;
+  font-size: 0.6vw;
+  margin-top: 0.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  width: 2vw;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+  }
+}
