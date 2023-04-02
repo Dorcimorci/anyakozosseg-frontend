@@ -10,7 +10,12 @@
           (error)="showDummyProduct($event)"
         />
       </div>
-      <div class="col-10 product-data" (click)="onClick(product)">
+      <div
+        class="col-10 product-data"
+        [attr.data-icon]="hoverIconClass"
+        [ngClass]="{ 'product-data-with-icon': hoverIconClass != '' }"
+        (click)="onClick(product)"
+      >
         <hr class="bolder-hr" />
         <p class="product-name">{{ product.name }}</p>
         <hr class="bolder-hr" />
@@ -41,7 +46,6 @@
           </span>
         </div>
       </div>
-
       <span
         *ngIf="product.lastRating && product.lastRating.isEllipsisActive"
         class="show-full-btn text-center"

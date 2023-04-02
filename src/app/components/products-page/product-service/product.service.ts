@@ -58,4 +58,9 @@ export class ProductService {
   public updateProduct(product: ProductApiPutRequest): Observable<any> {
     return this.http.put(`${BASE_URL}${COMPONENT_URL}`, product);
   }
+
+  public deleteProduct(productId: number): Observable<any> {
+    const params: HttpParams = new HttpParams().set('productId', productId);
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, { params });
+  }
 }
