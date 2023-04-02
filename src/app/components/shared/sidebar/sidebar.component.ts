@@ -11,6 +11,7 @@ import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
 import { RouteHistory, RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
+import { SidebarItem } from './sidebar.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,16 +19,15 @@ import { routeToSingularTranslation } from '../utils';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements AfterViewChecked {
-  public menuItemName: string = '';
-
   public isNavbarCollapsed: boolean = false;
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
   public currentRoute: string = '';
-  public previousRoute$: Observable<RouteHistory> =
-    this.routerService.previousRoute$;
+  public previousRoute: RouteHistory = {} as RouteHistory;
 
   public showSidebar: boolean = false;
+
+  public sidebarItems: SidebarItem[] = [];
 
   public get PageAction() {
     return PageAction;
@@ -54,13 +54,21 @@ export class SidebarComponent implements AfterViewChecked {
     private readonly navbarService: NavbarService
   ) {
     this.routerService.currentRoute$.subscribe((currentRoute: string) => {
-      this.menuItemName = routeToSingularTranslation[currentRoute];
       this.currentRoute = currentRoute;
-
-      this.showSidebar = ['brands', 'ingredients', 'products'].includes(
-        currentRoute
-      );
+      this.initSidebarItems();
+      this.showSidebar = [
+        'brands',
+        'ingredients',
+        'products',
+        'aboutus',
+      ].includes(currentRoute);
     });
+
+    this.routerService.previousRoute$.subscribe(
+      (previousRoute: RouteHistory) => {
+        this.previousRoute = previousRoute;
+      }
+    );
 
     // needed for responsiveness
     this.navbarService.isCollapsed$.subscribe((isCollapsed: boolean) => {
@@ -73,12 +81,50 @@ export class SidebarComponent implements AfterViewChecked {
     });
   }
 
+  public initSidebarItems(): void {
+    const menuItemName = routeToSingularTranslation[this.currentRoute];
+    this.sidebarItems = [
+      {
+        showOnPages: ['products'],
+        label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
+        iconClass: 'fa-solid fa-arrow-down-a-z',
+        onClick: () => this.navigateToCatalog(),
+      },
+      {
+        showOnPages: ['brands', 'ingredients', 'products'],
+        label: `${menuItemName?.toUpperCase()} HOZZÁADÁSA`,
+        iconClass: 'fa fa-file',
+        onClick: () => this.navigateToAddNewPage(),
+      },
+      {
+        showOnPages: ['brands', 'ingredients', 'products'],
+        label: `${menuItemName?.toUpperCase()} SZERKESZTÉSE`,
+        iconClass: 'fa-solid fa-pen',
+        onClick: () => this.navigateToEditPage(),
+      },
+      {
+        showOnPages: ['brands', 'ingredients', 'products'],
+        label: `${menuItemName?.toUpperCase()} TÖRLÉSE`,
+        iconClass: 'fa fa-trash',
+        onClick: () => this.navigateToDeletePage(),
+      },
+      {
+        showOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        label: `VISSZA`,
+        iconClass: 'fa fa-angle-double-left',
+        onClick: () => this.navigateToPreviousRoute(),
+      },
+    ].filter((item: SidebarItem) =>
+      item.showOnPages.includes(this.currentRoute)
+    );
+  }
+
   public ngAfterViewChecked(): void {
     this.initializeLeftProperty();
   }
 
-  public getAddNewRouterLink(): string {
-    return `${this.currentRoute}/form/${PageAction.Create}`;
+  public navigateToAddNewPage(): void {
+    this.router.navigate([`${this.currentRoute}/form/${PageAction.Create}`]);
   }
 
   public navigateToEditPage(): void {
@@ -107,6 +153,31 @@ export class SidebarComponent implements AfterViewChecked {
     }
   }
 
+  public navigateToCatalog(): void {
+    this.router.navigate(['/products/catalog', PageAction.Read, 'A']);
+  }
+
+  public navigateToPreviousRoute(): void {
+    if (this.previousRoute.state) {
+      this.router.navigate([
+        this.previousRoute.url,
+        { state: this.previousRoute.state },
+      ]);
+    } else {
+      this.router.navigate([this.previousRoute.url]);
+    }
+  }
+
+  /**
+   * Initializes the CSS custom property '--item-width' for each sidebar item by calculating their
+   * current clientWidth in pixels.
+   *
+   * This method is called whenever the sidebar element is available (afterViewInit lifecycle hook).
+   * It loops through all the '.sidebar' elements within the sidebar and sets their '--item-width'
+   * property to their current clientWidth in pixels.
+   *
+   * This custom property is used to correctly position the dropdown menu items within the sidebar.
+   */
   private initializeLeftProperty(): void {
     if (this.sidebar) {
       const sidebarItems: HTMLElement[] =
