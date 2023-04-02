@@ -1,5 +1,3 @@
-import { PriceCategoryOption } from '../../shared/enums';
-
 export interface BrandApiGetResponse {
   id: number;
   isCrueltyFree: boolean;
