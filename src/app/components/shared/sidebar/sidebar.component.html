@@ -4,11 +4,11 @@
     class="sidebar-item-container"
     [ngStyle]="{ top: applyGreaterTopValue ? '70vw' : '24.5vw' }"
   >
-    <div class="sidebar row justify-content-around align-items-center">
-      <div
-        class="col-12 sidebar-item"
-        [routerLink]="['/products/catalog', PageAction.Read, 'A']"
-      >
+    <div
+      class="sidebar row justify-content-around align-items-center"
+      [routerLink]="['/products/catalog', PageAction.Read, 'A']"
+    >
+      <div class="col-12 sidebar-item">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} KERESÉSE ABC SZERINT &nbsp;
           <i class="fa-solid fa-arrow-down-a-z"></i>
@@ -21,8 +21,11 @@
     class="sidebar-item-container"
     [ngStyle]="{ top: applyGreaterTopValue ? '73.5vw' : '28vw' }"
   >
-    <div class="sidebar row justify-content-around align-items-center">
-      <div class="col-12 sidebar-item" [routerLink]="[getAddNewRouterLink()]">
+    <div
+      class="sidebar row justify-content-around align-items-center"
+      [routerLink]="[getAddNewRouterLink()]"
+    >
+      <div class="col-12 sidebar-item">
         <p class="p-0 m-0">
           ÚJ {{ menuItemName.toUpperCase() }} HOZZÁADÁSA &nbsp;
           <i class="fa fa-file" aria-hidden="true"></i>
@@ -35,8 +38,11 @@
     class="sidebar-item-container"
     [ngStyle]="{ top: applyGreaterTopValue ? '77vw' : '31.5vw' }"
   >
-    <div class="sidebar row justify-content-around align-items-center">
-      <div class="col-12 sidebar-item" (click)="navigateToEditPage()">
+    <div
+      class="sidebar row justify-content-around align-items-center"
+      (click)="navigateToEditPage()"
+    >
+      <div class="col-12 sidebar-item">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} SZERKESZTÉSE &nbsp;
           <i class="fa-solid fa-pen"></i>
@@ -49,8 +55,11 @@
     class="sidebar-item-container"
     [ngStyle]="{ top: applyGreaterTopValue ? '80.5vw' : '35vw' }"
   >
-    <div class="sidebar row justify-content-around align-items-center">
-      <div class="col-12 sidebar-item" (click)="navigateToDeletePage()">
+    <div
+      class="sidebar row justify-content-around align-items-center"
+      (click)="navigateToDeletePage()"
+    >
+      <div class="col-12 sidebar-item">
         <p class="p-0 m-0">
           {{ menuItemName.toUpperCase() }} TÖRLÉSE &nbsp;
           <i class="fa fa-trash" aria-hidden="true"></i>
