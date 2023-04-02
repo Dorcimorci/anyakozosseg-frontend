@@ -61,11 +61,7 @@ export class ProductFormComponent {
   }
 
   public get brandOptions(): string[] {
-    const brandOptions: string[] = [];
-    this.brands?.forEach((brand: MinimalBrand) =>
-      brandOptions.push(brand.name)
-    );
-    return brandOptions;
+    return this.brands.map((brand: MinimalBrand) => brand.name);
   }
 
   public pageAction: PageAction = PageAction.Create;
