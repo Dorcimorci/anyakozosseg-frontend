@@ -86,30 +86,35 @@ export class SidebarComponent implements AfterViewChecked {
     this.sidebarItems = [
       {
         showOnPages: ['products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
         iconClass: 'fa-solid fa-arrow-down-a-z',
         onClick: () => this.navigateToCatalog(),
       },
       {
         showOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} HOZZÁADÁSA`,
         iconClass: 'fa fa-file',
         onClick: () => this.navigateToAddNewPage(),
       },
       {
         showOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} SZERKESZTÉSE`,
         iconClass: 'fa-solid fa-pen',
         onClick: () => this.navigateToEditPage(),
       },
       {
         showOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} TÖRLÉSE`,
         iconClass: 'fa fa-trash',
         onClick: () => this.navigateToDeletePage(),
       },
       {
         showOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        visibleByRoles: [],
         label: `VISSZA`,
         iconClass: 'fa fa-angle-double-left',
         onClick: () => this.navigateToPreviousRoute(),
