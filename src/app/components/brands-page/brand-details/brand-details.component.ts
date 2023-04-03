@@ -33,6 +33,7 @@ export class BrandDetailsComponent {
           isVegan: Utils.mapBooleanToText(brand.isCrueltyFree),
           name: brand.name,
           overallRating: brand.overallRating,
+          numberOfRatings: brand.numberOfRatings,
           priceCategory: priceCategories.find(
             (priceCategory: PriceCategory) =>
               priceCategory.id === brand.priceCategoryId

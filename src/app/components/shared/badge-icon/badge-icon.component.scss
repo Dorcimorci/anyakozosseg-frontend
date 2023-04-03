@@ -1,0 +1,36 @@
+@import "/src/styles/colors";
+
+$badgeSizaFactor: 0.7;
+
+.badge-icon {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  font-size: calc(2vw * $badgeSizaFactor);
+  font-weight: lighter;
+  padding-right: 0.5vw;
+  margin-left: 0.5vw;
+}
+
+.badge-after {
+  position: absolute;
+}
+
+.badge-after,
+.custom-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $secondary;
+  border: 0.1vw solid white;
+  border-radius: 0.4vw * $badgeSizaFactor;
+  height: calc(1.6vw * $badgeSizaFactor);
+  width: calc(2vw * $badgeSizaFactor);
+  font-size: calc(0.75vw * $badgeSizaFactor);
+  top: calc(-0.5vw * $badgeSizaFactor);
+  right: calc(-0.5vw * $badgeSizaFactor);
+  text-align: center;
+  margin: auto;
+  letter-spacing: normal;
+}
