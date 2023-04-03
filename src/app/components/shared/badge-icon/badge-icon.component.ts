@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class BadgeIconComponent {
   @Input() numberToShow: number = 0;
   @Input() iconClass: string = 'fa fa-comment';
+  @Input() borderColor: string = 'white';
 }

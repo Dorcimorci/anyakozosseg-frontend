@@ -1,3 +1,5 @@
 <i [class]="iconClass + ' badge-icon'" aria-hidden="true">
-  <div class="badge-after">{{ numberToShow }}</div>
+  <div class="badge-after" [style.border-color]="borderColor">
+    {{ numberToShow }}
+  </div>
 </i>
