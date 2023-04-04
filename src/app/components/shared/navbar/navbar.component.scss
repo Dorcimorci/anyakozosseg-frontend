@@ -11,7 +11,6 @@ form {
 .navbar {
   background-color: white !important;
   padding: 0;
-  display: block;
 }
 
 .navbar-nav {
@@ -66,7 +65,43 @@ form {
 }
 
 .navbar-toggler {
-  margin-left: 1rem;
+  margin: 5vw auto;
+  width: 13vw;
+  height: 13vw;
+  padding: 1vw;
+  font-size: 6vw;
+  border-radius: 2vw;
+  border: 0.5vw solid $secondary;
+  color: $secondary;
+  background-color: transparent;
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    border-color: $secondary;
+    color: $secondary;
+    outline: none;
+    box-shadow: none;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &.navbar-expanded {
+    border-color: $primary;
+    color: $primary;
+    transition: all 0.3s ease;
+
+    .fa-bars {
+      transform: rotate(90deg);
+    }
+  }
+
+  .fa-bars {
+    transition: transform 0.3s ease;
+  }
 }
 
 .brand-icon {

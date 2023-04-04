@@ -1,6 +1,7 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { PageAction } from '../enums';
 import { NavbarService } from './navbar.service';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +18,16 @@ export class NavbarComponent {
     return PageAction;
   }
 
-  constructor(private readonly navbarService: NavbarService) {}
+  constructor(
+    private readonly navbarService: NavbarService,
+    private readonly router: Router
+  ) {}
 
   public toggleNavbar(): void {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     this.navbarService.isCollapsed$.next(this.isNavbarCollapsed);
+    const navbarToggler =
+      this.navbar.nativeElement.querySelector('.navbar-toggler');
+    navbarToggler.classList.toggle('navbar-expanded', !this.isNavbarCollapsed);
   }
 }
