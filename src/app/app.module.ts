@@ -23,6 +23,8 @@ import { ProductFormComponent } from './components/products-page/product-form/pr
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { BadgeIconComponent } from './components/shared/badge-icon/badge-icon.component';
+import { BrandsByCategoryComponent } from './components/brands-page/brands-by-category/brands-by-category.component';
+import { BrandListComponent } from './components/brands-page/brand-list/brand-list.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { BadgeIconComponent } from './components/shared/badge-icon/badge-icon.co
     ProductFormComponent,
     AboutUsComponent,
     BadgeIconComponent,
+    BrandsByCategoryComponent,
+    BrandListComponent,
   ],
   imports: [
     BrowserModule,

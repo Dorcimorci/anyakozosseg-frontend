@@ -212,8 +212,8 @@ export class BrandFormComponent implements OnInit {
         (priceCategory: PriceCategory) => priceCategory.id === id
       );
     return foundPriceCategory
-      ? (foundPriceCategory.name as PriceCategoryOption)
-      : (this.priceCategories[0].name as PriceCategoryOption);
+      ? foundPriceCategory.name
+      : this.priceCategories[0].name;
   }
 
   public mapPageActionToTitleSegment(pageAction: PageAction): string {
@@ -237,22 +237,14 @@ export class BrandFormComponent implements OnInit {
     if (this.pageAction === PageAction.Create) {
       this.brandService
         .addNewBrand(this.mapModelToPostRequest(this.brand))
-        .subscribe((response: any) => {
-          this.router.navigate([
-            '/brands/details',
-            PageAction.Read,
-            response.brandId,
-          ]);
+        .subscribe((response: { brandId: number }) => {
+          this.router.navigate(['/brands/details', response.brandId]);
         });
     } else if (this.pageAction === PageAction.Update) {
       this.brandService
         .updateBrand(this.mapModelToPutRequest(this.brand))
         .subscribe((response: { brandId: number }) => {
-          this.router.navigate([
-            '/brands/details',
-            PageAction.Read,
-            response.brandId,
-          ]);
+          this.router.navigate(['/brands/details', response.brandId]);
         });
     }
   }

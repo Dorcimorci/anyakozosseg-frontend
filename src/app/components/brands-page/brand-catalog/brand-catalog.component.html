@@ -1,23 +1,18 @@
 <div class="page-container">
-  <h1 class="vw-90">{{ categoryTitlePart }} FORGALMAZÓ MÁRKÁK ABC SZERINT</h1>
-  <div class="d-flex vw-90 justify-content-start">
-    <div
-      class="col text-center letter-container"
-      *ngFor="let letter of alphabetLetters"
-      [routerLink]="[
-        '/brands/catalog',
-        pageAction,
-        removeAccents(category.name.toLowerCase()),
-        letter
-      ]"
-      [state]="{ id: category.id, name: category.name }"
-      routerLinkActive="letter-active"
-    >
-      <a>{{ letter }}</a>
+  <h1 class="vw-90">MÁRKÁK ABC SZERINT</h1>
+  <div class="letter-panel">
+    <div class="d-flex vw-90 justify-content-start">
+      <div
+        class="col text-center letter-container"
+        *ngFor="let letter of alphabetLetters"
+        [routerLink]="['/brands/catalog', pageAction, letter]"
+        routerLinkActive="letter-active"
+      >
+        <a>{{ letter }}</a>
+      </div>
     </div>
+    <div class="divider"></div>
   </div>
-  <div class="divider"></div>
-
   <div class="row vw-90">
     <div class="col-3 col-sm-6 row letter-row">
       <div class="row">
@@ -44,28 +39,27 @@
         <div
           class="col brand-name text-center"
           [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
-          [routerLink]="['/brands/details', pageAction, brand.id]"
+          [routerLink]="['/brands/details', brand.id]"
         >
           <a>{{ brand.name }}</a>
         </div>
         <div
-          *ngIf="pageAction === PageAction.Delete"
-          class="col-2 delete-button-container"
-        >
-          <button class="delete-button" (click)="onDelete(brand.id)">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
-        </div>
-
-        <div
           *ngIf="pageAction === PageAction.Update"
-          class="col-2 delete-button-container"
+          class="col-2 action-button-container"
         >
           <button
-            class="delete-button"
+            class="action-button"
             [routerLink]="['/brands/form', PageAction.Update, brand.id]"
           >
             <i class="fa-solid fa-pen"></i>
+          </button>
+        </div>
+        <div
+          *ngIf="pageAction === PageAction.Delete"
+          class="col-2 action-button-container"
+        >
+          <button class="action-button" (click)="onDelete(brand.id)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
         </div>
       </div>

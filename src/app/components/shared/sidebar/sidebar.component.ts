@@ -85,7 +85,7 @@ export class SidebarComponent implements AfterViewChecked {
     const menuItemName = routeToSingularTranslation[this.currentRoute];
     this.sidebarItems = [
       {
-        visibleOnPages: ['products'],
+        visibleOnPages: ['products', 'brands'],
         visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
         iconClass: 'fa-solid fa-arrow-down-a-z',
@@ -133,33 +133,25 @@ export class SidebarComponent implements AfterViewChecked {
   }
 
   public navigateToEditPage(): void {
-    switch (this.currentRoute) {
-      case 'products':
-        this.router.navigate([
-          `${this.currentRoute}/catalog/${PageAction.Update}`,
-          'A',
-        ]);
-        break;
-      default:
-        this.router.navigate([`${this.currentRoute}/${PageAction.Update}`]);
-    }
+    this.router.navigate([
+      `${this.currentRoute}/catalog/${PageAction.Update}`,
+      'A',
+    ]);
   }
 
   public navigateToDeletePage(): void {
-    switch (this.currentRoute) {
-      case 'products':
-        this.router.navigate([
-          `${this.currentRoute}/catalog/${PageAction.Delete}`,
-          'A',
-        ]);
-        break;
-      default:
-        this.router.navigate([`${this.currentRoute}/${PageAction.Delete}`]);
-    }
+    this.router.navigate([
+      `${this.currentRoute}/catalog/${PageAction.Delete}`,
+      'A',
+    ]);
   }
 
   public navigateToCatalog(): void {
-    this.router.navigate(['/products/catalog', PageAction.Read, 'A']);
+    this.router.navigate([
+      `${this.currentRoute}/catalog`,
+      PageAction.Read,
+      'A',
+    ]);
   }
 
   public navigateToPreviousRoute(): void {
