@@ -25,7 +25,7 @@ a {
 .letter-panel {
   position: sticky;
   top: 18vw;
-  z-index: 999;
+  z-index: 1;
   background-color: white;
 }
 
@@ -49,6 +49,7 @@ a {
   font-size: 12vw;
   font-family: "Playfair Display", serif;
   line-height: 14vw;
+  padding-left: 1vw;
 }
 
 .brand-name-row,
