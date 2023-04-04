@@ -22,13 +22,6 @@ a {
   margin-right: auto;
 }
 
-.letter-panel {
-  position: sticky;
-  top: 18vw;
-  z-index: 1;
-  background-color: white;
-}
-
 .letter-container:hover,
 .letter-active {
   cursor: pointer;
@@ -49,7 +42,6 @@ a {
   font-size: 12vw;
   font-family: "Playfair Display", serif;
   line-height: 14vw;
-  padding-left: 1vw;
 }
 
 .brand-name-row,
@@ -77,11 +69,11 @@ a {
   text-align: center;
 }
 
-.action-button-container {
+.delete-button-container {
   margin: auto;
 }
 
-.action-button {
+.delete-button {
   color: $text;
   background: none;
   border: none;

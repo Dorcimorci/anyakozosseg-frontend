@@ -11,6 +11,7 @@ import { ProductsByCategoryComponent } from './components/products-page/products
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BrandsByCategoryComponent } from './components/brands-page/brands-by-category/brands-by-category.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,11 +26,15 @@ const routes: Routes = [
     component: BrandsPageComponent,
   },
   {
-    path: 'brands/catalog/:action/:categoryName/:abcLetter',
+    path: 'brands/catalog/:action/:abcLetter',
     component: BrandCatalogComponent,
   },
   {
-    path: 'brands/details/:action/:brandId',
+    path: 'brands/category/:categoryId',
+    component: BrandsByCategoryComponent,
+  },
+  {
+    path: 'brands/details/:brandId',
     component: BrandDetailsComponent,
   },
   {

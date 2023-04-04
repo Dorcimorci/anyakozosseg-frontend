@@ -23,13 +23,19 @@ export class BrandsService {
     );
   }
 
-  public fetchBrandsByCategoryAndLetter(
-    categoryId: number,
+  public fetchBrandsByCategory(
+    categoryId: number
+  ): Observable<BrandApiGetResponse[]> {
+    const params: HttpParams = new HttpParams().set('categoryId', categoryId);
+    return this.http.get<BrandApiGetResponse[]>(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+    });
+  }
+
+  public fetchBrandsByLetter(
     letter: string
   ): Observable<BrandApiGetResponse[]> {
-    const params: HttpParams = new HttpParams()
-      .set('categoryId', categoryId)
-      .set('abcLetter', letter);
+    const params: HttpParams = new HttpParams().set('abcLetter', letter);
     return this.http.get<BrandApiGetResponse[]>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
     });

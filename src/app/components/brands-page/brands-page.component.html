@@ -12,12 +12,7 @@
   <div *ngFor="let category of categories" class="col-6 col-sm-3 card-item">
     <div
       class="card"
-      [routerLink]="[
-        '/brands/catalog',
-        pageAction$ | async,
-        removeAccents(category.name.toLowerCase()),
-        'A'
-      ]"
+      [routerLink]="['/brands/category', category.id]"
       [state]="{ id: category.id, name: category.name }"
     >
       <div class="card-block">
