@@ -9,8 +9,11 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
       (click)="toggleNavbar()"
+      [ngClass]="{ 'navbar-expanded': isNavbarCollapsed }"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span>
+        <i class="fas fa-bars"></i>
+      </span>
     </button>
     <div
       #navbar

@@ -85,37 +85,42 @@ export class SidebarComponent implements AfterViewChecked {
     const menuItemName = routeToSingularTranslation[this.currentRoute];
     this.sidebarItems = [
       {
-        showOnPages: ['products'],
+        visibleOnPages: ['products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
         iconClass: 'fa-solid fa-arrow-down-a-z',
         onClick: () => this.navigateToCatalog(),
       },
       {
-        showOnPages: ['brands', 'ingredients', 'products'],
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} HOZZÁADÁSA`,
         iconClass: 'fa fa-file',
         onClick: () => this.navigateToAddNewPage(),
       },
       {
-        showOnPages: ['brands', 'ingredients', 'products'],
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} SZERKESZTÉSE`,
         iconClass: 'fa-solid fa-pen',
         onClick: () => this.navigateToEditPage(),
       },
       {
-        showOnPages: ['brands', 'ingredients', 'products'],
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} TÖRLÉSE`,
         iconClass: 'fa fa-trash',
         onClick: () => this.navigateToDeletePage(),
       },
       {
-        showOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        visibleOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        visibleByRoles: [],
         label: `VISSZA`,
         iconClass: 'fa fa-angle-double-left',
         onClick: () => this.navigateToPreviousRoute(),
       },
     ].filter((item: SidebarItem) =>
-      item.showOnPages.includes(this.currentRoute)
+      item.visibleOnPages.includes(this.currentRoute)
     );
   }
 

@@ -1,5 +1,6 @@
 export interface SidebarItem {
-  showOnPages: string[];
+  visibleOnPages: string[];
+  visibleByRoles: string[];
   label: string;
   iconClass: string;
   onClick: Function;
