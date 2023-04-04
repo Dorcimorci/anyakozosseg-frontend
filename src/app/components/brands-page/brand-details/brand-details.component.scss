@@ -45,14 +45,14 @@ img {
   align-items: center;
   position: absolute;
   top: 2.5vw;
-  left: 0;
+  left: 1vw;
   background: $secondary;
   color: $text;
   padding: 0.5vw;
   margin: 0;
   border: 0.1vw solid $primary;
   line-height: normal;
-  border-radius: 0.3vw;
+  border-radius: 0 0.5vw 0.5vw 0.5vw;
   transition: opacity 0.3s ease-in-out;
 }
 
