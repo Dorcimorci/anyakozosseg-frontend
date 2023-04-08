@@ -30,8 +30,8 @@ export class BrandFormComponent implements OnInit {
   public brand: Brand = {
     overallRating: 0,
     priceCategory: Utils.getEmptyOption(),
-    isCrueltyFree: Utils.getEmptyOption(),
-    isVegan: Utils.getEmptyOption(),
+    isCrueltyFree: booleanOptions[0],
+    isVegan: booleanOptions[0],
   } as Brand;
 
   public pageAction: PageAction = PageAction.Create;
@@ -49,7 +49,7 @@ export class BrandFormComponent implements OnInit {
     ) as PageAction;
 
     if (this.pageAction === PageAction.Create) {
-      this.fetchOptions();
+      this.fetchOptions().then(() => this.initOptions());
     } else if (this.pageAction === PageAction.Update) {
       const brandId: string | null =
         this.activatedRoute.snapshot.paramMap.get('brandId');
@@ -77,8 +77,11 @@ export class BrandFormComponent implements OnInit {
     this.categories = await firstValueFrom(
       this.categoryService.fetchCategories()
     );
+  }
 
+  private initOptions() {
     this.brand.category = this.categories[0];
+    this.brand.priceCategory = this.priceCategories[0];
   }
 
   public ngOnInit(): void {
