@@ -1,12 +1,32 @@
+import { Brand } from '../brands-page/brand-model/brand.model';
+import { Option } from './dropdown/dropdown.model';
 import { PageAction } from './enums';
 
 export class Utils {
-  public static mapBooleanToText(bool: boolean): string {
-    return bool ? 'IGEN' : 'NEM';
+  public static getEmptyOption(): Option {
+    return {} as Option;
+  }
+
+  public static mapBooleanToText(bool: boolean | string): string {
+    return Boolean(bool) ? 'IGEN' : 'NEM';
   }
 
   public static mapTextToBoolean(boolHun: string): boolean {
     return boolHun === 'IGEN';
+  }
+
+  public static mapBrandBooleanOptions(brand: Brand): Brand {
+    return {
+      ...brand,
+      isCrueltyFree: {
+        id: brand.isCrueltyFree.id,
+        name: Utils.mapBooleanToText(brand.isCrueltyFree.name),
+      },
+      isVegan: {
+        id: brand.isCrueltyFree.id,
+        name: Utils.mapBooleanToText(brand.isVegan.name),
+      },
+    };
   }
 
   public static removeAccents(textWithAccents: string): string {
@@ -38,7 +58,10 @@ export class Utils {
   }
 }
 
-export const booleanOptions: string[] = ['IGEN', 'NEM'];
+export const booleanOptions: Option[] = [
+  { id: 1, name: 'IGEN' },
+  { id: 2, name: 'NEM' },
+];
 
 export const alphabetLetters: string[] = 'abcdefghijklmnopqrstuvwxyz'
   .toUpperCase()

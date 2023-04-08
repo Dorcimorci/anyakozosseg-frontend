@@ -3,9 +3,9 @@ import { combineLatest, first, map } from 'rxjs';
 import { Category } from '../../shared/categories/category.model';
 import { PageAction } from '../../shared/enums';
 import { Utils } from '../../shared/utils';
-import { BrandApiGetResponse } from '../brand-model/brand.api';
 import { ActivatedRoute } from '@angular/router';
 import { BrandsService } from '../brands-service/brands.service';
+import { Brand } from '../brand-model/brand.model';
 
 @Component({
   selector: 'app-brands-by-category',
@@ -16,7 +16,7 @@ export class BrandsByCategoryComponent implements OnInit {
   public category: Category = {} as Category;
   public categoryTitlePart: string = '';
   public pageAction: PageAction = PageAction.Read;
-  public brandList: BrandApiGetResponse[] = [];
+  public brandList: Brand[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,9 +41,7 @@ export class BrandsByCategoryComponent implements OnInit {
 
       this.brandsService
         .fetchBrandsByCategory(this.category.id)
-        .subscribe(
-          (brands: BrandApiGetResponse[]) => (this.brandList = brands)
-        );
+        .subscribe((brands: Brand[]) => (this.brandList = brands));
     });
   }
 
@@ -55,12 +53,6 @@ export class BrandsByCategoryComponent implements OnInit {
       categoryTitlePart = `${category.name}ET FORGALMAZÓ`;
     }
     return categoryTitlePart;
-  }
-
-  public onDelete(brandId: number): void {
-    this.brandsService.deleteById(brandId).subscribe(() => {
-      this.ngOnInit();
-    });
   }
 
   public removeAccents(textWithAccents: string): string {

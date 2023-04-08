@@ -1,13 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ProductApiPostRequest,
-  Subcategory,
-  ProductListItem,
-  ProductApiPutRequest,
-} from '../product-model/product.api';
+import { ProductListItem } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
+import { Option } from '../../shared/dropdown/dropdown.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'products';
@@ -44,18 +40,18 @@ export class ProductService {
     });
   }
 
-  public fetchSubcategories(categoryId: number): Observable<Subcategory[]> {
+  public fetchSubcategories(categoryId: number): Observable<Option[]> {
     const params: HttpParams = new HttpParams().set('categoryId', categoryId);
-    return this.http.get<Subcategory[]>(`${BASE_URL}${SUBCATEGORIES_URL}`, {
+    return this.http.get<Option[]>(`${BASE_URL}${SUBCATEGORIES_URL}`, {
       params,
     });
   }
 
-  public addNewProduct(product: ProductApiPostRequest): Observable<any> {
+  public addNewProduct(product: Product): Observable<any> {
     return this.http.post(`${BASE_URL}${COMPONENT_URL}`, product);
   }
 
-  public updateProduct(product: ProductApiPutRequest): Observable<any> {
+  public updateProduct(product: Product): Observable<any> {
     return this.http.put(`${BASE_URL}${COMPONENT_URL}`, product);
   }
 

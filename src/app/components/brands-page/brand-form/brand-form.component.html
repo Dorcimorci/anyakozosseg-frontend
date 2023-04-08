@@ -38,8 +38,8 @@
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="CategoryOptions"
-          [(ngModel)]="brand.categoryName"
+          [options]="categories"
+          [(ngModel)]="brand.category"
           name="category"
         ></app-dropdown>
       </div>
@@ -51,7 +51,7 @@
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="PriceCategoryOptions"
+          [options]="priceCategories"
           [(ngModel)]="brand.priceCategory"
           name="priceCategory"
         ></app-dropdown>

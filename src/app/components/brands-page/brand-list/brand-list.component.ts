@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { BrandApiGetResponse } from '../brand-model/brand.api';
 import { Router } from '@angular/router';
+import { Brand } from '../brand-model/brand.model';
 
 @Component({
   selector: 'app-brand-list',
@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./brand-list.component.scss'],
 })
 export class BrandListComponent {
-  @Input() brandList: BrandApiGetResponse[] = [];
-  @Input() onClick: Function = (brand: BrandApiGetResponse) =>
+  @Input() brandList: Brand[] = [];
+  @Input() onClick: Function = (brand: Brand) =>
     this.router.navigate(['/brands/details', brand.id]);
   @Input() hoverIconClass: string = '';
 

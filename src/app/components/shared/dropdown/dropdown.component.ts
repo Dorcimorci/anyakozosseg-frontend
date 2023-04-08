@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { Option } from './dropdown.model';
 
 @Component({
   selector: 'app-dropdown',
@@ -24,33 +25,33 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
   /**
    * The options to be shown in the dropdown
    */
-  @Input() options: string[] = [];
+  @Input() options: Option[] = [];
 
   /**
-   * The initial selected values index within the options array
+   * The initial selected option
    */
-  @Input() defaultItemIndex: number = 0;
+  @Input() defaultOption: Option = this.options[0];
 
   /**
    * Callback for when selection changes
    */
-  @Output() onSelectionChange: EventEmitter<string> =
-    new EventEmitter<string>();
+  @Output() onSelectionChange: EventEmitter<Option> =
+    new EventEmitter<Option>();
 
   constructor() {}
 
   public isDisabled: boolean = false;
 
-  public selectedOption$: BehaviorSubject<string> = new BehaviorSubject(
-    this.options[this.defaultItemIndex]
+  public selectedOption$: BehaviorSubject<Option> = new BehaviorSubject(
+    this.defaultOption
   );
 
-  public writeValue(option: string) {
+  public writeValue(option: Option) {
     this.onSelect(option);
   }
 
   public registerOnChange(onChange: Function): void {
-    this.selectedOption$.subscribe((selectedOption: string) => {
+    this.selectedOption$.subscribe((selectedOption: Option) => {
       onChange(selectedOption);
       this.onSelectionChange.emit(selectedOption); // Emit the selected option
     });
@@ -70,10 +71,7 @@ export class DropdownComponent implements ControlValueAccessor, OnDestroy {
     this.selectedOption$.unsubscribe();
   }
 
-  public onSelect(selectedOption: string): void {
-    this.defaultItemIndex = this.options.findIndex(
-      (option: string) => option === selectedOption
-    );
+  public onSelect(selectedOption: Option): void {
     this.selectedOption$.next(selectedOption);
   }
 }
