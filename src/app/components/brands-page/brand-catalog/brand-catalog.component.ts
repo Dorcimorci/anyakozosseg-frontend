@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PageAction } from '../../shared/enums';
 import { alphabetLetters } from '../../shared/utils';
-import { BrandApiGetResponse } from '../brand-model/brand.api';
 import { BrandsService } from '../brands-service/brands.service';
+import { Brand } from '../brand-model/brand.model';
 
 @Component({
   selector: 'app-alphabetical-brand-catalog',
@@ -19,7 +19,7 @@ export class BrandCatalogComponent implements OnInit {
     return PageAction;
   }
 
-  public brandList: BrandApiGetResponse[] = [];
+  public brandList: Brand[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,13 +30,10 @@ export class BrandCatalogComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.activeLetter = paramMap.get('abcLetter') ?? this.activeLetter;
       this.pageAction = paramMap.get('action') as PageAction;
-
-      this.brandsService
-        .fetchBrandsByLetter(this.activeLetter)
-        .subscribe(
-          (brands: BrandApiGetResponse[]) => (this.brandList = brands)
-        );
     });
+    this.brandsService
+      .fetchBrandsByLetter(this.activeLetter)
+      .subscribe((brands: Brand[]) => (this.brandList = brands));
   }
 
   public onDelete(brandId: number): void {

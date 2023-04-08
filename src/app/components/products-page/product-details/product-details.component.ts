@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { Rating, RatingPostRequest } from '../product-model/product.api';
+import { Observable } from 'rxjs';
+import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { RatingService } from '../rating-service/rating.service';
@@ -60,6 +59,12 @@ export class ProductDetailsComponent {
 
   public showDummyProduct(event: ErrorEvent): void {
     (event.target as HTMLImageElement).src = 'assets/dummy_product.png';
+  }
+
+  public getSubcategoryNames(product: Product): string {
+    return product.subcategories
+      .map((subcategory) => subcategory.name)
+      .join(', ');
   }
 
   private refresh(productId: number): void {

@@ -52,10 +52,6 @@ a {
   padding-left: 1vw;
 }
 
-.brand-name-row,
-.letter-row {
-}
-
 .brand {
   outline: 0.1vw solid $secondary;
   &:hover {
@@ -73,7 +69,6 @@ a {
   font-size: 1.25vw;
   letter-spacing: 0.3vw;
   color: $text;
-  // width: fit-content !important;
   text-align: center;
 }
 
