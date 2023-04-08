@@ -11,10 +11,6 @@ export class Utils {
     return Boolean(bool) ? 'IGEN' : 'NEM';
   }
 
-  public static mapTextToBoolean(boolHun: string): boolean {
-    return boolHun === 'IGEN';
-  }
-
   public static mapBrandBooleanOptions(brand: Brand): Brand {
     return {
       ...brand,
@@ -23,7 +19,7 @@ export class Utils {
         name: Utils.mapBooleanToText(brand.isCrueltyFree.name),
       },
       isVegan: {
-        id: brand.isCrueltyFree.id,
+        id: brand.isVegan.id,
         name: Utils.mapBooleanToText(brand.isVegan.name),
       },
     };
@@ -59,8 +55,8 @@ export class Utils {
 }
 
 export const booleanOptions: Option[] = [
+  { id: 0, name: 'NEM' },
   { id: 1, name: 'IGEN' },
-  { id: 2, name: 'NEM' },
 ];
 
 export const alphabetLetters: string[] = 'abcdefghijklmnopqrstuvwxyz'
