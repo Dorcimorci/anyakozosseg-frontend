@@ -113,10 +113,6 @@ export class ProductFormComponent {
     }
   }
 
-  onSelectionChange(event: Option): void {
-    console.log(event);
-  }
-
   public fetchSubcategories(category: Option) {
     if (this.categories.length > 0) {
       this.productService
