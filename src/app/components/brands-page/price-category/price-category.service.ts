@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PriceCategoryOption } from '../../shared/enums';
-import { PriceCategory } from './price-category.model';
+import { Option } from '../../shared/dropdown/dropdown.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'price-categories';
@@ -13,7 +12,7 @@ const COMPONENT_URL = 'price-categories';
 export class PriceCategoryService {
   constructor(private http: HttpClient) {}
 
-  public fetchPriceCategories(): Observable<PriceCategory[]> {
-    return this.http.get<PriceCategory[]>(`${BASE_URL}${COMPONENT_URL}`);
+  public fetchPriceCategories(): Observable<Option[]> {
+    return this.http.get<Option[]>(`${BASE_URL}${COMPONENT_URL}`);
   }
 }

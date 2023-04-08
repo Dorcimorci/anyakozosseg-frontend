@@ -30,7 +30,7 @@ export class ProductsPageComponent {
 
   public getCategories(): void {
     this.categoriesService
-      .getCategories()
+      .fetchCategories()
       .subscribe((categories: Category[]) => {
         this.categories = categories;
       });

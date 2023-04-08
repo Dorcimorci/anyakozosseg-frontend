@@ -9,13 +9,9 @@ import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
 import { PageAction } from '../../shared/enums';
 import { Utils } from '../../shared/utils';
-import {
-  ProductApiPostRequest,
-  ProductApiPutRequest,
-  Subcategory,
-} from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
+import { Option } from '../../shared/dropdown/dropdown.model';
 
 @Component({
   selector: 'app-product-form',
@@ -23,8 +19,7 @@ import { ProductService } from '../product-service/product.service';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent {
-  selectedSubcategories: Subcategory[] = [];
-  dropdownSettings: IDropdownSettings = {
+  public readonly dropdownSettings: IDropdownSettings = {
     singleSelection: false,
     idField: 'id',
     textField: 'name',
@@ -34,34 +29,22 @@ export class ProductFormComponent {
 
   public categories: Category[] = [];
   public brands: MinimalBrand[] = [];
-  public subcategories: Subcategory[] = [];
+  public subcategories: Option[] = [];
 
   public product: Product = {
     id: 0,
     name: '',
-    categoryName: '',
     imageFile: '',
     subcategories: [],
     priceRange: { min: 2000, max: 5000 },
-    brandName: '',
     canHelp: '',
     packaging: '',
     numberOfRatings: 0,
     avgRating: 0,
     ratings: [],
+    category: Utils.getEmptyOption(),
+    brand: Utils.getEmptyOption(),
   };
-
-  public get categoryOptions(): string[] {
-    const categoryOptions: string[] = [];
-    this.categories?.forEach((category: Category) =>
-      categoryOptions.push(category.name)
-    );
-    return categoryOptions;
-  }
-
-  public get brandOptions(): string[] {
-    return this.brands.map((brand: MinimalBrand) => brand.name);
-  }
 
   public pageAction: PageAction = PageAction.Create;
 
@@ -78,32 +61,32 @@ export class ProductFormComponent {
 
     // Fetch categories and brands in parallel
     forkJoin([
-      this.categoryService.getCategories(),
+      this.categoryService.fetchCategories(),
       this.brandService.fetchAllBrands(),
     ])
       .pipe(
         // Use switchMap to chain the subcategories request
         switchMap(([categories, brands]) => {
           this.categories = categories;
-          this.product.categoryName = categories[0].name;
+          this.product.category = categories[0];
           this.brands = brands.length
             ? brands
             : [{ id: 0, name: 'No brands available' }];
-          this.product.brandName = this.brands[0].name;
+          this.product.brand = this.brands[0];
 
           // Fetch subcategories for the first category
           return this.productService.fetchSubcategories(
-            this.getCategoryId(this.product.categoryName)
+            this.product.category.id
           );
         })
       )
-      .subscribe((subcategories: Subcategory[]) => {
+      .subscribe((subcategories: Option[]) => {
         this.subcategories = subcategories;
       });
 
     if (this.pageAction === PageAction.Update) {
       forkJoin([
-        this.categoryService.getCategories(),
+        this.categoryService.fetchCategories(),
         this.brandService.fetchAllBrands(),
       ])
         .pipe(
@@ -112,7 +95,7 @@ export class ProductFormComponent {
             this.brands = brands.length
               ? brands
               : [{ id: 0, name: 'No brands available' }];
-            this.product.brandName = this.brands[0].name;
+            this.product.brand = brands[0];
             const productId: number =
               +this.activatedRoute.snapshot.paramMap.get('productId')!;
             return this.productService.fetchProductDetailsById(productId);
@@ -120,30 +103,26 @@ export class ProductFormComponent {
           switchMap((product: Product) => {
             this.product = product;
             return this.productService.fetchSubcategories(
-              this.getCategoryId(this.product.categoryName)
+              this.product.category.id
             );
           })
         )
-        .subscribe((subcategories: Subcategory[]) => {
+        .subscribe((subcategories: Option[]) => {
           this.subcategories = subcategories;
-          this.selectedSubcategories = this.product.subcategories.map(
-            (subcategoryName: string) =>
-              this.subcategories.find(
-                (subcategory: Subcategory) =>
-                  subcategory.name === subcategoryName
-              )!
-          );
-          console.log('selected:', this.selectedSubcategories);
         });
     }
   }
 
-  public fetchSubcategories(categoryName: string) {
+  onSelectionChange(event: Option): void {
+    console.log(event);
+  }
+
+  public fetchSubcategories(category: Option) {
     if (this.categories.length > 0) {
       this.productService
-        .fetchSubcategories(this.getCategoryId(categoryName))
+        .fetchSubcategories(category.id)
         .subscribe(
-          (subcategories: Subcategory[]) => (this.subcategories = subcategories)
+          (subcategories: Option[]) => (this.subcategories = subcategories)
         );
     }
   }
@@ -197,84 +176,16 @@ export class ProductFormComponent {
     }
   }
 
-  public mapModelToPostRequest(product: Product): ProductApiPostRequest {
-    const productApiPostRequest: ProductApiPostRequest = {
-      ...product,
-      categoryId: this.getCategoryId(product.categoryName),
-      brandId: this.getBrandId(product.brandName),
-      subcategories: this.selectedSubcategories,
-    };
-    return productApiPostRequest;
-  }
-
-  public mapModelToPutRequest(product: Product): ProductApiPutRequest {
-    const productApiPostRequest: ProductApiPutRequest = {
-      ...product,
-      categoryId: this.getCategoryId(product.categoryName),
-      brandId: this.getBrandId(product.brandName),
-      subcategories: this.selectedSubcategories,
-    };
-    return productApiPostRequest;
-  }
-
-  public getCategoryId(name: string): number {
-    const foundCategory: Category | undefined = this.categories.find(
-      (category: Category) => category.name === name
-    );
-    return foundCategory ? foundCategory.id : this.categories[0].id;
-  }
-
-  public getCategoryName(id: number): string {
-    const foundCategory: Category | undefined = this.categories.find(
-      (category: Category) => category.id === id
-    );
-    return foundCategory ? foundCategory.name : this.categories[0].name;
-  }
-
-  public getBrandId(name: string): number {
-    const foundBrand: MinimalBrand | undefined = this.brands.find(
-      (brand: MinimalBrand) => brand.name === name
-    );
-    return foundBrand ? foundBrand.id : this.brands[0].id;
-  }
-
-  public getBrandName(id: number): string {
-    const foundBrand: MinimalBrand | undefined = this.brands.find(
-      (brand: MinimalBrand) => brand.id === id
-    );
-    return foundBrand ? foundBrand.name : this.brands[0].name;
-  }
-
-  public getProductCategoryId(name: string): number {
-    const foundProductCategory: Subcategory | undefined =
-      this.subcategories.find(
-        (productCategory: Subcategory) => productCategory.name === name
-      );
-    return foundProductCategory
-      ? foundProductCategory.id
-      : this.subcategories[0].id;
-  }
-
-  public getProductCategoryName(id: number): string {
-    const foundProductCategory: Subcategory | undefined =
-      this.subcategories.find(
-        (productCategory: Subcategory) => productCategory.id === id
-      );
-    return foundProductCategory
-      ? foundProductCategory.name
-      : this.subcategories[0].name;
-  }
-
   public onSubmit(): void {
     if (this.pageAction === PageAction.Create) {
       this.productService
-        .addNewProduct(this.mapModelToPostRequest(this.product))
+        .addNewProduct(this.product)
         .subscribe((response: { productId: number }) =>
           this.router.navigate(['/products/details', response.productId])
         );
     } else if (this.pageAction === PageAction.Update) {
       this.productService
-        .updateProduct(this.mapModelToPutRequest(this.product))
+        .updateProduct(this.product)
         .subscribe((response: { productId: number }) =>
           this.router.navigate(['/products/details', response.productId])
         );

@@ -38,8 +38,8 @@
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="categoryOptions"
-          [(ngModel)]="product.categoryName"
+          [options]="categories"
+          [(ngModel)]="product.category"
           (onSelectionChange)="fetchSubcategories($event)"
           name="category"
         ></app-dropdown>
@@ -55,7 +55,8 @@
           [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
           [settings]="dropdownSettings"
           [data]="subcategories"
-          [(ngModel)]="selectedSubcategories"
+          [(ngModel)]="product.subcategories"
+          (ngModelChange)="onSelectionChange($event)"
           name="subcategories"
         >
         </ng-multiselect-dropdown>
@@ -68,8 +69,8 @@
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="brandOptions"
-          [(ngModel)]="product.brandName"
+          [options]="brands"
+          [(ngModel)]="product.brand"
           name="brand"
         ></app-dropdown>
       </div>

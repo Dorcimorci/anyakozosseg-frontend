@@ -1,5 +1,3 @@
-import { PriceRange } from './product.model';
-
 export interface Rating {
   id: number;
   username: string;
@@ -24,25 +22,4 @@ export interface RatingPostRequest {
   productId: number;
   rating: number;
   comment: string;
-}
-
-export interface ProductApiPostRequest {
-  name: string;
-  categoryId: number;
-  brandId: number;
-  imageFile: string;
-  subcategories: Subcategory[];
-  priceRange: PriceRange;
-  canHelp: string;
-  packaging: string;
-  ratings: Rating[];
-}
-
-export interface ProductApiPutRequest extends ProductApiPostRequest {
-  id: number;
-}
-
-export interface Subcategory {
-  id: number;
-  name: string;
 }

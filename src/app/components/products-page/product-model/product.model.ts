@@ -1,4 +1,4 @@
-import { Category } from '../../shared/categories/category.model';
+import { Option } from '../../shared/dropdown/dropdown.model';
 import { Rating } from './product.api';
 
 export interface PriceRange {
@@ -9,10 +9,10 @@ export interface PriceRange {
 export interface Product {
   id: number;
   name: string;
-  categoryName: string;
-  brandName: string;
+  category: Option;
+  brand: Option;
   imageFile: string;
-  subcategories: string[];
+  subcategories: Option[];
   priceRange: PriceRange;
   canHelp: string;
   packaging: string;

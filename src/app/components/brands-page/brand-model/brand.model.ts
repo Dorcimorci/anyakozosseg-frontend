@@ -1,16 +1,15 @@
-import { Category } from '../../shared/categories/category.model';
-import { PriceCategoryOption } from '../../shared/enums';
+import { Option } from '../../shared/dropdown/dropdown.model';
 
 export interface Brand {
   id: number;
-  isCrueltyFree: string;
-  isVegan: string;
+  isCrueltyFree: Option;
+  isVegan: Option;
   name: string;
   overallRating: number;
   numberOfRatings?: number;
-  priceCategory: PriceCategoryOption;
+  category: Option;
+  priceCategory: Option;
   imageFile: string;
-  categoryName?: string;
 }
 
 export interface MinimalBrand {
