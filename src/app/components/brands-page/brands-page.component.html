@@ -1,12 +1,4 @@
-<h1 *ngIf="(pageAction$ | async) === PageAction.Read">
-  MÁRKÁK KATEGÓRIA SZERINT
-</h1>
-<h1 *ngIf="(pageAction$ | async) === PageAction.Update">
-  VÁLASZD KI A SZERKESZTENI KÍVÁNT MÁRKA KATEGÓRIÁJÁT!
-</h1>
-<h1 *ngIf="(pageAction$ | async) === PageAction.Delete">
-  VÁLASZD KI A TÖRÖLNI KÍVÁNT MÁRKA KATEGÓRIÁJÁT!
-</h1>
+<h1>MÁRKÁK KATEGÓRIA SZERINT</h1>
 
 <div class="row justify-content-around">
   <div *ngFor="let category of categories" class="col-6 col-sm-3 card-item">

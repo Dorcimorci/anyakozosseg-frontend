@@ -4,6 +4,7 @@ import { PageAction } from '../../shared/enums';
 import { alphabetLetters } from '../../shared/utils';
 import { BrandsService } from '../brands-service/brands.service';
 import { Brand } from '../brand-model/brand.model';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-alphabetical-brand-catalog',
@@ -27,13 +28,17 @@ export class BrandCatalogComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.activeLetter = paramMap.get('abcLetter') ?? this.activeLetter;
-      this.pageAction = paramMap.get('action') as PageAction;
-    });
-    this.brandsService
-      .fetchBrandsByLetter(this.activeLetter)
-      .subscribe((brands: Brand[]) => (this.brandList = brands));
+    this.activatedRoute.paramMap
+      .pipe(
+        switchMap((paramMap: ParamMap) => {
+          this.activeLetter = paramMap.get('abcLetter') ?? this.activeLetter;
+          this.pageAction = paramMap.get('action') as PageAction;
+          return this.brandsService.fetchBrandsByLetter(this.activeLetter);
+        })
+      )
+      .subscribe((brands: Brand[]) => {
+        this.brandList = brands;
+      });
   }
 
   public onDelete(brandId: number): void {
