@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { forkJoin, switchMap } from 'rxjs';
-import { MinimalBrand } from '../../brands-page/brand-model/brand.model';
 import { BrandsService } from '../../brands-page/brands-service/brands.service';
 import { CategoriesService } from '../../shared/categories/categories.service';
 import { Category } from '../../shared/categories/category.model';
@@ -28,7 +27,7 @@ export class ProductFormComponent {
   };
 
   public categories: Category[] = [];
-  public brands: MinimalBrand[] = [];
+  public brands: Option[] = [];
   public subcategories: Option[] = [];
 
   public product: Product = {
