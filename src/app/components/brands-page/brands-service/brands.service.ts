@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Brand, MinimalBrand } from '../brand-model/brand.model';
+import { Brand } from '../brand-model/brand.model';
+import { Option } from '../../shared/dropdown/dropdown.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'brands';
@@ -30,8 +31,8 @@ export class BrandsService {
     });
   }
 
-  public fetchAllBrands(): Observable<MinimalBrand[]> {
-    return this.http.get<MinimalBrand[]>(`${BASE_URL}${COMPONENT_URL}`);
+  public fetchAllBrands(): Observable<Option[]> {
+    return this.http.get<Option[]>(`${BASE_URL}${COMPONENT_URL}`);
   }
 
   public fetchBrandById(brandId: number): Observable<Brand> {

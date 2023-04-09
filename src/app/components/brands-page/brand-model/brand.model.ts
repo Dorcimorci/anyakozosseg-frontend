@@ -11,8 +11,3 @@ export interface Brand {
   priceCategory: Option;
   imageFile: string;
 }
-
-export interface MinimalBrand {
-  id: number;
-  name: string;
-}

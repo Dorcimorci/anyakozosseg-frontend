@@ -68,3 +68,9 @@ input {
 .invalid-field {
   outline: 2px solid $primary;
 }
+
+.vw-90 {
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}

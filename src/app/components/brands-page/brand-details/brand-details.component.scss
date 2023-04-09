@@ -29,14 +29,13 @@ img {
   color: $primary !important;
 }
 
-.app-rating:hover + .info-box {
-  opacity: 1;
-
-  pointer-events: auto;
-}
-
-.app-rating:hover {
+.app-rating {
   cursor: pointer;
+
+  &:hover + .info-box {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .info-box {
