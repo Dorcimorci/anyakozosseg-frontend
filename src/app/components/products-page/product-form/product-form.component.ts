@@ -11,6 +11,7 @@ import { Utils } from '../../shared/utils';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { Option } from '../../shared/dropdown/dropdown.model';
+import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 
 @Component({
   selector: 'app-product-form',
@@ -18,12 +19,21 @@ import { Option } from '../../shared/dropdown/dropdown.model';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent {
-  public readonly dropdownSettings: IDropdownSettings = {
+  public readonly subcategoriesDropdownSettings: IDropdownSettings = {
     singleSelection: false,
     idField: 'id',
     textField: 'name',
     enableCheckAll: false,
     allowSearchFilter: false,
+  };
+
+  public readonly brandsDropdownSettings: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
+    enableCheckAll: false,
+    allowSearchFilter: false,
+    closeDropDownOnSelection: true,
   };
 
   public categories: Category[] = [];
@@ -112,10 +122,10 @@ export class ProductFormComponent {
     }
   }
 
-  public fetchSubcategories(category: Option) {
+  public fetchSubcategories(category: Option | ListItem) {
     if (this.categories.length > 0) {
       this.productService
-        .fetchSubcategories(category.id)
+        .fetchSubcategories(Number(category.id))
         .subscribe(
           (subcategories: Option[]) => (this.subcategories = subcategories)
         );
@@ -185,5 +195,13 @@ export class ProductFormComponent {
           this.router.navigate(['/products/details', response.productId])
         );
     }
+  }
+
+  public onSelect(listItem: ListItem) {
+    console.log(listItem);
+  }
+
+  public onBrandsFilterChange(listItem: ListItem): void {
+    console.log('onBrandsFilterChange: ', listItem);
   }
 }

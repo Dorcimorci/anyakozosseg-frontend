@@ -6,6 +6,7 @@ h5 {
 }
 
 $base-color: $primary !important;
+
 $disable-background-color: #eceeef;
 .multiselect-dropdown {
   position: relative;
@@ -16,7 +17,8 @@ $disable-background-color: #eceeef;
     display: inline-block;
     border: none !important;
     width: 100%;
-    padding: 6px 12px;
+    padding: 0.2vw 0.5vw !important;
+    padding-right: 2.5vw !important;
     margin-bottom: 0;
     font-weight: normal;
     line-height: 1.52857143;
@@ -27,11 +29,11 @@ $disable-background-color: #eceeef;
     border-radius: 0 !important;
     .selected-item {
       border: 1px solid $base-color;
-      margin-right: 0.3vw;
+      margin: 0.1vw !important;
       background: $base-color;
-      padding: 0px 5px;
+      padding: 0 0.3vw !important;
       color: #fff;
-      border-radius: 2px;
+      border-radius: 0.1vw !important;
       float: left;
       a {
         text-decoration: none;
@@ -57,6 +59,12 @@ $disable-background-color: #eceeef;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
     }
+
+    .dropdown-multiselect__caret:before {
+      top: 0.3vw !important;
+      margin: 0 !important;
+      display: block !important;
+    }
   }
   .disabled {
     & > span {
@@ -71,9 +79,9 @@ $disable-background-color: #eceeef;
   width: 100%;
   z-index: 99 !important;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 0 0 0.2vw 0.2vw !important;
   background: #fff;
-  margin-top: 10px;
+  margin-top: 0.2vw !important;
   box-shadow: 0px 1px 5px #959595;
   ul {
     padding: 0px;
@@ -104,12 +112,12 @@ $disable-background-color: #eceeef;
 .multiselect-item-checkbox input[type="checkbox"] {
   border: 0;
   clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
+  height: 0.1vw !important;
+  margin: -0.1vw !important;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  width: 1px;
+  width: 0.1vw !important;
 }
 
 .multiselect-item-checkbox input[type="checkbox"]:focus + div:before,
@@ -124,7 +132,7 @@ $disable-background-color: #eceeef;
 
 .multiselect-item-checkbox input[type="checkbox"] + div {
   position: relative;
-  padding-left: 2em;
+  padding-left: 1.5vw !important;
   vertical-align: middle;
   user-select: none;
   cursor: pointer;
@@ -139,10 +147,10 @@ $disable-background-color: #eceeef;
   position: absolute;
   top: 50%;
   left: 0;
-  width: 14px;
-  height: 14px;
-  margin-top: -9px;
-  border: 2px solid $base-color;
+  width: 0.7vw !important;
+  height: 0.7vw !important;
+  margin-top: -0.45vw !important;
+  border: 0.1vw solid $primary !important;
   text-align: center;
   transition: all 0.4s ease;
 }
@@ -153,10 +161,10 @@ $disable-background-color: #eceeef;
   background-color: $base-color;
   position: absolute;
   top: 50%;
-  left: 4px;
-  width: 10px;
-  height: 10px;
-  margin-top: -5px;
+  left: 0.18vw !important;
+  width: 0.4vw !important;
+  height: 0.2vw !important;
+  margin-top: -0.25vw !important;
   transform: scale(0);
   transform-origin: 50%;
   transition: transform 200ms ease-out;
@@ -190,7 +198,7 @@ $disable-background-color: #eceeef;
   margin-top: -4px;
   border-style: solid;
   border-color: #ffffff;
-  border-width: 0 0 3px 3px;
+  border-width: 0 0 0.13vw 0.13vw !important;
   border-image: none;
   transform: rotate(-45deg) scale(0);
 }
@@ -221,6 +229,40 @@ $disable-background-color: #eceeef;
     border-width: 0.35vw 0.35vw 0 !important;
     border-color: $text transparent !important;
   }
+}
+
+// Remove checkbox if singleselect class is used on the component
+
+.singleselect .multiselect-item-checkbox {
+  padding: 0px !important;
+}
+.singleselect input[type="checkbox"] + div:before {
+  display: none;
+}
+
+.singleselect input[type="checkbox"] + div:after {
+  display: none;
+}
+
+.singleselect input[type="checkbox"] + div {
+  padding: 0.2vw 0.5vw !important;
+}
+
+.singleselect input[type="checkbox"]:checked + div {
+  background-color: $primary !important;
+  color: $secondary !important;
+}
+
+.singleselect input[type="checkbox"] + div:hover {
+  background-color: $primary !important;
+  color: $secondary !important;
+}
+
+.singleselect .multiselect-dropdown .dropdown-btn .selected-item {
+  pointer-events: none !important;
+  border: none !important;
+  background: transparent !important;
+  color: $text !important;
 }
 
 ::placeholder {
