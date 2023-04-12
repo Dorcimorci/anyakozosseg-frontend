@@ -25,19 +25,34 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { BadgeIconComponent } from './components/shared/badge-icon/badge-icon.component';
 import { BrandsByCategoryComponent } from './components/brands-page/brands-by-category/brands-by-category.component';
 import { BrandListComponent } from './components/brands-page/brand-list/brand-list.component';
-
+import { IngredientCatalogComponent } from './components/ingredients-page/ingredient-catalog/ingredient-catalog.component';
+import { IngredientDetailsComponent } from './components/ingredients-page/ingredient-details/ingredient-details.component';
+import { IngredientFormComponent } from './components/ingredients-page/ingredient-form/ingredient-form.component';
+import { IngredientListComponent } from './components/ingredients-page/ingredient-list/ingredient-list.component';
+import { IngredientsByCategoryComponent } from './components/ingredients-page/ingredients-by-category/ingredients-by-category.component';
+import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    DropdownComponent,
+    BadgeIconComponent,
+    RatingComponent,
+    SidebarComponent,
     WelcomePageComponent,
     BrandsPageComponent,
     BrandCatalogComponent,
     BrandDetailsComponent,
-    SidebarComponent,
     BrandFormComponent,
-    DropdownComponent,
-    RatingComponent,
+    BrandsByCategoryComponent,
+    BrandListComponent,
+    IngredientsPageComponent,
+    IngredientCatalogComponent,
+    IngredientDetailsComponent,
+    IngredientFormComponent,
+    IngredientsByCategoryComponent,
+    IngredientListComponent,
     ProductsPageComponent,
     ProductCatalogComponent,
     ProductListComponent,
@@ -45,9 +60,6 @@ import { BrandListComponent } from './components/brands-page/brand-list/brand-li
     ProductsByCategoryComponent,
     ProductFormComponent,
     AboutUsComponent,
-    BadgeIconComponent,
-    BrandsByCategoryComponent,
-    BrandListComponent,
   ],
   imports: [
     BrowserModule,
