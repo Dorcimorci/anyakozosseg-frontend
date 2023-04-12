@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import "/src/styles/colors";
+
+a {
+  text-decoration: none;
+  font-size: 2vw;
+  font-weight: 300;
+  // width: fit-content !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $tertiary;
+}
+
+.page-container {
+  margin-bottom: 4vw;
+}
+
+.letter-panel {
+  position: sticky;
+  top: 18vw;
+  z-index: 1;
+  background-color: white;
+}
+
+.letter-container:hover,
+.letter-active {
+  cursor: pointer;
+  background-color: $secondary;
+}
+
+.divider {
+  height: 1vw;
+  background-color: $primary;
+  margin-bottom: 2vw;
+}
+
+.letter-col {
+  padding: 0 1vw 0 1vw;
+}
+
+.letter-initial {
+  color: $primary;
+  font-size: 12vw;
+  font-family: "Playfair Display", serif;
+  line-height: 14vw;
+  padding-left: 1vw;
+}
+
+.ingredient {
+  outline: 0.1vw solid $secondary;
+  padding: 0.2vw 0;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary;
+    outline: 0.1vw solid $text;
+  }
+
+  &:hover a {
+    color: $tertiary;
+  }
+}
+
+.ingredient-name {
+  font-weight: 300;
+  letter-spacing: 0.3vw;
+  color: $text;
+  text-align: center;
+  padding: 0.2vw 0;
+}
+
+.ingredient-name a {
+  font-size: 1.25vw;
+}
+
+.action-button-container {
+  margin: auto;
+  text-align: right;
+}
+
+.action-button {
+  color: $text;
+  background: none;
+  border: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: $primary;
+    scale: 1.2;
+  }
+}

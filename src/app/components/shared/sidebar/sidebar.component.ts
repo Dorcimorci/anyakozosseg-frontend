@@ -6,7 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
 import { RouteHistory, RouterService } from '../router.service';
@@ -85,7 +84,7 @@ export class SidebarComponent implements AfterViewChecked {
     const menuItemName = routeToSingularTranslation[this.currentRoute];
     this.sidebarItems = [
       {
-        visibleOnPages: ['products', 'brands'],
+        visibleOnPages: ['products', 'brands', 'ingredients'],
         visibleByRoles: [],
         label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
         iconClass: 'fa-solid fa-arrow-down-a-z',
