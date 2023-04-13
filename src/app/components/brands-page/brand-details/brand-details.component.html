@@ -26,16 +26,16 @@
         </div>
       </div>
       <div class="brand-property row">
-        <div class="col-8 text-start">ÖSSZESÍTETT ÉRTÉKELÉS</div>
-        <div class="col-4 text-start rating-stars">
+        <div class="col text-start">ÖSSZESÍTETT ÉRTÉKELÉS</div>
+        <div class="col-auto text-start rating-stars">
           <app-rating
             class="app-rating"
             [disabled]="true"
             [defaultRating]="brand.overallRating"
           >
           </app-rating>
-          <div class="info-box">
-            <p class="rating-number-label" *ngIf="brand.overallRating">
+          <div class="info-box" *ngIf="brand.overallRating">
+            <p class="rating-number-label">
               Összesített értékelés:
               <span class="rating-number">{{
                 brand.overallRating | number : "1.1-2"
