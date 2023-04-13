@@ -37,23 +37,23 @@
         <label class="form-label">Kategória:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="categories"
+        <app-single-select
+          [data]="categories"
           [(ngModel)]="product.category"
           (onSelectionChange)="fetchSubcategories($event)"
           name="category"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 
-    <div class="row multiselect-row">
+    <div class="row multiselect-row align-items-center">
       <div class="col-4 text-end">
-        <label class="form-label">Alkategóriák:</label>
+        <label>Alkategóriák:</label>
       </div>
       <div class="col-8 text-start">
         <ng-multiselect-dropdown
           [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
-          [settings]="dropdownSettings"
+          [settings]="baseDropdownSettings"
           [data]="subcategories"
           [(ngModel)]="product.subcategories"
           name="subcategories"
@@ -62,24 +62,43 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row multiselect-row align-items-center">
       <div class="col-4 text-end">
-        <label class="form-label">Márka:</label>
+        <label>Márka:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="brands"
+        <app-single-select
+          [placeholder]="'VÁLASZD KI A MÁRKÁT...'"
+          [allowSearchFilter]="true"
+          [data]="brands"
           [(ngModel)]="product.brand"
+          (onSearch)="onBrandsFilterChange($event)"
           name="brand"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 
-    <div class="row align-itmes-center">
+    <div class="row multiselect-row align-items-center">
+      <div class="col-4 text-end">
+        <label>Összetevők:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI AZ ÖSSZETEVŐKET...'"
+          [settings]="ingredientsDropdownSettings"
+          [data]="ingredients"
+          [(ngModel)]="product.ingredients"
+          name="ingredients"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-4 text-end">
         <label class="form-label">Árkategória:</label>
       </div>
-      <div class="col text-start">
+      <div class="col text-start price-range">
         <input
           type="number"
           required
@@ -90,8 +109,8 @@
           }"
         />
       </div>
-      <div class="col-1 text-start px-0"><p>Ft -</p></div>
-      <div class="col text-start">
+      <div class="col-auto text-start ps-0"><p>Ft -</p></div>
+      <div class="col text-start price-range">
         <input
           type="number"
           required
@@ -103,7 +122,7 @@
           }"
         />
       </div>
-      <div class="col-1 text-start px-0"><p>Ft</p></div>
+      <div class="col-auto text-start ps-0">Ft</div>
     </div>
 
     <div class="row align-itmes-center">

@@ -15,6 +15,11 @@ input {
   margin-bottom: 1.5vw;
 }
 
+.row > * {
+  padding-right: 1vw;
+  padding-left: 1vw;
+}
+
 .multiselect-row {
   height: fit-content;
 }

@@ -1,8 +1,23 @@
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Brand } from '../brands-page/brand-model/brand.model';
 import { Option } from './dropdown/dropdown.model';
 import { PageAction } from './enums';
 
 export class Utils {
+  public static baseDropdownSettings: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name',
+    enableCheckAll: false,
+    allowSearchFilter: false,
+    searchPlaceholderText: 'Keresés',
+    closeDropDownOnSelection: true,
+    defaultOpen: false,
+    noFilteredDataAvailablePlaceholderText:
+      'Nincs a keresési feltételnek megfelelő találat',
+    noDataAvailablePlaceholderText: 'Nincsenek elérhető listaelemek',
+  };
+
   public static getEmptyOption(): Option {
     return {} as Option;
   }

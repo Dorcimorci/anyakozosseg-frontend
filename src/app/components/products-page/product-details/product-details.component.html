@@ -45,7 +45,28 @@
 
         <div class="product-property d-flex justify-content-between px-5vw">
           <span class="text-start">KATEGÓRIÁK:</span>
-          <span class="text-end">{{ getSubcategoryNames(product) }}</span>
+          <span class="text-end multiselect-text">{{
+            getSubcategoryNames(product)
+          }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">ÖSSZETEVŐK:</span>
+          <span class="text-end multiselect-text">
+            <span
+              *ngFor="let ingredient of product.ingredients; let last = last"
+            >
+              <a [routerLink]="['/ingredients/details', ingredient.id]">
+                {{ ingredient.name.toUpperCase() }}
+              </a>
+              <a class="d-inline-block ingredient" *ngIf="!last"
+                >,<code>&nbsp;</code></a
+              >
+              <a class="d-inline-block ingredient" *ngIf="last"
+                ><code>&nbsp;</code></a
+              >
+            </span>
+          </span>
         </div>
       </div>
 
