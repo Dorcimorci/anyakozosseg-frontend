@@ -6,7 +6,7 @@
 
     <div class="row align-itmes-center">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Márkanév:</label>
+        <label class="form-label">Márkanév:</label>
       </div>
       <div class="col-8 text-start">
         <input
@@ -34,12 +34,12 @@
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Kategória:</label>
+        <label class="form-label">Kategória:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="CategoryOptions"
-          [(ngModel)]="brand.categoryName"
+          [options]="categories"
+          [(ngModel)]="brand.category"
           name="category"
         ></app-dropdown>
       </div>
@@ -47,11 +47,11 @@
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Árkategória:</label>
+        <label class="form-label">Árkategória:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
-          [options]="PriceCategoryOptions"
+          [options]="priceCategories"
           [(ngModel)]="brand.priceCategory"
           name="priceCategory"
         ></app-dropdown>
@@ -60,7 +60,7 @@
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Cruelty free:</label>
+        <label class="form-label">Cruelty free:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
@@ -73,7 +73,7 @@
 
     <div class="row">
       <div class="col-4 text-end">
-        <label for="exampleInputEmail1" class="form-label">Vegan:</label>
+        <label class="form-label">Vegan:</label>
       </div>
       <div class="col-8 text-start">
         <app-dropdown
@@ -84,10 +84,14 @@
       </div>
     </div>
 
-    <input type="file" id="file-upload" (change)="onFileUpload($event)" />
-    <label for="file-upload" class="file-upload-label"
-      >FELTÖLTÖK EGY KÉPET</label
-    >
+    <div class="row upload-btn-row">
+      <div class="col-12">
+        <input type="file" id="file-upload" (change)="onFileUpload($event)" />
+        <label for="file-upload" class="file-upload-label"
+          >FELTÖLTÖK EGY KÉPET</label
+        >
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-3 uploaded-image-col" *ngIf="brand.imageFile">

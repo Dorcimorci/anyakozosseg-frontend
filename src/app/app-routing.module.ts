@@ -4,7 +4,19 @@ import { BrandCatalogComponent } from './components/brands-page/brand-catalog/br
 import { BrandDetailsComponent } from './components/brands-page/brand-details/brand-details.component';
 import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
 import { BrandsPageComponent } from './components/brands-page/brands-page.component';
+import { ProductCatalogComponent } from './components/products-page/product-catalog/product-catalog.component';
+import { ProductDetailsComponent } from './components/products-page/product-details/product-details.component';
+import { ProductFormComponent } from './components/products-page/product-form/product-form.component';
+import { ProductsByCategoryComponent } from './components/products-page/products-by-category/products-by-category.component';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BrandsByCategoryComponent } from './components/brands-page/brands-by-category/brands-by-category.component';
+import { IngredientCatalogComponent } from './components/ingredients-page/ingredient-catalog/ingredient-catalog.component';
+import { IngredientDetailsComponent } from './components/ingredients-page/ingredient-details/ingredient-details.component';
+import { IngredientFormComponent } from './components/ingredients-page/ingredient-form/ingredient-form.component';
+import { IngredientsByCategoryComponent } from './components/ingredients-page/ingredients-by-category/ingredients-by-category.component';
+import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegPageComponent } from './components/reg-page/reg-page.component';
 
@@ -22,11 +34,15 @@ const routes: Routes = [
     component: BrandsPageComponent,
   },
   {
-    path: 'brands/catalog/:action/:categoryName/:abcLetter',
+    path: 'brands/catalog/:action/:abcLetter',
     component: BrandCatalogComponent,
   },
   {
-    path: 'brands/details/:action/:brandId',
+    path: 'brands/category/:categoryId',
+    component: BrandsByCategoryComponent,
+  },
+  {
+    path: 'brands/details/:brandId',
     component: BrandDetailsComponent,
   },
   {
@@ -38,6 +54,60 @@ const routes: Routes = [
     component: BrandFormComponent,
   },
   {
+    path: 'products',
+    component: ProductsPageComponent,
+  },
+  {
+    path: 'products/category/:categoryId',
+    component: ProductsByCategoryComponent,
+  },
+  {
+    path: 'products/catalog/:action/:abcLetter',
+    component: ProductCatalogComponent,
+  },
+  {
+    path: 'products/details/:productId',
+    component: ProductDetailsComponent,
+  },
+  {
+    path: 'products/form/:action',
+    component: ProductFormComponent,
+  },
+  {
+    path: 'products/form/:action/:productId',
+    component: ProductFormComponent,
+  },
+  {
+    path: 'ingredients',
+    component: IngredientsPageComponent,
+  },
+  {
+    path: 'ingredients/:action',
+    component: IngredientsPageComponent,
+  },
+  {
+    path: 'ingredients/catalog/:action/:abcLetter',
+    component: IngredientCatalogComponent,
+  },
+  {
+    path: 'ingredients/category/:categoryId',
+    component: IngredientsByCategoryComponent,
+  },
+  {
+    path: 'ingredients/details/:ingredientId',
+    component: IngredientDetailsComponent,
+  },
+  {
+    path: 'ingredients/form/:action',
+    component: IngredientFormComponent,
+  },
+  {
+    path: 'ingredients/form/:action/:ingredientId',
+    component: IngredientFormComponent,
+  },
+  {
+    path: 'aboutus',
+    component: AboutUsComponent,
     path: 'login',
     component: LoginPageComponent,
   },

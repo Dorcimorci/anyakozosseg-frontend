@@ -6,13 +6,15 @@
     aria-expanded="false"
   >
     <div class="row justify-content-around">
-      <div class="col text-start">{{ options[defaultItemIndex] }}</div>
-      <div class="col dropdown-toggle m-auto text-end"></div>
+      <div class="col-11 p-0 text-start">
+        {{ (selectedOption$ | async)?.name }}
+      </div>
+      <div class="col ps-0 dropdown-toggle m-auto text-end"></div>
     </div>
   </button>
   <ul class="dropdown-menu">
     <li *ngFor="let option of options">
-      <a class="dropdown-item" (click)="onSelect(option)"> {{ option }}</a>
+      <a class="dropdown-item" (click)="onSelect(option)"> {{ option.name }}</a>
     </li>
   </ul>
 </div>

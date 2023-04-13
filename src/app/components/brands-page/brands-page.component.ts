@@ -12,11 +12,6 @@ import { Utils } from '../shared/utils';
   styleUrls: ['./brands-page.component.scss'],
 })
 export class BrandsPageComponent {
-  public get PageAction() {
-    return PageAction;
-  }
-
-  public pageAction$: Observable<PageAction> = this.routerService.pageAction$;
   public categories: Category[] = [];
 
   constructor(
@@ -30,7 +25,7 @@ export class BrandsPageComponent {
 
   public getCategories(): void {
     this.categoriesService
-      .getCategories()
+      .fetchCategories()
       .subscribe((categories: Category[]) => {
         this.categories = categories;
       });

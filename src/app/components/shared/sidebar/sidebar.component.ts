@@ -1,17 +1,16 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
   ViewChild,
 } from '@angular/core';
-import { Navigation } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PageAction, RouteSegment } from '../enums';
+import { Router } from '@angular/router';
+import { PageAction } from '../enums';
 import { NavbarService } from '../navbar/navbar.service';
 import { RouteHistory, RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
+import { SidebarItem } from './sidebar.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,16 +18,15 @@ import { routeToSingularTranslation } from '../utils';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements AfterViewChecked {
-  public menuItemName: string = '';
-
   public isNavbarCollapsed: boolean = false;
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
-  private currentRoute: string = '';
-  public previousRoute$: Observable<RouteHistory> =
-    this.routerService.previousRoute$;
+  public currentRoute: string = '';
+  public previousRoute: RouteHistory = {} as RouteHistory;
 
   public showSidebar: boolean = false;
+
+  public sidebarItems: SidebarItem[] = [];
 
   public get PageAction() {
     return PageAction;
@@ -50,17 +48,26 @@ export class SidebarComponent implements AfterViewChecked {
   }
 
   constructor(
+    private readonly router: Router,
     private readonly routerService: RouterService,
     private readonly navbarService: NavbarService
   ) {
     this.routerService.currentRoute$.subscribe((currentRoute: string) => {
-      this.menuItemName = routeToSingularTranslation[currentRoute];
       this.currentRoute = currentRoute;
-
-      this.showSidebar = ['brands', 'ingredients', 'products'].includes(
-        currentRoute
-      );
+      this.initSidebarItems();
+      this.showSidebar = [
+        'brands',
+        'ingredients',
+        'products',
+        'aboutus',
+      ].includes(currentRoute);
     });
+
+    this.routerService.previousRoute$.subscribe(
+      (previousRoute: RouteHistory) => {
+        this.previousRoute = previousRoute;
+      }
+    );
 
     // needed for responsiveness
     this.navbarService.isCollapsed$.subscribe((isCollapsed: boolean) => {
@@ -73,18 +80,100 @@ export class SidebarComponent implements AfterViewChecked {
     });
   }
 
+  public initSidebarItems(): void {
+    const menuItemName = routeToSingularTranslation[this.currentRoute];
+    this.sidebarItems = [
+      {
+        visibleOnPages: ['products', 'brands', 'ingredients'],
+        visibleByRoles: [],
+        label: `${menuItemName?.toUpperCase()} KERESÉSE ABC SZERINT`,
+        iconClass: 'fa-solid fa-arrow-down-a-z',
+        onClick: () => this.navigateToCatalog(),
+      },
+      {
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
+        label: `${menuItemName?.toUpperCase()} HOZZÁADÁSA`,
+        iconClass: 'fa fa-file',
+        onClick: () => this.navigateToAddNewPage(),
+      },
+      {
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
+        label: `${menuItemName?.toUpperCase()} SZERKESZTÉSE`,
+        iconClass: 'fa-solid fa-pen',
+        onClick: () => this.navigateToEditPage(),
+      },
+      {
+        visibleOnPages: ['brands', 'ingredients', 'products'],
+        visibleByRoles: [],
+        label: `${menuItemName?.toUpperCase()} TÖRLÉSE`,
+        iconClass: 'fa fa-trash',
+        onClick: () => this.navigateToDeletePage(),
+      },
+      {
+        visibleOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        visibleByRoles: [],
+        label: `VISSZA`,
+        iconClass: 'fa fa-angle-double-left',
+        onClick: () => this.navigateToPreviousRoute(),
+      },
+    ].filter((item: SidebarItem) =>
+      item.visibleOnPages.includes(this.currentRoute)
+    );
+  }
+
   public ngAfterViewChecked(): void {
     this.initializeLeftProperty();
   }
 
-  public getAddNewRouterLink(): string {
-    return `${this.currentRoute}/form/${PageAction.Create}`;
+  public navigateToAddNewPage(): void {
+    this.router.navigate([`${this.currentRoute}/form/${PageAction.Create}`]);
   }
 
-  public getEditRouterLink(): string {
-    return `${this.currentRoute}/form/${PageAction.Update}`;
+  public navigateToEditPage(): void {
+    this.router.navigate([
+      `${this.currentRoute}/catalog/${PageAction.Update}`,
+      'A',
+    ]);
   }
 
+  public navigateToDeletePage(): void {
+    this.router.navigate([
+      `${this.currentRoute}/catalog/${PageAction.Delete}`,
+      'A',
+    ]);
+  }
+
+  public navigateToCatalog(): void {
+    this.router.navigate([
+      `${this.currentRoute}/catalog`,
+      PageAction.Read,
+      'A',
+    ]);
+  }
+
+  public navigateToPreviousRoute(): void {
+    if (this.previousRoute.state) {
+      this.router.navigate([
+        this.previousRoute.url,
+        { state: this.previousRoute.state },
+      ]);
+    } else {
+      this.router.navigate([this.previousRoute.url]);
+    }
+  }
+
+  /**
+   * Initializes the CSS custom property '--item-width' for each sidebar item by calculating their
+   * current clientWidth in pixels.
+   *
+   * This method is called whenever the sidebar element is available (afterViewInit lifecycle hook).
+   * It loops through all the '.sidebar' elements within the sidebar and sets their '--item-width'
+   * property to their current clientWidth in pixels.
+   *
+   * This custom property is used to correctly position the dropdown menu items within the sidebar.
+   */
   private initializeLeftProperty(): void {
     if (this.sidebar) {
       const sidebarItems: HTMLElement[] =

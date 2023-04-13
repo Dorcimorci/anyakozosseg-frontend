@@ -10,28 +10,42 @@
       <div class="brand-property row">
         <div class="col-8 text-start">ÁRKATEGÓRIA</div>
         <div class="col-4 text-end">
-          {{ brand.priceCategory }}
+          {{ brand.priceCategory.name }}
         </div>
       </div>
       <div class="brand-property row">
         <div class="col-8 text-start">CRUELTY FREE</div>
         <div class="col-4 text-end">
-          {{ brand.isCrueltyFree }}
+          {{ brand.isCrueltyFree.name }}
         </div>
       </div>
       <div class="brand-property row">
         <div class="col-8 text-start">VEGAN</div>
         <div class="col-4 text-end">
-          {{ brand.isVegan }}
+          {{ brand.isVegan.name }}
         </div>
       </div>
       <div class="brand-property row">
         <div class="col-8 text-start">ÖSSZESÍTETT ÉRTÉKELÉS</div>
-        <div class="col-4 text-end rating-stars">
+        <div class="col-4 text-start rating-stars">
           <app-rating
+            class="app-rating"
             [disabled]="true"
             [defaultRating]="brand.overallRating"
-          ></app-rating>
+          >
+          </app-rating>
+          <div class="info-box">
+            <p class="rating-number-label" *ngIf="brand.overallRating">
+              Összesített értékelés:
+              <span class="rating-number">{{
+                brand.overallRating | number : "1.1-2"
+              }}</span>
+            </p>
+          </div>
+          <app-badge-icon
+            [numberToShow]="brand.numberOfRatings!"
+            [borderColor]="'$secondary'"
+          ></app-badge-icon>
         </div>
       </div>
     </div>

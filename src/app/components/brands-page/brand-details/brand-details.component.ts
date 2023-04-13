@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, map, Observable } from 'rxjs';
-import { Utils } from '../../shared/utils';
+import { Observable, map } from 'rxjs';
 import { Brand } from '../brand-model/brand.model';
 import { BrandsService } from '../brands-service/brands.service';
-import { PriceCategory } from '../price-category/price-category.model';
-import { PriceCategoryService } from '../price-category/price-category.service';
+import { Utils } from '../../shared/utils';
 
 @Component({
   selector: 'app-brand-details',
@@ -17,30 +15,14 @@ export class BrandDetailsComponent {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly brandsService: BrandsService,
-    private readonly priceCategoryService: PriceCategoryService
+    private readonly brandsService: BrandsService
   ) {
     const brandId: string | null =
       this.activatedRoute.snapshot.paramMap.get('brandId');
     if (brandId) {
-      this.brand$ = combineLatest([
-        this.brandsService.fetchBrandById(+brandId),
-        this.priceCategoryService.fetchPriceCategories(),
-      ]).pipe(
-        map(([brand, priceCategories]) => ({
-          id: brand.id,
-          isCrueltyFree: Utils.mapBooleanToText(brand.isCrueltyFree),
-          isVegan: Utils.mapBooleanToText(brand.isCrueltyFree),
-          name: brand.name,
-          overallRating: brand.overallRating,
-          priceCategory: priceCategories.find(
-            (priceCategory: PriceCategory) =>
-              priceCategory.id === brand.priceCategoryId
-          )!.name,
-          imageFile: brand.imageFile,
-          category: '',
-        }))
-      );
+      this.brand$ = this.brandsService
+        .fetchBrandById(+brandId)
+        .pipe(map((brand: Brand) => Utils.mapBrandBooleanOptions(brand)));
     }
   }
 }

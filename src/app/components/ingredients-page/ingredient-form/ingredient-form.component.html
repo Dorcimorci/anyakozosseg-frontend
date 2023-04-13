@@ -1,0 +1,145 @@
+<div class="form-container text-center row justify-content-center">
+  <form #ingredientForm="ngForm" class="col-sm-7 col-11 page-form">
+    <h1 class="form-title">
+      ÖSSZETEVŐ {{ mapPageActionToTitleSegment(pageAction) }}
+    </h1>
+
+    <div class="row align-itmes-center">
+      <div class="col-4 text-end">
+        <label class="form-label">Név:</label>
+      </div>
+      <div class="col-8 text-start">
+        <input
+          type="text"
+          [(ngModel)]="ingredient.name"
+          name="ingredient-name"
+          required
+          #ingredientName="ngModel"
+          [ngClass]="{
+            'invalid-field': ingredientName.touched && ingredientName.invalid
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="row" *ngIf="ingredientName.touched && ingredientName.invalid">
+      <div class="col-4"></div>
+      <div class="col">
+        <p class="alert alert-danger">
+          Nem adtál meg nevet
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Kategóriák:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
+          [settings]="categoriesDropdownSettings"
+          [data]="categories"
+          [(ngModel)]="ingredient.categories"
+          name="categories"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Funkciók:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI A FUNKCIÓKAT...'"
+          [settings]="functionsDropdownSettings"
+          [data]="ingredientFunctions"
+          [(ngModel)]="ingredient.functions"
+          name="ingredient-functions"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Ewg kockázat:</label>
+      </div>
+      <div class="col-1 text-start">
+        <input
+          min="0"
+          max="10"
+          type="number"
+          name="ewg-risk"
+          [(ngModel)]="ingredient.ewgRisk"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Komedogén index:</label>
+      </div>
+      <div class="col-1 text-start">
+        <input
+          min="0"
+          max="5"
+          type="number"
+          name="comedogen-index"
+          [(ngModel)]="ingredient.comedogenIndex"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 text-end">
+        <label class="form-label">Irritatív index:</label>
+      </div>
+      <div class="col-1 text-start">
+        <input
+          min="0"
+          max="4"
+          type="number"
+          name="irritation-index"
+          [(ngModel)]="ingredient.irritationIndex"
+        />
+      </div>
+    </div>
+
+    <div class="row upload-btn-row">
+      <div class="col-12">
+        <input type="file" id="file-upload" (change)="onFileUpload($event)" />
+        <label for="file-upload" class="file-upload-label"
+          >FELTÖLTÖK EGY KÉPET</label
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 uploaded-image-col" *ngIf="ingredient.imageFile">
+        <div class="uploaded-image-container text-end">
+          <img class="uploaded-image" [src]="ingredient.imageFile" alt="" />
+        </div>
+      </div>
+      <div class="col text-end">
+        <ngx-file-drop
+          dropZoneLabel="Húzd ide a feltölteni kívánt képet!"
+          [multiple]="false"
+          (onFileDrop)="onFileDrop($event)"
+        ></ngx-file-drop>
+      </div>
+    </div>
+
+    <button
+      class="add-new-button"
+      [disabled]="ingredientForm.form.invalid"
+      [ngClass]="{ 'btn-disabled': ingredientForm.form.invalid }"
+      (click)="onSubmit()"
+    >
+      ÖSSZETEVŐ {{ mapPageActionToSubmitButtonLabelSegment(pageAction) }}
+    </button>
+  </form>
+</div>

@@ -16,10 +16,11 @@ a {
   margin-bottom: 4vw;
 }
 
-.vw-90 {
-  width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
+.letter-panel {
+  position: sticky;
+  top: 18vw;
+  z-index: 1;
+  background-color: white;
 }
 
 .letter-container:hover,
@@ -42,10 +43,7 @@ a {
   font-size: 12vw;
   font-family: "Playfair Display", serif;
   line-height: 14vw;
-}
-
-.brand-name-row,
-.letter-row {
+  padding-left: 1vw;
 }
 
 .brand {
@@ -65,15 +63,14 @@ a {
   font-size: 1.25vw;
   letter-spacing: 0.3vw;
   color: $text;
-  // width: fit-content !important;
   text-align: center;
 }
 
-.delete-button-container {
+.action-button-container {
   margin: auto;
 }
 
-.delete-button {
+.action-button {
   color: $text;
   background: none;
   border: none;

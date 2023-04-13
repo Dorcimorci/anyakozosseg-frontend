@@ -1,0 +1,136 @@
+<div *ngIf="product$ | async as product">
+  <div #productContainer class="item-container">
+    <div class="row">
+      <div class="product-title col-12 text-center">{{ product.name }}</div>
+
+      <div class="col-md-3 my-auto text-center">
+        <img
+          [src]="product.imageFile"
+          alt=""
+          (error)="showDummyProduct($event)"
+        />
+        <div class="product-rating" (click)="scrollToRatings(productContainer)">
+          <div class="rating-stars" *ngIf="product.avgRating">
+            <app-rating
+              [disabled]="true"
+              [ngModel]="product.avgRating"
+            ></app-rating>
+            <p class="rating-number">
+              ({{ product.avgRating | number : "1.1-2" }})
+            </p>
+          </div>
+          <div *ngIf="product.ratings.length > 0" class="rating-text">
+            ({{ product.numberOfRatings }} felhasználó értékelése alapján)
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9 text-center">
+        <div class="product-property d-flex justify-content-between">
+          <span class="text-start">ÁRKATEGÓRIA:</span>
+          <span class="text-end">
+            {{ product.priceRange.min }}Ft - {{ product.priceRange.max }}Ft
+          </span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KISZERELÉS:</span>
+          <span class="text-end">{{ product.packaging }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">SEGÍTHET:</span>
+          <span class="text-end">{{ product.canHelp }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KATEGÓRIÁK:</span>
+          <span class="text-end">{{ getSubcategoryNames(product) }}</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9 text-center">
+          <button class="write-rating-btn" (click)="openRatingForm()">
+            Véleményt írok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row item-container" *ngIf="showRatingForm">
+    <div
+      class="col-12 rating-form-data"
+      [routerLink]="['/products/details', product.id]"
+    >
+      <div class="product-body">
+        <div class="d-flex justify-content-between">
+          <app-rating
+            [(ngModel)]="newRating.rating"
+            class="rating-stars my-auto"
+          ></app-rating>
+          <div>
+            <button
+              class="rating-form-btn my-auto"
+              (click)="submitRating(product.id)"
+            >
+              Küldés
+            </button>
+            <button
+              class="rating-form-btn my-auto ms-2"
+              (click)="closeRatingForm()"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <hr />
+        <span class="comment-container">
+          <textarea
+            rows="6"
+            [(ngModel)]="newRating.comment"
+            class="form-control"
+          ></textarea>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="product.ratings.length > 0">
+    <h2>VÉLEMÉNYEK A TERMÉKRŐL</h2>
+    <div class="row justify-content-center">
+      <hr class="w-50" />
+      <div *ngFor="let rating of product.ratings">
+        <div class="row item-container">
+          <div
+            class="col-12 rating-data"
+            [routerLink]="['/products/details', product.id]"
+          >
+            <div class="product-body">
+              <div class="d-flex justify-content-between">
+                <app-rating
+                  [disabled]="true"
+                  [ngModel]="rating.rating"
+                  class="rating-stars"
+                ></app-rating>
+                <span>{{ rating.addedOn | date : "yyyy.MM.dd" }}</span>
+              </div>
+              <hr />
+              <span class="comment-container">
+                <p
+                  class="comment m-0"
+                  [ngClass]="{ 'comment-full': rating.showFully }"
+                >
+                  <b> {{ rating.username }}</b
+                  >: {{ rating.comment }}
+                </p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

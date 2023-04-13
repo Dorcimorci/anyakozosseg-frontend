@@ -2,14 +2,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
 @import "styles/colors";
+@import "styles/overwrite_ng-multiselect-dropdown";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-$h1-margin: 4vw;
+$h1-margin: 2vw;
 
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -22,11 +24,26 @@ h1 {
   margin-bottom: $h1-margin;
 }
 
+h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.5vw;
+  letter-spacing: 0.3vw;
+  color: $text;
+  margin-top: $h1-margin;
+  margin-bottom: $h1-margin;
+}
+
 input {
   border: none;
   outline: none;
   padding-left: 0.5vw;
   color: $tertiary;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
 }
 
 .ngx-file-drop__drop-zone {
@@ -50,4 +67,10 @@ input {
 
 .invalid-field {
   outline: 2px solid $primary;
+}
+
+.vw-90 {
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
 }
