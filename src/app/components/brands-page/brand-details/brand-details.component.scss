@@ -1,12 +1,16 @@
 @import "/src/styles/colors";
 
 img {
-  height: 100%;
+  max-width: 20vw;
 }
 
-.brand-logo {
-  height: 7vw;
-  margin-top: 5.5vw;
+.row > * {
+  padding-right: 1vw;
+  padding-left: 1vw;
+}
+
+.image-container {
+  height: 74%;
 }
 
 .brand-container {
@@ -27,6 +31,7 @@ img {
 .rating-stars {
   position: relative;
   color: $primary !important;
+  padding-left: 0 !important;
 }
 
 .app-rating {
@@ -67,4 +72,8 @@ img {
 .rating-number {
   color: $primary;
   font-weight: bold;
+}
+
+.dummy-column {
+  height: 3.22vw;
 }
