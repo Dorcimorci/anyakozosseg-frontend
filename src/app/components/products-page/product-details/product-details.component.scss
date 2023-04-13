@@ -3,6 +3,11 @@
 $badgeSizaFactor: 0.75;
 
 a {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   text-decoration: none;
   color: $text;
   &:hover {
@@ -220,4 +225,14 @@ img {
 .comment-full {
   display: block;
   overflow: visible;
+}
+
+.multiselect-text {
+  font-size: 0.8vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5vw 0;
+  padding-left: 0.5vw;
 }

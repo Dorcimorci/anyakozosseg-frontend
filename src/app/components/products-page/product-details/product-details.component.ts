@@ -63,7 +63,7 @@ export class ProductDetailsComponent {
 
   public getSubcategoryNames(product: Product): string {
     return product.subcategories
-      .map((subcategory) => subcategory.name)
+      .map((subcategory) => subcategory.name.toUpperCase())
       .join(', ');
   }
 
