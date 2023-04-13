@@ -2,6 +2,15 @@
 
 $badgeSizaFactor: 0.75;
 
+a {
+  text-decoration: none;
+  color: $text;
+  &:hover {
+    cursor: pointer;
+    color: $primary;
+  }
+}
+
 h2 {
   margin-bottom: 0.5vw;
 }

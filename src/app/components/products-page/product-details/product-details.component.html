@@ -47,6 +47,20 @@
           <span class="text-start">KATEGÓRIÁK:</span>
           <span class="text-end">{{ getSubcategoryNames(product) }}</span>
         </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">ÖSSZETEVŐK:</span>
+          <span class="text-end">
+            <a
+              class="d-inline"
+              style="font-size: 0.8vw"
+              *ngFor="let ingredient of product.ingredients"
+              [routerLink]="['/ingredients/details', ingredient.id]"
+            >
+              {{ ingredient.name.toUpperCase() }}
+            </a>
+          </span>
+        </div>
       </div>
 
       <div class="row">

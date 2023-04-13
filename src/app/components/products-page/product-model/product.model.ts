@@ -13,6 +13,7 @@ export interface Product {
   brand: Option;
   imageFile: string;
   subcategories: Option[];
+  ingredients: Option[];
   priceRange: PriceRange;
   canHelp: string;
   packaging: string;

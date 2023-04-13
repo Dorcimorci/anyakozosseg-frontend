@@ -12,6 +12,7 @@ import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { Option } from '../../shared/dropdown/dropdown.model';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
+import { IngredientsService } from '../../ingredients-page/ingredients-service/ingredients.service';
 
 @Component({
   selector: 'app-product-form',
@@ -19,32 +20,25 @@ import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent {
-  public readonly subcategoriesDropdownSettings: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'id',
-    textField: 'name',
-    enableCheckAll: false,
-    allowSearchFilter: false,
-  };
+  public readonly baseDropdownSettings: IDropdownSettings =
+    Utils.baseDropdownSettings;
 
-  public readonly brandsDropdownSettings: IDropdownSettings = {
-    singleSelection: true,
-    idField: 'id',
-    textField: 'name',
-    enableCheckAll: false,
-    allowSearchFilter: false,
-    closeDropDownOnSelection: true,
+  public readonly ingredientsDropdownSettings: IDropdownSettings = {
+    ...Utils.baseDropdownSettings,
+    allowSearchFilter: true,
   };
 
   public categories: Category[] = [];
   public brands: Option[] = [];
   public subcategories: Option[] = [];
+  public ingredients: Option[] = [];
 
   public product: Product = {
     id: 0,
     name: '',
     imageFile: '',
     subcategories: [],
+    ingredients: [],
     priceRange: { min: 2000, max: 5000 },
     canHelp: '',
     packaging: '',
@@ -61,6 +55,7 @@ export class ProductFormComponent {
     private readonly activatedRoute: ActivatedRoute,
     private readonly categoryService: CategoriesService,
     private readonly brandService: BrandsService,
+    private readonly ingredientsService: IngredientsService,
     private readonly productService: ProductService,
     private readonly router: Router
   ) {
@@ -72,11 +67,13 @@ export class ProductFormComponent {
     forkJoin([
       this.categoryService.fetchCategories(),
       this.brandService.fetchAllBrands(),
+      this.ingredientsService.fetchAllingredients(),
     ])
       .pipe(
         // Use switchMap to chain the subcategories request
-        switchMap(([categories, brands]) => {
+        switchMap(([categories, brands, ingredients]) => {
           this.categories = categories;
+          this.ingredients = ingredients;
           this.product.category = categories[0];
           this.brands = brands.length
             ? brands
@@ -97,10 +94,12 @@ export class ProductFormComponent {
       forkJoin([
         this.categoryService.fetchCategories(),
         this.brandService.fetchAllBrands(),
+        this.ingredientsService.fetchAllingredients(),
       ])
         .pipe(
-          switchMap(([categories, brands]) => {
+          switchMap(([categories, brands, ingredients]) => {
             this.categories = categories;
+            this.ingredients = ingredients;
             this.brands = brands.length
               ? brands
               : [{ id: 0, name: 'No brands available' }];

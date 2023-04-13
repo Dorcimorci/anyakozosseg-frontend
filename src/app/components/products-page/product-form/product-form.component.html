@@ -53,7 +53,7 @@
       <div class="col-8 text-start">
         <ng-multiselect-dropdown
           [placeholder]="'VÁLASZD KI A KATEGÓRIÁKAT...'"
-          [settings]="subcategoriesDropdownSettings"
+          [settings]="baseDropdownSettings"
           [data]="subcategories"
           [(ngModel)]="product.subcategories"
           name="subcategories"
@@ -75,6 +75,22 @@
           (onSearch)="onBrandsFilterChange($event)"
           name="brand"
         ></app-single-select>
+      </div>
+    </div>
+
+    <div class="row multiselect-row align-items-center">
+      <div class="col-4 text-end">
+        <label>Összetevők:</label>
+      </div>
+      <div class="col-8 text-start">
+        <ng-multiselect-dropdown
+          [placeholder]="'VÁLASZD KI AZ ÖSSZETEVŐKET...'"
+          [settings]="ingredientsDropdownSettings"
+          [data]="ingredients"
+          [(ngModel)]="product.ingredients"
+          name="ingredients"
+        >
+        </ng-multiselect-dropdown>
       </div>
     </div>
 
