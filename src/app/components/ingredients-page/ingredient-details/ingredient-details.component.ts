@@ -33,6 +33,7 @@ export class IngredientDetailsComponent {
   }
 
   public showDummyImage(event: ErrorEvent): void {
-    (event.target as HTMLImageElement).src = 'assets/card_ingredient.jpg';
+    (event.target as HTMLImageElement).src =
+      'assets/img/ingredients/card_ingredient.jpg';
   }
 }
