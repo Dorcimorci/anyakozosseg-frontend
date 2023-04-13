@@ -23,7 +23,7 @@
           <p class="letter-initial">{{ activeLetter }}</p>
         </div>
         <div
-          class="col-2 delete-button-container"
+          class="col-2 row delete-button-container"
           *ngIf="pageAction === PageAction.Delete"
         ></div>
       </div>
@@ -45,7 +45,7 @@
         </div>
         <div
           *ngIf="pageAction === PageAction.Update"
-          class="col-2 action-button-container"
+          class="col-2 row action-button-container"
         >
           <button
             class="action-button"
@@ -56,7 +56,7 @@
         </div>
         <div
           *ngIf="pageAction === PageAction.Delete"
-          class="col-2 action-button-container"
+          class="col-2 row action-button-container"
         >
           <button class="action-button" (click)="onDelete(brand.id)">
             <i class="fa fa-trash" aria-hidden="true"></i>
