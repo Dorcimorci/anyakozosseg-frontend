@@ -1,0 +1,21 @@
+<div class="search-container">
+  <input
+    class="search-input w-100"
+    type="text"
+    [(ngModel)]="query"
+    (input)="onSearch()"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+  />
+  <div class="search-results" *ngIf="searchResults.length > 0 && focus">
+    <ul>
+      <li
+        *ngFor="let result of searchResults"
+        (click)="navigateToResultDetails(result)"
+      >
+        <span class="d-flex align-items-center">{{ result.name }}</span>
+        <span class="item-type">{{ getItemType(result.sourceTable) }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
