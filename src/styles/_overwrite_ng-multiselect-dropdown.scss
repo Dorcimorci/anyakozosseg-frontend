@@ -90,18 +90,18 @@ $disable-background-color: #eceeef;
     margin: 0px;
   }
   li {
-    padding: 6px 10px;
+    padding: 0.2vw 0.5vw !important;
     cursor: pointer;
     text-align: left;
   }
   .filter-textbox {
     border-bottom: 1px solid #ccc;
     position: relative;
-    padding: 10px;
+    padding: 0.5vw !important;
     input {
       border: 0px;
       width: 100%;
-      padding: 0px 0px 0px 26px;
+      padding: 0px 0px 0px 1.5vw !important;
     }
     input:focus {
       outline: none;
@@ -232,7 +232,6 @@ $disable-background-color: #eceeef;
 }
 
 // Remove checkbox if singleselect class is used on the component
-
 .singleselect .multiselect-item-checkbox {
   padding: 0px !important;
 }
