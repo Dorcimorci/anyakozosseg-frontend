@@ -33,6 +33,7 @@ import { IngredientFormComponent } from './components/ingredients-page/ingredien
 import { IngredientListComponent } from './components/ingredients-page/ingredient-list/ingredient-list.component';
 import { IngredientsByCategoryComponent } from './components/ingredients-page/ingredients-by-category/ingredients-by-category.component';
 import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
+import { SearchComponent } from './components/shared/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +63,7 @@ import { IngredientsPageComponent } from './components/ingredients-page/ingredie
     ProductFormComponent,
     AboutUsComponent,
     SingleSelectComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
