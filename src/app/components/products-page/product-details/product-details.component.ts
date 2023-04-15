@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, map, switchMap } from 'rxjs';
 import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
@@ -26,9 +26,12 @@ export class ProductDetailsComponent {
     private readonly ratingService: RatingService,
     private cd: ChangeDetectorRef
   ) {
-    const productId: number =
-      +this.activatedRoute.snapshot.paramMap.get('productId')!;
-    this.product$ = this.productService.fetchProductDetailsById(productId);
+    this.product$ = this.activatedRoute.paramMap.pipe(
+      map((params: ParamMap) => params.get('productId')),
+      switchMap((productId: string | null) =>
+        this.productService.fetchProductDetailsById(Number(productId))
+      )
+    );
   }
 
   public scrollToRatings(productContainer: HTMLElement): void {

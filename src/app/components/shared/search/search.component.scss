@@ -1,0 +1,52 @@
+@import "/src/styles/colors";
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding-left: 1vw;
+}
+
+.search-results {
+  position: absolute;
+  z-index: 999;
+  width: 31.7vw;
+  max-height: 50vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  top: 2.8vw;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2vw;
+      padding: 0 1vw;
+      color: $text;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary;
+        color: $secondary;
+      }
+    }
+  }
+}
+
+.item-type {
+  background-color: $secondary;
+  color: $text;
+  border-radius: 0.5vw;
+  margin: 0.2vw 0;
+  padding: 0 0.5vw;
+  font-size: 0.7vw;
+  width: 6vw;
+  text-align: center;
+}
