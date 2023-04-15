@@ -73,20 +73,3 @@ a {
 .ingredient-name a {
   font-size: 1.25vw;
 }
-
-.action-button-container {
-  margin: auto;
-  text-align: right;
-}
-
-.action-button {
-  color: $text;
-  background: none;
-  border: none;
-  transition: 0.3s;
-
-  &:hover {
-    color: $primary;
-    scale: 1.2;
-  }
-}
