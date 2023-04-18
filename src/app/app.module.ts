@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -25,6 +25,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { BadgeIconComponent } from './components/shared/badge-icon/badge-icon.component';
 import { BrandsByCategoryComponent } from './components/brands-page/brands-by-category/brands-by-category.component';
 import { BrandListComponent } from './components/brands-page/brand-list/brand-list.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegPageComponent } from './components/reg-page/reg-page.component';
 import { SingleSelectComponent } from './components/shared/single-select/single-select.component';
 
 import { IngredientCatalogComponent } from './components/ingredients-page/ingredient-catalog/ingredient-catalog.component';
@@ -33,7 +35,9 @@ import { IngredientFormComponent } from './components/ingredients-page/ingredien
 import { IngredientListComponent } from './components/ingredients-page/ingredient-list/ingredient-list.component';
 import { IngredientsByCategoryComponent } from './components/ingredients-page/ingredients-by-category/ingredients-by-category.component';
 import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
+import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
 import { SearchComponent } from './components/shared/search/search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +66,8 @@ import { SearchComponent } from './components/shared/search/search.component';
     ProductsByCategoryComponent,
     ProductFormComponent,
     AboutUsComponent,
+    LoginPageComponent,
+    RegPageComponent,
     SingleSelectComponent,
     SearchComponent,
   ],
@@ -74,7 +80,14 @@ import { SearchComponent } from './components/shared/search/search.component';
     NgxFileDropModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [Location],
+  providers: [
+    Location,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

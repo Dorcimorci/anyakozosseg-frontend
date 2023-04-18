@@ -13,10 +13,6 @@ const COMPONENT_URL = 'brands';
 export class BrandsService {
   constructor(private http: HttpClient) {}
 
-  public addNewBrand(brand: Brand): Observable<any> {
-    return this.http.post<Brand>(`${BASE_URL}${COMPONENT_URL}`, brand);
-  }
-
   public fetchBrandsByCategory(categoryId: number): Observable<Brand[]> {
     const params: HttpParams = new HttpParams().set('categoryId', categoryId);
     return this.http.get<Brand[]>(`${BASE_URL}${COMPONENT_URL}`, {
@@ -42,12 +38,23 @@ export class BrandsService {
     });
   }
 
+  public addNewBrand(brand: Brand): Observable<any> {
+    return this.http.post<Brand>(`${BASE_URL}${COMPONENT_URL}`, brand, {
+      withCredentials: true,
+    });
+  }
+
   public updateBrand(brand: Brand): Observable<any> {
-    return this.http.put<Brand>(`${BASE_URL}${COMPONENT_URL}`, brand);
+    return this.http.put<Brand>(`${BASE_URL}${COMPONENT_URL}`, brand, {
+      withCredentials: true,
+    });
   }
 
   public deleteById(brandId: number): Observable<any> {
     const params: HttpParams = new HttpParams().set('brandId', brandId);
-    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, { params });
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+      withCredentials: true,
+    });
   }
 }

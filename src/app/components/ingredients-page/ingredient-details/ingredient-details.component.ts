@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { Ingredient } from '../ingredient-model/ingredient.model';
 import { IngredientsService } from '../ingredients-service/ingredients.service';
 import { Option } from '../../shared/dropdown/dropdown.model';
@@ -17,12 +17,13 @@ export class IngredientDetailsComponent {
     private readonly activatedRoute: ActivatedRoute,
     private readonly ingredientsService: IngredientsService
   ) {
-    this.ingredient$ = this.activatedRoute.paramMap.pipe(
-      map((params: ParamMap) => params.get('ingredientId')),
-      switchMap((ingredientId: string | null) =>
-        this.ingredientsService.fetchIngredientById(Number(ingredientId))
-      )
-    );
+    const ingredientId: string | null =
+      this.activatedRoute.snapshot.paramMap.get('ingredientId');
+    if (ingredientId) {
+      this.ingredient$ = this.ingredientsService
+        .fetchIngredientById(+ingredientId)
+        .pipe(map((ingredient: Ingredient) => ingredient));
+    }
   }
 
   public getFunctionNames(ingredient: Ingredient): string {

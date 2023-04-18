@@ -48,15 +48,22 @@ export class ProductService {
   }
 
   public addNewProduct(product: Product): Observable<any> {
-    return this.http.post(`${BASE_URL}${COMPONENT_URL}`, product);
+    return this.http.post(`${BASE_URL}${COMPONENT_URL}`, product, {
+      withCredentials: true,
+    });
   }
 
   public updateProduct(product: Product): Observable<any> {
-    return this.http.put(`${BASE_URL}${COMPONENT_URL}`, product);
+    return this.http.put(`${BASE_URL}${COMPONENT_URL}`, product, {
+      withCredentials: true,
+    });
   }
 
   public deleteProduct(productId: number): Observable<any> {
     const params: HttpParams = new HttpParams().set('productId', productId);
-    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, { params });
+    return this.http.delete(`${BASE_URL}${COMPONENT_URL}`, {
+      params,
+      withCredentials: true,
+    });
   }
 }

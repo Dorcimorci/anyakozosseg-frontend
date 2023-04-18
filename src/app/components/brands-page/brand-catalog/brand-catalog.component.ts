@@ -40,4 +40,10 @@ export class BrandCatalogComponent implements OnInit {
         this.brandList = brands;
       });
   }
+
+  public onDelete(brandId: number): void {
+    this.brandsService.deleteById(brandId).subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 }

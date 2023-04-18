@@ -1,34 +1,11 @@
 <div class="row vw-90">
   <div
-    class="col-lg-4 col-sm-6 row brand-name-row px-4 py-2"
+    class="col-lg-3 col-sm-6 row brand-name-row px-4 py-2"
     *ngFor="let brand of brandList"
   >
-    <div class="brand row">
-      <div
-        class="col brand-name text-center"
-        [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
-        [routerLink]="['/brands/details', brand.id]"
-      >
+    <div class="brand row" (click)="onClick(brand)">
+      <div class="col brand-name text-center">
         <a>{{ brand.name }}</a>
-      </div>
-      <div
-        *ngIf="pageAction === PageAction.Update"
-        class="col-2 row action-button-container"
-      >
-        <button
-          class="action-button"
-          [routerLink]="['/brands/form', PageAction.Update, brand.id]"
-        >
-          <i class="fa-solid fa-pen"></i>
-        </button>
-      </div>
-      <div
-        *ngIf="pageAction === PageAction.Delete"
-        class="col-2 row action-button-container"
-      >
-        <button class="action-button" (click)="onDelete(brand.id)">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
       </div>
     </div>
   </div>
