@@ -15,7 +15,8 @@ export class RatingService {
   public submitRating(rating: RatingPostRequest): Observable<any> {
     return this.http.post<RatingPostRequest>(
       `${BASE_URL}${COMPONENT_URL}`,
-      rating
+      rating,
+      { withCredentials: true }
     );
   }
 }

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, map } from 'rxjs';
 import { Brand } from '../brand-model/brand.model';
 import { BrandsService } from '../brands-service/brands.service';
 import { Utils } from '../../shared/utils';
@@ -17,13 +17,12 @@ export class BrandDetailsComponent {
     private readonly activatedRoute: ActivatedRoute,
     private readonly brandsService: BrandsService
   ) {
-    this.brand$ = this.activatedRoute.paramMap.pipe(
-      map((params: ParamMap) => params.get('brandId')),
-      switchMap((brandId: string | null) =>
-        this.brandsService
-          .fetchBrandById(Number(brandId))
-          .pipe(map((brand: Brand) => Utils.mapBrandBooleanOptions(brand)))
-      )
-    );
+    const brandId: string | null =
+      this.activatedRoute.snapshot.paramMap.get('brandId');
+    if (brandId) {
+      this.brand$ = this.brandsService
+        .fetchBrandById(+brandId)
+        .pipe(map((brand: Brand) => Utils.mapBrandBooleanOptions(brand)));
+    }
   }
 }

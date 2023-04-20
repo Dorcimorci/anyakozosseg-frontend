@@ -69,47 +69,18 @@ input {
   outline: 2px solid $primary;
 }
 
-.action-button-container {
-  margin: auto;
-  text-align: right;
-}
-
-.action-button {
-  color: $text;
-  background: none;
+.alert {
+  background-color: $text;
+  font-size: 0.7vw;
   border: none;
-  transition: 0.3s;
-
-  &:hover {
-    color: $primary;
-    scale: 1.2;
-  }
+  border-radius: 0;
+  width: 100%;
+  color: $secondary;
+  letter-spacing: 0.2vw;
 }
 
 .vw-90 {
   width: 90vw;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Set the width and height of the scrollbar */
-::-webkit-scrollbar {
-  width: 0.7vw;
-  height: 1vw;
-}
-
-/* Style the scrollbar track */
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-/* Style the scrollbar thumb */
-::-webkit-scrollbar-thumb {
-  background-color: $text;
-  border-radius: 0;
-}
-
-/* Style the scrollbar on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: $primary;
 }

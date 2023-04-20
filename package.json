@@ -21,6 +21,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "ng-multiselect-dropdown": "^0.3.9",
+    "ngx-cookie-service": "^15.0.0",
     "ngx-file-drop": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

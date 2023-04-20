@@ -17,6 +17,9 @@ import { IngredientDetailsComponent } from './components/ingredients-page/ingred
 import { IngredientFormComponent } from './components/ingredients-page/ingredient-form/ingredient-form.component';
 import { IngredientsByCategoryComponent } from './components/ingredients-page/ingredients-by-category/ingredients-by-category.component';
 import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegPageComponent } from './components/reg-page/reg-page.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -104,7 +107,19 @@ const routes: Routes = [
   },
   {
     path: 'aboutus',
-    component: AboutUsComponent,
+    component: AboutUsComponent 
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+  },
+  {
+    path: 'login/:userId',
+    component: LoginPageComponent,
+  },
+  {
+    path: 'register',
+    component: RegPageComponent,
   },
 ];
 
