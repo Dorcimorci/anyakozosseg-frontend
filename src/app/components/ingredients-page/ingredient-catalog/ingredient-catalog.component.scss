@@ -16,13 +16,6 @@ a {
   margin-bottom: 4vw;
 }
 
-.letter-panel {
-  position: sticky;
-  top: 18vw;
-  z-index: 1;
-  background-color: white;
-}
-
 .letter-container:hover,
 .letter-active {
   cursor: pointer;
@@ -72,21 +65,4 @@ a {
 
 .ingredient-name a {
   font-size: 1.25vw;
-}
-
-.action-button-container {
-  margin: auto;
-  text-align: right;
-}
-
-.action-button {
-  color: $text;
-  background: none;
-  border: none;
-  transition: 0.3s;
-
-  &:hover {
-    color: $primary;
-    scale: 1.2;
-  }
 }

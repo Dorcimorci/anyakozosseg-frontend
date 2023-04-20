@@ -16,13 +16,6 @@ a {
   margin-bottom: 4vw;
 }
 
-.letter-panel {
-  position: sticky;
-  top: 18vw;
-  z-index: 1;
-  background-color: white;
-}
-
 .letter-container:hover,
 .letter-active {
   cursor: pointer;
@@ -43,7 +36,7 @@ a {
   font-size: 12vw;
   font-family: "Playfair Display", serif;
   line-height: 14vw;
-  padding-left: 1vw;
+  padding-left: 6vw;
 }
 
 .brand {
