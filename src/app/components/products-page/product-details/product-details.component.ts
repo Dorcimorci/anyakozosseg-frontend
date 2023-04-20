@@ -5,6 +5,8 @@ import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { RatingService } from '../rating-service/rating.service';
+import { User } from '../../shared/user-model/user.model';
+import { UserService } from '../../shared/user-service/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,20 +17,24 @@ export class ProductDetailsComponent {
   public product$: Observable<Product>;
   public showRatingForm: boolean = false;
 
-  public newRating: RatingPostRequest = {
-    rating: 0,
-    userId: 1,
-  } as RatingPostRequest;
+  public newRating: RatingPostRequest = {} as RatingPostRequest;
+
+  private user: User = {} as User;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
-    private cd: ChangeDetectorRef
+    private readonly userService: UserService,
+    private readonly cd: ChangeDetectorRef
   ) {
     const productId: number =
       +this.activatedRoute.snapshot.paramMap.get('productId')!;
     this.product$ = this.productService.fetchProductDetailsById(productId);
+
+    this.userService.loggedInUser$.subscribe(
+      (user: User) => (this.user = user)
+    );
   }
 
   public scrollToRatings(productContainer: HTMLElement): void {
@@ -51,6 +57,7 @@ export class ProductDetailsComponent {
 
   public submitRating(productId: number): void {
     this.newRating.productId = productId;
+    this.newRating.userId = this.user.id;
 
     this.ratingService
       .submitRating(this.newRating)
