@@ -19,4 +19,12 @@ export class RatingService {
       { withCredentials: true }
     );
   }
+
+  public editRating(rating: RatingPostRequest): Observable<any> {
+    return this.http.put<RatingPostRequest>(
+      `${BASE_URL}${COMPONENT_URL}`,
+      rating,
+      { withCredentials: true }
+    );
+  }
 }

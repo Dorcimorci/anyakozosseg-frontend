@@ -13,6 +13,7 @@ import { ProductService } from '../product-service/product.service';
 import { Option } from '../../shared/dropdown/dropdown.model';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 import { IngredientsService } from '../../ingredients-page/ingredients-service/ingredients.service';
+import { Rating } from '../product-model/product.api';
 
 @Component({
   selector: 'app-product-form',

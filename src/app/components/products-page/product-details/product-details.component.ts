@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom, tap } from 'rxjs';
 import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
@@ -15,10 +15,7 @@ export class ProductDetailsComponent {
   public product$: Observable<Product>;
   public showRatingForm: boolean = false;
 
-  public newRating: RatingPostRequest = {
-    rating: 0,
-    userId: 1,
-  } as RatingPostRequest;
+  public userRating: RatingPostRequest = {} as RatingPostRequest;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -28,7 +25,18 @@ export class ProductDetailsComponent {
   ) {
     const productId: number =
       +this.activatedRoute.snapshot.paramMap.get('productId')!;
-    this.product$ = this.productService.fetchProductDetailsById(productId);
+    this.product$ = this.productService.fetchProductDetailsById(productId).pipe(
+      tap((product: Product) => {
+        const rating = product.loggedInUsersRating?.rating;
+        const comment = product.loggedInUsersRating?.comment;
+
+        this.userRating = {
+          rating: rating !== undefined ? rating : null,
+          comment: comment !== undefined ? comment : null,
+          productId: product.id,
+        } as RatingPostRequest;
+      })
+    );
   }
 
   public scrollToRatings(productContainer: HTMLElement): void {
@@ -50,11 +58,17 @@ export class ProductDetailsComponent {
   }
 
   public submitRating(productId: number): void {
-    this.newRating.productId = productId;
+    this.userRating.productId = productId;
 
-    this.ratingService
-      .submitRating(this.newRating)
-      .subscribe(() => this.refresh(productId));
+    firstValueFrom(this.ratingService.submitRating(this.userRating)).then(() =>
+      this.refresh(productId)
+    );
+  }
+
+  public editRating(productId: number): void {
+    firstValueFrom(this.ratingService.editRating(this.userRating)).then(() =>
+      this.refresh(productId)
+    );
   }
 
   public showDummyProduct(event: ErrorEvent): void {
@@ -69,6 +83,7 @@ export class ProductDetailsComponent {
   }
 
   private refresh(productId: number): void {
+    console.log('refresh');
     this.product$ = this.productService.fetchProductDetailsById(productId);
     this.showRatingForm = false;
   }
