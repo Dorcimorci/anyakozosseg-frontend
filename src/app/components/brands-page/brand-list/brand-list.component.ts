@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Brand } from '../brand-model/brand.model';
+import { PageAction } from '../../shared/enums';
+import { BrandsService } from '../brands-service/brands.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-brand-list',
@@ -9,9 +12,19 @@ import { Brand } from '../brand-model/brand.model';
 })
 export class BrandListComponent {
   @Input() brandList: Brand[] = [];
-  @Input() onClick: Function = (brand: Brand) =>
-    this.router.navigate(['/brands/details', brand.id]);
   @Input() hoverIconClass: string = '';
+  @Input() pageAction: PageAction = PageAction.Read;
 
-  constructor(private readonly router: Router) {}
+  @Output() afterDelete: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  public get PageAction() {
+    return PageAction;
+  }
+
+  constructor(private readonly brandService: BrandsService) {}
+
+  public async onDelete(brandId: number): Promise<void> {
+    await firstValueFrom(this.brandService.deleteById(brandId));
+    this.afterDelete.next(true);
+  }
 }

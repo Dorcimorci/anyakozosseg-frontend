@@ -69,14 +69,21 @@ input {
   outline: 2px solid $primary;
 }
 
-.alert {
-  background-color: $text;
-  font-size: 0.7vw;
+.action-button-container {
+  margin: auto;
+  text-align: right;
+}
+
+.action-button {
+  color: $text;
+  background: none;
   border: none;
-  border-radius: 0;
-  width: 100%;
-  color: $secondary;
-  letter-spacing: 0.2vw;
+  transition: 0.3s;
+
+  &:hover {
+    color: $primary;
+    scale: 1.2;
+  }
 }
 
 .vw-90 {
