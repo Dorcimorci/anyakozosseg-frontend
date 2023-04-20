@@ -74,7 +74,11 @@
         <div class="col-md-3"></div>
         <div class="col-md-9 text-center">
           <button class="write-rating-btn" (click)="openRatingForm()">
-            Véleményt írok
+            {{
+              product.loggedInUsersRating
+                ? "Véleményem szerkesztése"
+                : "Véleményt írok"
+            }}
           </button>
         </div>
       </div>
@@ -89,15 +93,21 @@
       <div class="product-body">
         <div class="d-flex justify-content-between">
           <app-rating
-            [(ngModel)]="newRating.rating"
+            [(ngModel)]="userRating.rating"
             class="rating-stars my-auto"
           ></app-rating>
           <div>
             <button
               class="rating-form-btn my-auto"
-              (click)="submitRating(product.id)"
+              (click)="
+                product.loggedInUsersRating?.comment
+                  ? editRating(product.id)
+                  : submitRating(product.id)
+              "
             >
-              Küldés
+              {{
+                product.loggedInUsersRating?.comment ? "Felülírás" : "Küldés"
+              }}
             </button>
             <button
               class="rating-form-btn my-auto ms-2"
@@ -111,7 +121,7 @@
         <span class="comment-container">
           <textarea
             rows="6"
-            [(ngModel)]="newRating.comment"
+            [(ngModel)]="userRating.comment"
             class="form-control"
           ></textarea>
         </span>

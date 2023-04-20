@@ -18,7 +18,6 @@ export interface ProductListItem {
 }
 
 export interface RatingPostRequest {
-  userId: number;
   productId: number;
   rating: number;
   comment: string;
