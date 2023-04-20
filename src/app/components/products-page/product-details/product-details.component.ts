@@ -18,6 +18,7 @@ export class ProductDetailsComponent {
   public showRatingForm: boolean = false;
 
   public userRating: RatingPostRequest = {} as RatingPostRequest;
+  public user: User = {} as User;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -32,7 +33,6 @@ export class ProductDetailsComponent {
       tap((product: Product) => {
         const rating = product.loggedInUsersRating?.rating;
         const comment = product.loggedInUsersRating?.comment;
-
         this.userRating = {
           rating: rating !== undefined ? rating : null,
           comment: comment !== undefined ? comment : null,
@@ -40,6 +40,16 @@ export class ProductDetailsComponent {
         } as RatingPostRequest;
       })
     );
+
+    this.userService.loggedInUser$.subscribe(
+      (user: User) => (this.user = user)
+    );
+
+    this.user = {
+      id: Number(localStorage.getItem('userId')),
+      username: localStorage.getItem('username'),
+      role: localStorage.getItem('userRole'),
+    } as User;
   }
 
   public scrollToRatings(productContainer: HTMLElement): void {
