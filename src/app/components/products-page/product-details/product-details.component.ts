@@ -5,6 +5,8 @@ import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { RatingService } from '../rating-service/rating.service';
+import { User } from '../../shared/user-model/user.model';
+import { UserService } from '../../shared/user-service/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +23,8 @@ export class ProductDetailsComponent {
     private readonly activatedRoute: ActivatedRoute,
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
-    private cd: ChangeDetectorRef
+    private readonly userService: UserService,
+    private readonly cd: ChangeDetectorRef
   ) {
     const productId: number =
       +this.activatedRoute.snapshot.paramMap.get('productId')!;
