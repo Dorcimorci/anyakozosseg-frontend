@@ -27,9 +27,9 @@ export class LoginPageComponent {
 
   public login(): void {
     this.userService.login(this.user).subscribe((user: User) => {
-      this.userService.loggedInUser$.next(user);
       if (user.username) {
         this.router.navigate(['']);
+        this.userService.loggedInUser$.next(user);
         localStorage.setItem('username', user.username);
         localStorage.setItem('userRole', user.role);
         localStorage.setItem('userId', String(user.id));

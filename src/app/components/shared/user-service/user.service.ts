@@ -10,9 +10,7 @@ const COMPONENT_URL = 'users';
   providedIn: 'root',
 })
 export class UserService {
-  public loggedInUser$: BehaviorSubject<User> = new BehaviorSubject<User>(
-    {} as User
-  );
+  public loggedInUser$: Subject<User> = new Subject<User>();
 
   constructor(
     private readonly http: HttpClient,

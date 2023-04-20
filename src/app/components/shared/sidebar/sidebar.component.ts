@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,7 +20,7 @@ import { UserService } from '../user-service/user.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements AfterViewChecked {
+export class SidebarComponent implements AfterViewChecked, OnInit {
   public isNavbarCollapsed: boolean = false;
   public applyGreaterTopValue: boolean = false;
   private innerWidth: number = 0;
@@ -89,6 +90,22 @@ export class SidebarComponent implements AfterViewChecked {
     );
   }
 
+  public ngOnInit(): void {
+    this.user = {
+      id: Number(localStorage.getItem('userId')),
+      username: localStorage.getItem('username') ?? '',
+      role: localStorage.getItem('userRole') ?? '',
+    };
+
+    this.userService.loggedInUser$.subscribe(
+      (user: User) => (this.user = user)
+    );
+  }
+
+  public ngAfterViewChecked(): void {
+    this.initializeLeftProperty();
+  }
+
   public initSidebarItems(): void {
     const menuItemName = routeToSingularTranslation[this.currentRoute];
     this.sidebarItems = [
@@ -133,10 +150,6 @@ export class SidebarComponent implements AfterViewChecked {
         (item.visibleByRoles.includes(this.user.role) ||
           item.visibleByRoles.length === 0)
     );
-  }
-
-  public ngAfterViewChecked(): void {
-    this.initializeLeftProperty();
   }
 
   public navigateToAddNewPage(): void {
