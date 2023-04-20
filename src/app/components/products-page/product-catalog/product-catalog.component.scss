@@ -15,13 +15,6 @@ a {
   margin-bottom: 4vw;
 }
 
-.letter-panel {
-  position: sticky;
-  top: 18vw;
-  z-index: 1;
-  background-color: white;
-}
-
 .letter-container:hover,
 .letter-active {
   cursor: pointer;
