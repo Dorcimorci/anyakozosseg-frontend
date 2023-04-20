@@ -20,4 +20,5 @@ export interface Product {
   numberOfRatings: number;
   avgRating: number;
   ratings: Rating[];
+  loggedInUsersRating?: Rating;
 }

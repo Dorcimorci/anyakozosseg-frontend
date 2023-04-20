@@ -37,6 +37,7 @@ export class ProductService {
     const params: HttpParams = new HttpParams().set('productId', id);
     return this.http.get<Product>(`${BASE_URL}${COMPONENT_URL}`, {
       params,
+      withCredentials: true,
     });
   }
 
