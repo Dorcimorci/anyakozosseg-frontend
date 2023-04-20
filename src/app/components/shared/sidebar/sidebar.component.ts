@@ -11,6 +11,8 @@ import { NavbarService } from '../navbar/navbar.service';
 import { RouteHistory, RouterService } from '../router.service';
 import { routeToSingularTranslation } from '../utils';
 import { SidebarItem } from './sidebar.model';
+import { User } from '../user-model/user.model';
+import { UserService } from '../user-service/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,6 +34,8 @@ export class SidebarComponent implements AfterViewChecked {
     return PageAction;
   }
 
+  private user: User = {} as User;
+
   @ViewChild('sidebar')
   sidebar!: ElementRef;
 
@@ -50,7 +54,8 @@ export class SidebarComponent implements AfterViewChecked {
   constructor(
     private readonly router: Router,
     private readonly routerService: RouterService,
-    private readonly navbarService: NavbarService
+    private readonly navbarService: NavbarService,
+    private readonly userService: UserService
   ) {
     this.routerService.currentRoute$.subscribe((currentRoute: string) => {
       this.currentRoute = currentRoute;
@@ -78,6 +83,10 @@ export class SidebarComponent implements AfterViewChecked {
         this.applyGreaterTopValue = false;
       }
     });
+
+    this.userService.loggedInUser$.subscribe(
+      (user: User) => (this.user = user)
+    );
   }
 
   public initSidebarItems(): void {
@@ -92,21 +101,21 @@ export class SidebarComponent implements AfterViewChecked {
       },
       {
         visibleOnPages: ['brands', 'ingredients', 'products'],
-        visibleByRoles: [],
+        visibleByRoles: ['admin'],
         label: `${menuItemName?.toUpperCase()} HOZZÁADÁSA`,
         iconClass: 'fa fa-file',
         onClick: () => this.navigateToAddNewPage(),
       },
       {
         visibleOnPages: ['brands', 'ingredients', 'products'],
-        visibleByRoles: [],
+        visibleByRoles: ['admin'],
         label: `${menuItemName?.toUpperCase()} SZERKESZTÉSE`,
         iconClass: 'fa-solid fa-pen',
         onClick: () => this.navigateToEditPage(),
       },
       {
         visibleOnPages: ['brands', 'ingredients', 'products'],
-        visibleByRoles: [],
+        visibleByRoles: ['admin'],
         label: `${menuItemName?.toUpperCase()} TÖRLÉSE`,
         iconClass: 'fa fa-trash',
         onClick: () => this.navigateToDeletePage(),
@@ -118,8 +127,11 @@ export class SidebarComponent implements AfterViewChecked {
         iconClass: 'fa fa-angle-double-left',
         onClick: () => this.navigateToPreviousRoute(),
       },
-    ].filter((item: SidebarItem) =>
-      item.visibleOnPages.includes(this.currentRoute)
+    ].filter(
+      (item: SidebarItem) =>
+        item.visibleOnPages.includes(this.currentRoute) &&
+        (item.visibleByRoles.includes(this.user.role) ||
+          item.visibleByRoles.length === 0)
     );
   }
 
