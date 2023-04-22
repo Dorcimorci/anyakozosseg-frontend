@@ -35,8 +35,4 @@ export class ProductsPageComponent {
         this.categories = categories;
       });
   }
-
-  public removeAccents(textWithAccents: string): string {
-    return Utils.removeAccents(textWithAccents);
-  }
 }

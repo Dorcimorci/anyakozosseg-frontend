@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { combineLatest, firstValueFrom, map, Observable, tap } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 import { CategoriesService } from '../../shared/categories/categories.service';
 import { PageAction } from '../../shared/enums';
 import { booleanOptions, Utils } from '../../shared/utils';
 import { Ingredient } from '../ingredient-model/ingredient.model';
 import { IngredientsService } from '../ingredients-service/ingredients.service';
-import { Option } from '../../shared/dropdown/dropdown.model';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Option } from '../../shared/single-select/option.model';
 
 @Component({
   selector: 'app-ingredients-form',

@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { Ingredient } from '../ingredient-model/ingredient.model';
 import { IngredientsService } from '../ingredients-service/ingredients.service';
-import { Option } from '../../shared/dropdown/dropdown.model';
+import { Option } from '../../shared/single-select/option.model';
 
 @Component({
   selector: 'app-ingredient-details',

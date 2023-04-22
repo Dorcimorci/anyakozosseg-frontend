@@ -10,10 +10,9 @@ import { PageAction } from '../../shared/enums';
 import { Utils } from '../../shared/utils';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
-import { Option } from '../../shared/dropdown/dropdown.model';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 import { IngredientsService } from '../../ingredients-page/ingredients-service/ingredients.service';
-import { Rating } from '../product-model/product.api';
+import { Option } from '../../shared/single-select/option.model';
 
 @Component({
   selector: 'app-product-form',
@@ -46,8 +45,8 @@ export class ProductFormComponent {
     numberOfRatings: 0,
     avgRating: 0,
     ratings: [],
-    category: Utils.getEmptyOption(),
-    brand: Utils.getEmptyOption(),
+    category: {} as Option,
+    brand: {} as Option,
   };
 
   public pageAction: PageAction = PageAction.Create;

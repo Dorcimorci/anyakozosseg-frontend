@@ -37,11 +37,11 @@
         <label class="form-label">Kategória:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="categories"
+        <app-single-select
+          [data]="categories"
           [(ngModel)]="brand.category"
           name="category"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 
@@ -50,11 +50,11 @@
         <label class="form-label">Árkategória:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="priceCategories"
+        <app-single-select
+          [data]="priceCategories"
           [(ngModel)]="brand.priceCategory"
           name="priceCategory"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 
@@ -63,11 +63,11 @@
         <label class="form-label">Cruelty free:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="booleanOptions"
+        <app-single-select
+          [data]="booleanOptions"
           [(ngModel)]="brand.isCrueltyFree"
           name="isCrueltyFree"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 
@@ -76,11 +76,11 @@
         <label class="form-label">Vegan:</label>
       </div>
       <div class="col-8 text-start">
-        <app-dropdown
-          [options]="booleanOptions"
+        <app-single-select
+          [data]="booleanOptions"
           [(ngModel)]="brand.isVegan"
           name="isVegan"
-        ></app-dropdown>
+        ></app-single-select>
       </div>
     </div>
 

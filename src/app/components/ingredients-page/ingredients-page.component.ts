@@ -28,8 +28,4 @@ export class IngredientsPageComponent {
         this.categories = categories;
       });
   }
-
-  public removeAccents(textWithAccents: string): string {
-    return Utils.removeAccents(textWithAccents);
-  }
 }

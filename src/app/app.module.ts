@@ -10,7 +10,6 @@ import { BrandCatalogComponent } from './components/brands-page/brand-catalog/br
 import { BrandDetailsComponent } from './components/brands-page/brand-details/brand-details.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { BrandFormComponent } from './components/brands-page/brand-form/brand-form.component';
-import { DropdownComponent } from './components/shared/dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './components/shared/rating/rating.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
@@ -42,7 +41,6 @@ import { SearchComponent } from './components/shared/search/search.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    DropdownComponent,
     BadgeIconComponent,
     RatingComponent,
     SidebarComponent,

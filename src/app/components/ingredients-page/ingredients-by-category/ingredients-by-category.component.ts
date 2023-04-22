@@ -56,8 +56,4 @@ export class IngredientsByCategoryComponent implements OnInit {
     }
     return categoryTitlePart;
   }
-
-  public removeAccents(textWithAccents: string): string {
-    return Utils.removeAccents(textWithAccents);
-  }
 }
