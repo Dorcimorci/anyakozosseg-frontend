@@ -44,22 +44,23 @@
         />
       </div>
     </div>
+    <div class="button-container">
+      <div>
+        <button
+          type="submit"
+          class="form-button col-5"
+          [disabled]="loginForm.form.invalid"
+          [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
+        >
+          REGISZTRÁLOK
+        </button>
+      </div>
 
-    <div>
-      <button
-        type="submit"
-        class="submit-button col-5"
-        [disabled]="loginForm.form.invalid"
-        [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
-      >
-        REGISZTRÁLOK
-      </button>
-    </div>
-
-    <div>
-      <button class="submit-button col-5" [routerLink]="['/login']">
-        BEJELENTKEZÉS
-      </button>
+      <div>
+        <button class="form-button col-5" [routerLink]="['/login']">
+          BEJELENTKEZÉS
+        </button>
+      </div>
     </div>
   </form>
 </div>

@@ -41,12 +41,16 @@
 }
 
 .item-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: $secondary;
   color: $text;
   border-radius: 0.5vw;
   margin: 0.2vw 0;
-  padding: 0 0.5vw;
   font-size: 0.7vw;
   width: 6vw;
+  min-width: 6vw;
+  max-width: 6vw;
   text-align: center;
 }

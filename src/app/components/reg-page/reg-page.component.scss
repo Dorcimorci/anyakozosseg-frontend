@@ -25,12 +25,19 @@ input {
   margin-top: 1vw;
 }
 
-.submit-button {
+.form-button {
   border: none;
   background-color: $primary;
   color: $secondary;
   padding: 0.5vw 1.5vw 0.5vw 1.5vw;
   margin-top: 3vw;
+  &:hover {
+    scale: initial;
+  }
+}
+
+.button-container {
+  padding-bottom: 3vw;
 }
 
 .block {

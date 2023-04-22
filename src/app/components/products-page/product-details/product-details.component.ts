@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, firstValueFrom, tap } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, firstValueFrom, map, switchMap, tap } from 'rxjs';
 import { RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
@@ -27,18 +27,21 @@ export class ProductDetailsComponent {
     private readonly userService: UserService,
     private readonly cd: ChangeDetectorRef
   ) {
-    const productId: number =
-      +this.activatedRoute.snapshot.paramMap.get('productId')!;
-    this.product$ = this.productService.fetchProductDetailsById(productId).pipe(
-      tap((product: Product) => {
-        const rating = product.loggedInUsersRating?.rating;
-        const comment = product.loggedInUsersRating?.comment;
-        this.userRating = {
-          rating: rating !== undefined ? rating : null,
-          comment: comment !== undefined ? comment : null,
-          productId: product.id,
-        } as RatingPostRequest;
-      })
+    this.product$ = this.activatedRoute.paramMap.pipe(
+      map((params: ParamMap) => params.get('productId')),
+      switchMap((productId: string | null) =>
+        this.productService.fetchProductDetailsById(Number(productId)).pipe(
+          tap((product: Product) => {
+            const rating = product.loggedInUsersRating?.rating;
+            const comment = product.loggedInUsersRating?.comment;
+            this.userRating = {
+              rating: rating !== undefined ? rating : null,
+              comment: comment !== undefined ? comment : null,
+              productId: product.id,
+            } as RatingPostRequest;
+          })
+        )
+      )
     );
 
     this.userService.loggedInUser$.subscribe(
