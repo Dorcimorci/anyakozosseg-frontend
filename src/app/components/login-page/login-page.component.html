@@ -37,7 +37,6 @@
     </div>
 
     <div *ngIf="this.showLoginError" class="row">
-      <div class="col-4"></div>
       <div class="col">
         <p class="alert alert-danger">
           Helytelen felhasználónév vagy jelszó!
@@ -46,21 +45,23 @@
       </div>
     </div>
 
-    <div>
-      <button
-        type="submit"
-        class="add-new-button col-5"
-        [disabled]="loginForm.form.invalid"
-        [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
-      >
-        BELÉPEK
-      </button>
-    </div>
+    <div class="button-container">
+      <div>
+        <button
+          type="submit"
+          class="form-button col-5"
+          [disabled]="loginForm.form.invalid"
+          [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
+        >
+          BELÉPEK
+        </button>
+      </div>
 
-    <div>
-      <button class="add-new-button col-5" [routerLink]="['/register']">
-        REGISZTRÁCIÓ
-      </button>
+      <div>
+        <button class="form-button col-5" [routerLink]="['/register']">
+          REGISZTRÁCIÓ
+        </button>
+      </div>
     </div>
   </form>
 </div>
