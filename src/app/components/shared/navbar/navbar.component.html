@@ -91,7 +91,9 @@
           </div>
 
           <p *ngIf="!loggedInUser.username">BELÉPÉS</p>
-          <p *ngIf="loggedInUser.username">KIJELENTKEZÉS</p>
+          <p *ngIf="loggedInUser.username" style="padding-left: 0.3vw">
+            KILÉPÉS
+          </p>
         </div>
       </div>
     </div>
