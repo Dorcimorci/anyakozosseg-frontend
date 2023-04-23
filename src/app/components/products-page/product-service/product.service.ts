@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductListItem } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
-import { Option } from '../../shared/dropdown/dropdown.model';
+import { Option } from '../../shared/single-select/option.model';
 
 const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'products';

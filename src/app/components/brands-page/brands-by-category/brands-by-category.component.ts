@@ -2,20 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { combineLatest, first, map } from 'rxjs';
 import { Category } from '../../shared/categories/category.model';
 import { PageAction } from '../../shared/enums';
-import { Utils } from '../../shared/utils';
 import { ActivatedRoute } from '@angular/router';
 import { BrandsService } from '../brands-service/brands.service';
 import { Brand } from '../brand-model/brand.model';
 
+/**
+ * Component for displaying brands filtered by category.
+ */
 @Component({
   selector: 'app-brands-by-category',
   templateUrl: './brands-by-category.component.html',
   styleUrls: ['./brands-by-category.component.scss'],
 })
 export class BrandsByCategoryComponent implements OnInit {
+  /**
+   * The category object to display.
+   */
   public category: Category = {} as Category;
+
+  /**
+   * The part of the category title to be displayed.
+   */
   public categoryTitlePart: string = '';
+
+  /**
+   * The page action to be performed (e.g., create, update, read).
+   */
   public pageAction: PageAction = PageAction.Read;
+
+  /**
+   * The list of brands to display.
+   */
   public brandList: Brand[] = [];
 
   constructor(
@@ -23,6 +40,10 @@ export class BrandsByCategoryComponent implements OnInit {
     private brandsService: BrandsService
   ) {}
 
+  /**
+   * Lifecycle hook called when the component is initialized.
+   * Fetches the data and initializes component properties.
+   */
   public ngOnInit(): void {
     combineLatest([
       this.activatedRoute.paramMap.pipe(
@@ -45,6 +66,11 @@ export class BrandsByCategoryComponent implements OnInit {
     });
   }
 
+  /**
+   * Gets the category title part based on category name.
+   * @param category - The category object.
+   * @returns The category title part.
+   */
   public getCategoryTitlePart(category: Category): string {
     let categoryTitlePart: string = '';
     if (category.name?.endsWith('S')) {
@@ -53,9 +79,5 @@ export class BrandsByCategoryComponent implements OnInit {
       categoryTitlePart = `${category.name}ET FORGALMAZÓ`;
     }
     return categoryTitlePart;
-  }
-
-  public removeAccents(textWithAccents: string): string {
-    return Utils.removeAccents(textWithAccents);
   }
 }

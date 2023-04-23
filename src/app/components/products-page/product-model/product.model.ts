@@ -1,4 +1,4 @@
-import { Option } from '../../shared/dropdown/dropdown.model';
+import { Option } from '../../shared/single-select/option.model';
 import { Rating } from './product.api';
 
 export interface PriceRange {

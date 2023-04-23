@@ -1,5 +1,4 @@
-import { Option } from '../../shared/dropdown/dropdown.model';
-
+import { Option } from '../../shared/single-select/option.model';
 export interface Brand {
   id: number;
   isCrueltyFree: Option;

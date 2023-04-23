@@ -1,4 +1,3 @@
-import { RouterService } from './../shared/router.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../shared/user-model/user.model';

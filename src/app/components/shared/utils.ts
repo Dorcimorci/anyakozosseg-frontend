@@ -1,7 +1,7 @@
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Brand } from '../brands-page/brand-model/brand.model';
-import { Option } from './dropdown/dropdown.model';
 import { PageAction } from './enums';
+import { Option } from './single-select/option.model';
 
 export class Utils {
   public static baseDropdownSettings: IDropdownSettings = {
@@ -38,10 +38,6 @@ export class Utils {
         name: Utils.mapBooleanToText(brand.isVegan.name),
       },
     };
-  }
-
-  public static removeAccents(textWithAccents: string): string {
-    return textWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   public static mapPageActionToTitleSegment(pageAction: PageAction): string {
