@@ -8,6 +8,9 @@ import { ProductListItem } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 
+/**
+ * Component that displays an alphabetical catalog of products and handles user interactions based on the current PageAction.
+ */
 @Component({
   selector: 'app-product-catalog',
   templateUrl: './product-catalog.component.html',
@@ -21,6 +24,9 @@ export class ProductCatalogComponent implements OnInit {
 
   public pageAction: PageAction = PageAction.Read;
 
+  /**
+   * Enum for page actions.
+   */
   public get PageAction() {
     return PageAction;
   }
@@ -32,6 +38,9 @@ export class ProductCatalogComponent implements OnInit {
     private readonly router: Router
   ) {}
 
+  /**
+   * Initializes the component and subscribes to router and pageAction changes.
+   */
   ngOnInit(): void {
     this.products$ = this.activatedRoute.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
@@ -53,6 +62,14 @@ export class ProductCatalogComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the click event of a product item and performs corresponding actions based on the current page action.
+   * If the current page action is Read, navigates to product details page based on the id of the clicked product.
+   * If the current page action is Update, navigates to product form page for updating the product based on the product id.
+   * If the current page action is Delete, deletes the selected product and reloads the component.
+   *
+   * @param product The selected product.
+   */
   public handleProductClick = (product: Product) => {
     if (this.pageAction === PageAction.Read) {
       this.router.navigate(['/products/details', product.id]);

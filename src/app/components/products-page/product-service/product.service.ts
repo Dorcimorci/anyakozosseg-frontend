@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { ProductListItem } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { Option } from '../../shared/single-select/option.model';
+import { BASE_URL } from '../../shared/constants';
 
-const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'products';
 const SUBCATEGORIES_URL = 'subcategories';
 
