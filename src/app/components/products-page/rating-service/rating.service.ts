@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RatingPostRequest } from '../product-model/product.api';
+import { BASE_URL } from '../../shared/constants';
 
-const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'ratings';
 
 /**

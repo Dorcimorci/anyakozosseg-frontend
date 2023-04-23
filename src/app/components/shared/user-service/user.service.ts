@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../user-model/user.model';
 import { CookieService } from 'ngx-cookie-service';
+import { BASE_URL } from '../constants';
 
-const BASE_URL = 'http://localhost/anyakozosseg-backend/API/';
 const COMPONENT_URL = 'users';
 
 /**
