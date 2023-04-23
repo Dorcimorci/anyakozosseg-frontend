@@ -11,7 +11,7 @@ import {
   ListItem,
 } from 'ng-multiselect-dropdown/multiselect.model';
 import { BehaviorSubject } from 'rxjs';
-import { Option } from '../dropdown/dropdown.model';
+import { Option } from './option.model';
 
 @Component({
   selector: 'app-single-select',
