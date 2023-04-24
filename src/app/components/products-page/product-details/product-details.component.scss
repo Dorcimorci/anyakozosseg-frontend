@@ -228,6 +228,8 @@ img {
 }
 
 .multiselect-text {
+  white-space: nowrap;
+  overflow-x: auto;
   font-size: 0.8vw;
   display: flex;
   flex-wrap: wrap;
