@@ -134,18 +134,6 @@ export class ProductDetailsComponent {
   }
 
   /**
-   * Retrieves the names of subcategories associated with a product and returns them as a comma-separated string in uppercase.
-   *
-   * @param product - The product for which to retrieve subcategory names.
-   * @returns A comma-separated string of subcategory names in uppercase.
-   */
-  public getSubcategoryNames(product: Product): string {
-    return product.subcategories
-      .map((subcategory) => subcategory.name.toUpperCase())
-      .join(', ');
-  }
-
-  /**
    * Refreshes the product details and hides the rating form.
    *
    * @private
