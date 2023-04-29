@@ -94,7 +94,6 @@ export class ProductDetailsComponent implements AfterViewInit {
       this.commentElements.forEach((comment: ElementRef, i: number) => {
         this.product.ratings[i].isEllipsisActive =
           this.isCommentOverflowing(comment);
-        console.log(this.isCommentOverflowing(comment));
         this.cd.detectChanges();
       });
     });
