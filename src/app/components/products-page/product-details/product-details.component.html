@@ -177,13 +177,11 @@
                   (click)="onCommentClick(rating)"
                 >
                   <i
-                    *ngIf="!rating.showFully"
-                    class="fas fa-angle-double-down"
-                    aria-hidden="true"
-                  ></i>
-                  <i
-                    *ngIf="rating.showFully"
-                    class="fas fa-angle-double-up"
+                    class="fas"
+                    [ngClass]="{
+                      'fa-angle-double-down': !rating.showFully,
+                      'fa-angle-double-up': rating.showFully
+                    }"
                     aria-hidden="true"
                   ></i>
                 </span>
