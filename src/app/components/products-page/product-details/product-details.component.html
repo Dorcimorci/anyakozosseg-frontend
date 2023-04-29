@@ -1,4 +1,4 @@
-<div *ngIf="product$ | async as product">
+<div *ngIf="product.name">
   <div #productContainer class="item-container">
     <div class="row">
       <div class="product-title col-12 text-center">{{ product.name }}</div>
@@ -114,7 +114,7 @@
               class="rating-form-btn my-auto"
               (click)="
                 product.loggedInUsersRating?.comment
-                  ? editRating(product.id)
+                  ? editRating()
                   : submitRating(product.id)
               "
             >
@@ -164,12 +164,29 @@
               <hr />
               <span class="comment-container">
                 <p
+                  #comment
                   class="comment m-0"
                   [ngClass]="{ 'comment-full': rating.showFully }"
                 >
                   <b> {{ rating.username }}</b
                   >: {{ rating.comment }}
                 </p>
+                <span
+                  *ngIf="rating.isEllipsisActive"
+                  class="show-full-btn text-center"
+                  (click)="onCommentClick(rating)"
+                >
+                  <i
+                    *ngIf="!rating.showFully"
+                    class="fas fa-angle-double-down"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    *ngIf="rating.showFully"
+                    class="fas fa-angle-double-up"
+                    aria-hidden="true"
+                  ></i>
+                </span>
               </span>
             </div>
           </div>

@@ -54,23 +54,21 @@ export class ProductListComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.commentElements.changes.subscribe(() => {
       this.commentElements.forEach((comment: ElementRef, i: number) => {
-        const isOverflowing =
-          comment.nativeElement.scrollHeight >
-          comment.nativeElement.clientHeight;
-        this.products[i].lastRating.isEllipsisActive = isOverflowing;
+        this.products[i].lastRating.isEllipsisActive =
+          this.isCommentOverflowing(comment);
         this.cd.detectChanges();
       });
     });
   }
 
   /**
-   * Checks if a comment element is overflowing horizontally.
+   * Checks if a comment element is overflowing vertically.
    * @param comment - The comment element reference to check for overflow.
-   * @returns True if the comment is overflowing horizontally, false otherwise.
+   * @returns True if the comment is overflowing vertically, false otherwise.
    */
   public isCommentOverflowing(comment: ElementRef): boolean {
     return (
-      comment.nativeElement.scrollWidth > comment.nativeElement.clientWidth
+      comment.nativeElement.scrollHeight > comment.nativeElement.clientHeight
     );
   }
 
