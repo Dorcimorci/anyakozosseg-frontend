@@ -238,3 +238,23 @@ img {
   padding: 0.5vw 0;
   padding-left: 0.5vw;
 }
+
+.show-full-btn {
+  position: absolute;
+  bottom: 0;
+  right: -0.5vw;
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary;
+  border: 0.1vw solid $primary;
+  border-radius: 1vw;
+  font-size: 0.6vw;
+  margin-top: 0.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  width: 2vw;
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+  }
+}

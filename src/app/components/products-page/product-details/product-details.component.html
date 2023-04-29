@@ -1,4 +1,4 @@
-<div *ngIf="product$ | async as product">
+<div *ngIf="product.name">
   <div #productContainer class="item-container">
     <div class="row">
       <div class="product-title col-12 text-center">{{ product.name }}</div>
@@ -45,9 +45,18 @@
 
         <div class="product-property d-flex justify-content-between px-5vw">
           <span class="text-start">KATEGÓRIÁK:</span>
-          <span class="text-end multiselect-text">{{
-            getSubcategoryNames(product)
-          }}</span>
+          <span class="text-end multiselect-text">
+            <span
+              *ngFor="let subcategory of product.subcategories; let last = last"
+            >
+              <a>
+                {{ subcategory.name.toUpperCase() }}
+              </a>
+              <a class="d-inline-block ingredient" *ngIf="!last"
+                >,<code>&nbsp;</code></a
+              >
+            </span>
+          </span>
         </div>
 
         <div class="product-property d-flex justify-content-between px-5vw">
@@ -105,7 +114,7 @@
               class="rating-form-btn my-auto"
               (click)="
                 product.loggedInUsersRating?.comment
-                  ? editRating(product.id)
+                  ? editRating()
                   : submitRating(product.id)
               "
             >
@@ -155,12 +164,27 @@
               <hr />
               <span class="comment-container">
                 <p
+                  #comment
                   class="comment m-0"
                   [ngClass]="{ 'comment-full': rating.showFully }"
                 >
                   <b> {{ rating.username }}</b
                   >: {{ rating.comment }}
                 </p>
+                <span
+                  *ngIf="rating.isEllipsisActive"
+                  class="show-full-btn text-center"
+                  (click)="onCommentClick(rating)"
+                >
+                  <i
+                    class="fas"
+                    [ngClass]="{
+                      'fa-angle-double-down': !rating.showFully,
+                      'fa-angle-double-up': rating.showFully
+                    }"
+                    aria-hidden="true"
+                  ></i>
+                </span>
               </span>
             </div>
           </div>
