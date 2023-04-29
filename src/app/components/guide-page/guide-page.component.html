@@ -1,0 +1,167 @@
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-100 align-items-center py-5">
+      <div class="col-lg-6">
+        <h1 class="title">GUIDE</h1>
+        <p class="text">
+          Az oldalunkon rengeteg információ és adat megtalálható,
+          és lehet, hogy egy párról még nem is hallottál. Az alábbi 'használati útmutatót'
+          pontosan ezért állítottuk össze, hogy segítsen eligazodni a részletek között.
+
+        </p>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <img
+          src="assets/img/guide/guide.png"
+          alt="guide"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row h-50 align-items-center py-5">
+    <div class="col-lg-6 mx-auto">
+      <img
+        src="assets/img/guide/product_guide.png"
+        alt="product model"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-lg-4">
+      <h1 class="title">TERMÉKOLDAL</h1>
+      <ol class="text">
+        <li>A termék fotója. Amennyiben a terméknek több variációja létezik, így az külön termékként kerülhet fel.</li>
+        <li>A termék teljes neve márkanévvel együtt.</li>
+        <li>A termék árfekvése. Sajnos pontos összeget nem tudunk írni, hiszen a különböző boltok más-más áron kínálják a termékeket, ám egy körülbelüli árkategóriát minden terméknél megadunk.</li>
+        <li>Az adott termék űrtartalma. Ha különböző méretekben is kapható, azt külön termékként tüntetjük fel.</li>
+        <li>Az adott alkategórát találod itt, pl: Szépségápoláson belül a Hajápolás.</li>
+        <li>A termékről írt eddigi vélemények.</li>
+        <li>Erre kattintva tudsz véleményt írni, vagy szerkeszteni a múltban adott visszajelzést.</li>
+        <li>Az eddigi összes értékelés száma és átlaga csillagok formájában.</li>
+      </ol>
+      <button class="button" [routerLink]="['/products']">TERMÉKEK</button>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-60 align-items-center py-5">
+      <div class="col-lg-4">
+        <h2 class="title">ÖSSZETEVŐ OLDAL</h2>
+        <ol class="text">
+          <li>Az összetevő fotója.</li>
+          <li>Az összetevő teljes neve. Gyakran fogsz hasonló elnevezésű összetevőkkel találkozni,
+             azonban ez nem azt jelenti feltétlenül, hogy azoknak közük van egymáshoz. </li>
+          <li>Az a funkció, amire használják az adott összetevőt a termékekeben. Vannak sokoldalú komponenesek,
+            amik egyszerre több feladatot is elláthatnak,és vannak olyanok, amik kizárólag illatosítóként vagy sűrítőanyagként vannak jelen a termékekben. </li>
+          <li>Az EWG's Skin Deep Cosmetics Database egy kozmetikai összetevőket gyűjtő adatbázis, amely információt ad azok ismert egészségügyi kockázatairól.
+            Fokozatai:
+            <ul>
+              <li>1-2 alacsony kockázat</li>
+                <li>3-6 mérsékelt kockázat</li>
+                  <li>7-10 fokozott kockázat</li>
+            </ul>
+          </li>
+          <li>Azt jelzi, hogy az összetevő mennyire tömíti el a pórusokat. Éltalánosságban elmondhatjuk, hogy ha pattanásokra és miszeterekre hajlamos vagy
+            akkor kerüld az 1-esnél magasabb komedogén indexű összetevőket tartalmazó termékeket.
+          </li>
+          <li>Azt jelzi,egy egytől ötig terjedő skálán, hogy mennyire gyakran vált ki irritáló, allergizáló panaszokat az összetevő. Ha allergiára
+            kontakt dermatitiszre hajlamos vagy, akkor javasoljuk, hogy kerüld az 1--nél magasabb indexű összetevők használatát.
+          </li>
+          <li>Ez a gomb erre az oldalra vezet.</li>
+          <li>Az összetevőt tartalmazó termékek listája.</li>
+        </ol>
+        <button class="button" [routerLink]="['/ingredients']">
+          ÖSSZETEVŐK
+        </button>
+      </div>
+      <div class="col-lg-6 mx-auto order-1 order-lg-2">
+        <img
+          src="assets/img/guide/ingredients_guide.png"
+          alt="ingredients guide"
+          class="img-fluid"
+        />
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container py-5">
+  <div class="row h-100 align-items-center py-5">
+    <div class="col-lg-6 mx-auto">
+      <img src="assets/img/guide/brand_guide.png" alt="brand guide" class="img-fluid" />
+    </div>
+    <div class="col-lg-4">
+      <h1 class="title">
+        MÁRKÁK OLDALA
+      </h1>
+      <ol class="text">
+        <li>Az márka logója.</li>
+        <li>A márka teljes neve. </li>
+        <li>A márka termékeinek átlagos árfekvése.</li>
+        <li>A 'Cruelty Free' kifejezés azt taakrja, hogy a márka nem végez és elhatárolódik az állatokon végzett kísérletektől
+          Fontos azonban tudni, hogy attól még, hogy sok márka maga nem végez állatksérleteket, használ olyan összetevőket amiket
+          állatokon tesztelnek.
+        </li>
+        <li>Azt jelzi, hogy a márka termékei tartalmaznak-e bármilyen állati eredetű összetevőt.</li>
+        <li>A márka összes termékének értékelése átlagolva.</li>
+      </ol>
+      <button class="button" [routerLink]="['/brands']">MÁRKÁK</button>
+      <br />
+      <br />
+      <br />
+    </div>
+
+    <h1 class="title">FONTOS FOGALMAK</h1>
+    <div class="container py-5">
+      <div class="row text-center">
+        <P> <b>INCI:</b> INCI vagyis “International Nomenclature of Cosmetic Ingredients”, a Kozmetikai Összetevők Nemzetközi Elnevezése.
+           Ez az összetevőlista, amit általában az “Ingredients” címszó alatt találunk a termékek hátulján, és furcsa, idegen szavak állnak
+            rajta általában angolul vagy latinul. Ettől rögtön úgy érezhetjük, hogy minimum kémikusnak kéne lennünk ahhoz, hogy bármit is megértsünk
+             az egészből. Az biztos, hogy nem annyira egyszerű értelmezni ezeket a listákat, de nem is az a cél, hogy az összes összetevőt fejből megtanuljuk.
+              Bőven elég, ha az alapokat tudjuk,
+          és mielőtt vásárolunk rászánunk egy kis időt, hogy utána nézzünk az összetevőknek. .<br><br>
+
+          <b>INCI értelmezése:</b> Az INCI lista értelmezése szükséges ahhoz, hogy ki tudjuk választani a számunkra legmegfelelőbb termékeket. Hasonlóan a csomagolt
+           élelmiszerek összetevőlistájához,  a kozmetikumokra is igaz az, hogy fontos az összetevők sorrendje. Amelyik anyag a listában elsőként szerepel, abból van
+            a termékben a legtöbb, és tovább haladva a sorban csökken az adott összetevő mennyisége. Fontos megjegyezni, hogy a hatóanyagok koncentrációja nem szerepel
+             a listán, tehát azt nem fogjuk megtudni, hogy pontosan mennyi hatóanyagot tartalmaz a termék, kivéve ha ezt külön feltünteti a gyártó. Valamint ami 1% alatti
+              koncentrációban van jelen, azt a gyártó a listán belül bárhol feltüntetheti.
+          Vannak olyan anyagok, amik már nagyon alacsony százalékban is hatékonyak, viszont olyan esetet is láttam,
+           amikor a gyártó feltünteti a csomagolás elején a szuper összetevőt, és az INCI-ből kiderül, hogy valahol a lista
+           végén kullog, tehát alig van belőle a termékben. Ezek azok a marketing fogások, amiket sok márka használ, és ha nem
+           vagyunk elég szemfülesek, akkor rengeteg pénzt kiadhatunk teljesen feleslegesen.
+          Remélem most már mindenki jól megijedt, szóval még egyszer hangsúlyozom, hogy nem az a cél,
+           hogy az összes elnevezést megtanuljuk. Ami szerintem reális, hogy azokat a hatóanyagokat ismerjük,
+            amik kifejezetten irritálóak, valamint azokat, amik nagyon sok esetben az INCI lista elején szerepelnek.
+             Amikor vásárolok, akkor általában az első 5-6 összetevőt nézem meg, mert ezekből található a legtöbb a termékben.
+              Ha pedig speciális hatóanyagot kerestek, akkor a koncentrációra érdemes figyelni.
+          A kozmetikai ipar hatalmas, a cégek pedig rengeteget költenek marketingre, és az összetevőlistákból
+          pontosan kiderül, hogy megéri-e az árát az adott termék, érdemes-e megvennünk. Ezért is lényeges,
+           hogy tudatosan válasszunk, és ne dőljünk be a jól csengő reklámszövegeknek. Amit viszont itt is kiemelnék,
+            hogy csak saját tapasztalat alapján tudjuk kideríteni, hogy mi a jó a bőrünknek, INCI ide vagy oda. Kísérletezés
+            kérdése, hogy megtaláljuk a tökéletes termékeket, de azért nem árt egy alap tudás az összetevőkről. <br><br>
+          <b>EWG:</b>Az EWG vagyis Environmental Working Group egy olyan szervezet, ami két szempont szerint sorolja be a különböző hatóanyagokat és vegyszereket, az egészségünkre és környezetünkre gyakorolt hatásuk alapján. Az első szempont a kockázat, ennek megállapítására egy 0-tól 10-ig terjedő skálát használnak, minél alacsonyabb az érték, annál biztonságosabb az anyag. A másik szempont az EWG adat, ez tulajdonképpen azt jelenti, hogy mennyi releváns információ (kutatás, tanulmány) áll rendelkezésre az adott hatóanyag értékeléséhez.
+        </P>
+
+
+
+
+
+
+  <footer class="text">
+    <div class="container text-center">
+      <p class="font-italic text-muted mb-0">
+        &copy; 2023 www.anyakozosseg.hu Minden jog fenntartva.
+      </p>
+    </div>
+  </footer>
+</div>

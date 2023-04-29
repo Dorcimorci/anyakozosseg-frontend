@@ -113,12 +113,6 @@ export class SidebarComponent implements AfterViewChecked, OnInit {
     this.routerService.currentRoute$.subscribe((currentRoute: string) => {
       this.currentRoutesFirstSegment = currentRoute;
       this.initSidebarItems();
-      this.showSidebar = [
-        'brands',
-        'ingredients',
-        'products',
-        'aboutus',
-      ].includes(currentRoute);
     });
 
     // Subscribe to the previousRoute$ observable to update the previousRoute property.
@@ -279,17 +273,30 @@ export class SidebarComponent implements AfterViewChecked, OnInit {
         onClick: () => this.navigateToDeletePage(),
       },
       {
-        visibleOnPages: ['brands', 'ingredients', 'products', 'aboutus'],
+        visibleOnPages: [
+          'brands',
+          'ingredients',
+          'products',
+          'aboutus',
+          'guide',
+          '',
+        ],
         visibleByRoles: [],
         label: `VISSZA`,
         iconClass: 'fa fa-angle-double-left',
         onClick: () => this.navigateToPreviousRoute(),
       },
-    ].filter(
-      (item: SidebarItem) =>
+    ];
+
+    this.sidebarItems = this.sidebarItems.filter((item: SidebarItem) => {
+      if (!this.previousRoute.url && item.label === 'VISSZA') {
+        return false;
+      }
+      return (
         item.visibleOnPages.includes(this.currentRoutesFirstSegment) &&
         (item.visibleByRoles.includes(this.user.role) ||
           item.visibleByRoles.length === 0)
-    );
+      );
+    });
   }
 }
