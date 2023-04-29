@@ -1,13 +1,19 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, firstValueFrom, map, switchMap, tap } from 'rxjs';
-import { RatingPostRequest } from '../product-model/product.api';
+import { firstValueFrom, map, switchMap, tap } from 'rxjs';
+import { Rating, RatingPostRequest } from '../product-model/product.api';
 import { Product } from '../product-model/product.model';
 import { ProductService } from '../product-service/product.service';
 import { RatingService } from '../rating-service/rating.service';
 import { User } from '../../shared/user-model/user.model';
 import { UserService } from '../../shared/user-service/user.service';
-
 /**
  * Component for displaying product details page.
  */
@@ -16,8 +22,13 @@ import { UserService } from '../../shared/user-service/user.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
-export class ProductDetailsComponent {
-  public product$: Observable<Product>; // Observable for product details
+export class ProductDetailsComponent implements AfterViewInit {
+  /**
+   * QueryList to access all elements with a 'comment' template reference variable.
+   */
+  @ViewChildren('comment') commentElements!: QueryList<ElementRef>;
+
+  public product: Product = {} as Product;
   public showRatingForm: boolean = false; // Flag to control visibility of rating form
 
   public userRating: RatingPostRequest = {} as RatingPostRequest; // User's rating for the product
@@ -39,8 +50,25 @@ export class ProductDetailsComponent {
     private readonly userService: UserService,
     private readonly cd: ChangeDetectorRef
   ) {
-    // Fetch product details from service based on productId parameter
-    this.product$ = this.activatedRoute.paramMap.pipe(
+    // Subscribe to loggedInUser$ in UserService to get logged in user information
+    this.userService.loggedInUser$.subscribe(
+      (user: User) => (this.user = user)
+    );
+
+    // Initialize user object with data from localStorage
+    this.user = {
+      id: Number(localStorage.getItem('userId')),
+      username: localStorage.getItem('username'),
+      role: localStorage.getItem('userRole'),
+    } as User;
+  }
+
+  /**
+   * Angular lifecycle hook called after the component's view has been initialized.
+   * It detects changes in the view and updates the product list with ellipsis flag.
+   */
+  public ngAfterViewInit(): void {
+    const product$ = this.activatedRoute.paramMap.pipe(
       map((params: ParamMap) => params.get('productId')),
       switchMap((productId: string | null) =>
         this.productService.fetchProductDetailsById(Number(productId)).pipe(
@@ -57,17 +85,19 @@ export class ProductDetailsComponent {
       )
     );
 
-    // Subscribe to loggedInUser$ in UserService to get logged in user information
-    this.userService.loggedInUser$.subscribe(
-      (user: User) => (this.user = user)
-    );
+    product$.subscribe((product: Product) => {
+      this.product = product;
+    });
 
-    // Initialize user object with data from localStorage
-    this.user = {
-      id: Number(localStorage.getItem('userId')),
-      username: localStorage.getItem('username'),
-      role: localStorage.getItem('userRole'),
-    } as User;
+    this.commentElements.changes.subscribe(() => {
+      // Handle changes to commentElements
+      this.commentElements.forEach((comment: ElementRef, i: number) => {
+        this.product.ratings[i].isEllipsisActive =
+          this.isCommentOverflowing(comment);
+        console.log(this.isCommentOverflowing(comment));
+        this.cd.detectChanges();
+      });
+    });
   }
 
   /**
@@ -108,7 +138,7 @@ export class ProductDetailsComponent {
     this.userRating.productId = productId;
 
     firstValueFrom(this.ratingService.submitRating(this.userRating)).then(() =>
-      this.refresh(productId)
+      this.refresh()
     );
   }
 
@@ -117,9 +147,9 @@ export class ProductDetailsComponent {
    *
    * @param productId - The ID of the product whose rating needs to be edited.
    */
-  public editRating(productId: number): void {
+  public editRating(): void {
     firstValueFrom(this.ratingService.editRating(this.userRating)).then(() =>
-      this.refresh(productId)
+      this.refresh()
     );
   }
 
@@ -139,8 +169,27 @@ export class ProductDetailsComponent {
    * @private
    * @param productId - The ID of the product to be refreshed.
    */
-  private refresh(productId: number): void {
-    this.product$ = this.productService.fetchProductDetailsById(productId);
+  private refresh(): void {
+    this.ngAfterViewInit();
     this.showRatingForm = false;
+  }
+
+  /**
+   * Checks if a comment element is overflowing vertically.
+   * @param comment - The comment element reference to check for overflow.
+   * @returns True if the comment is overflowing vertically, false otherwise.
+   */
+  public isCommentOverflowing(comment: ElementRef): boolean {
+    return (
+      comment.nativeElement.scrollHeight > comment.nativeElement.clientHeight
+    );
+  }
+
+  /**
+   * Toggles the "showFully" property of a rating object when the comment is clicked.
+   * @param rating - The rating object to toggle.
+   */
+  public onCommentClick(rating: Rating): void {
+    rating.showFully = !rating.showFully;
   }
 }
