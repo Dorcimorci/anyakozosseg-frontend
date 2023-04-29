@@ -45,9 +45,18 @@
 
         <div class="product-property d-flex justify-content-between px-5vw">
           <span class="text-start">KATEGÓRIÁK:</span>
-          <span class="text-end multiselect-text">{{
-            getSubcategoryNames(product)
-          }}</span>
+          <span class="text-end multiselect-text">
+            <span
+              *ngFor="let subcategory of product.subcategories; let last = last"
+            >
+              <a>
+                {{ subcategory.name.toUpperCase() }}
+              </a>
+              <a class="d-inline-block ingredient" *ngIf="!last"
+                >,<code>&nbsp;</code></a
+              >
+            </span>
+          </span>
         </div>
 
         <div class="product-property d-flex justify-content-between px-5vw">
