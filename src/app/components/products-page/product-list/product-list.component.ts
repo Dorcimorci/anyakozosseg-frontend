@@ -54,9 +54,11 @@ export class ProductListComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.commentElements.changes.subscribe(() => {
       this.commentElements.forEach((comment: ElementRef, i: number) => {
-        this.products[i].lastRating.isEllipsisActive =
-          this.isCommentOverflowing(comment);
-        this.cd.detectChanges();
+        if (this.products[i].lastRating) {
+          this.products[i].lastRating.isEllipsisActive =
+            this.isCommentOverflowing(comment);
+          this.cd.detectChanges();
+        }
       });
     });
   }
