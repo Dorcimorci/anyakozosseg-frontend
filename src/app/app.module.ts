@@ -36,6 +36,7 @@ import { IngredientsByCategoryComponent } from './components/ingredients-page/in
 import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
 import { SearchComponent } from './components/shared/search/search.component';
+import { GuidePageComponent } from './components/guide-page/guide-page.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { SearchComponent } from './components/shared/search/search.component';
     RegPageComponent,
     SingleSelectComponent,
     SearchComponent,
+    GuidePageComponent,
   ],
   imports: [
     BrowserModule,

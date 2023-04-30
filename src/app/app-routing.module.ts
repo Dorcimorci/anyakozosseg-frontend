@@ -19,6 +19,7 @@ import { IngredientsByCategoryComponent } from './components/ingredients-page/in
 import { IngredientsPageComponent } from './components/ingredients-page/ingredients-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegPageComponent } from './components/reg-page/reg-page.component';
+import { GuidePageComponent } from './components/guide-page/guide-page.component';
 
 const routes: Routes = [
   {
@@ -107,7 +108,7 @@ const routes: Routes = [
   },
   {
     path: 'aboutus',
-    component: AboutUsComponent 
+    component: AboutUsComponent,
   },
   {
     path: 'login',
@@ -120,6 +121,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegPageComponent,
+  },
+  {
+    path: 'guide',
+    component: GuidePageComponent,
   },
 ];
 
