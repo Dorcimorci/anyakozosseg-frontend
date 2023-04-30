@@ -64,15 +64,16 @@
           <span class="text-end multiselect-text">
             <span
               *ngFor="let ingredient of product.ingredients; let last = last"
+              class="ingredient-name"
             >
-              <a [routerLink]="['/ingredients/details', ingredient.id]">
+              <a
+                [routerLink]="['/ingredients/details', ingredient.id]"
+                class="ingredient-name"
+              >
                 {{ ingredient.name.toUpperCase() }}
               </a>
               <a class="d-inline-block ingredient" *ngIf="!last"
                 >,<code>&nbsp;</code></a
-              >
-              <a class="d-inline-block ingredient" *ngIf="last"
-                ><code>&nbsp;</code></a
               >
             </span>
           </span>
