@@ -228,15 +228,24 @@ img {
 }
 
 .multiselect-text {
-  white-space: nowrap;
-  overflow-x: auto;
-  font-size: 0.8vw;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0.5vw 0;
-  padding-left: 0.5vw;
+  flex-wrap: wrap;
+  padding: 0.5vw 0 0 0.5vw;
+  font-size: 0.8vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.ingredient-name {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .show-full-btn {
