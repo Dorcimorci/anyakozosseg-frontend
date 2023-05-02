@@ -1,0 +1,67 @@
+<div class="form-container text-center row justify-content-center">
+  <form
+    (ngSubmit)="login()"
+    #loginForm="ngForm"
+    class="col-sm-6 col-10 page-form"
+  >
+    <h1 class="form-title">{{ title }}</h1>
+
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Felhasználónév:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="text"
+          [(ngModel)]="user.username"
+          (ngModelChange)="showLoginError = false"
+          required
+          name="username"
+        />
+      </div>
+    </div>
+
+    <div class="row align-itmes-center">
+      <div class="col-6 text-end">
+        <label class="form-label">Jelszó:</label>
+      </div>
+      <div class="col-6 text-start">
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          (ngModelChange)="showLoginError = false"
+          required
+          name="password"
+        />
+      </div>
+    </div>
+
+    <div *ngIf="this.showLoginError" class="row">
+      <div class="col">
+        <p class="alert alert-danger">
+          Helytelen felhasználónév vagy jelszó!
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </p>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <div>
+        <button
+          type="submit"
+          class="form-button col-5"
+          [disabled]="loginForm.form.invalid"
+          [ngClass]="{ 'btn-disabled': loginForm.form.invalid }"
+        >
+          BELÉPEK
+        </button>
+      </div>
+
+      <div>
+        <button class="form-button col-5" [routerLink]="['/register']">
+          REGISZTRÁCIÓ
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

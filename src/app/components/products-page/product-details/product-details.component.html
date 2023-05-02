@@ -1,0 +1,196 @@
+<div *ngIf="product.name">
+  <div #productContainer class="item-container">
+    <div class="row">
+      <div class="product-title col-12 text-center">{{ product.name }}</div>
+
+      <div class="col-md-3 me-auto text-center">
+        <img
+          [src]="product.imageFile"
+          alt=""
+          (error)="showDummyProduct($event)"
+        />
+        <div class="product-rating" (click)="scrollToRatings(productContainer)">
+          <div class="rating-stars" *ngIf="product.avgRating">
+            <app-rating
+              [disabled]="true"
+              [ngModel]="product.avgRating"
+            ></app-rating>
+            <p class="rating-number">
+              ({{ product.avgRating | number : "1.1-2" }})
+            </p>
+          </div>
+          <div *ngIf="product.ratings.length > 0" class="rating-text">
+            ({{ product.numberOfRatings }} felhasználó értékelése alapján)
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9 text-center">
+        <div class="product-property d-flex justify-content-between">
+          <span class="text-start">ÁRKATEGÓRIA:</span>
+          <span class="text-end">
+            {{ product.priceRange.min }}Ft - {{ product.priceRange.max }}Ft
+          </span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KISZERELÉS:</span>
+          <span class="text-end">{{ product.packaging }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">SEGÍTHET:</span>
+          <span class="text-end">{{ product.canHelp }}</span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">KATEGÓRIÁK:</span>
+          <span class="text-end multiselect-text">
+            <span
+              *ngFor="let subcategory of product.subcategories; let last = last"
+            >
+              <a>
+                {{ subcategory.name.toUpperCase() }}
+              </a>
+              <a class="d-inline-block ingredient" *ngIf="!last"
+                >,<code>&nbsp;</code></a
+              >
+            </span>
+          </span>
+        </div>
+
+        <div class="product-property d-flex justify-content-between px-5vw">
+          <span class="text-start">ÖSSZETEVŐK:</span>
+          <span class="text-end multiselect-text">
+            <span
+              *ngFor="let ingredient of product.ingredients; let last = last"
+              class="ingredient-name"
+            >
+              <a
+                [routerLink]="['/ingredients/details', ingredient.id]"
+                class="ingredient-name"
+              >
+                {{ ingredient.name.toUpperCase() }}
+              </a>
+              <a class="d-inline-block ingredient" *ngIf="!last"
+                >,<code>&nbsp;</code></a
+              >
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9 text-center">
+          <button
+            class="write-rating-btn"
+            (click)="openRatingForm()"
+            *ngIf="user.id"
+          >
+            {{
+              product.loggedInUsersRating
+                ? "Véleményem szerkesztése"
+                : "Véleményt írok"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row item-container" *ngIf="showRatingForm">
+    <div
+      class="col-12 rating-form-data"
+      [routerLink]="['/products/details', product.id]"
+    >
+      <div class="product-body">
+        <div class="d-flex justify-content-between">
+          <app-rating
+            [(ngModel)]="userRating.rating"
+            class="rating-stars my-auto"
+          ></app-rating>
+          <div>
+            <button
+              class="rating-form-btn my-auto"
+              (click)="
+                product.loggedInUsersRating?.comment
+                  ? editRating()
+                  : submitRating(product.id)
+              "
+            >
+              {{
+                product.loggedInUsersRating?.comment ? "Felülírás" : "Küldés"
+              }}
+            </button>
+            <button
+              class="rating-form-btn my-auto ms-2"
+              (click)="closeRatingForm()"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <hr />
+        <span class="comment-container">
+          <textarea
+            rows="6"
+            [(ngModel)]="userRating.comment"
+            class="form-control"
+          ></textarea>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="product.ratings.length > 0">
+    <h2>VÉLEMÉNYEK A TERMÉKRŐL</h2>
+    <div class="row justify-content-center">
+      <hr class="w-50" />
+      <div *ngFor="let rating of product.ratings">
+        <div class="row item-container">
+          <div
+            class="col-12 rating-data"
+            [routerLink]="['/products/details', product.id]"
+          >
+            <div class="product-body">
+              <div class="d-flex justify-content-between">
+                <app-rating
+                  [disabled]="true"
+                  [ngModel]="rating.rating"
+                  class="rating-stars"
+                ></app-rating>
+                <span>{{ rating.addedOn | date : "yyyy.MM.dd" }}</span>
+              </div>
+              <hr />
+              <span class="comment-container">
+                <p
+                  #comment
+                  class="comment m-0"
+                  [ngClass]="{ 'comment-full': rating.showFully }"
+                >
+                  <b> {{ rating.username }}</b
+                  >: {{ rating.comment }}
+                </p>
+                <span
+                  *ngIf="rating.isEllipsisActive"
+                  class="show-full-btn text-center"
+                  (click)="onCommentClick(rating)"
+                >
+                  <i
+                    class="fas"
+                    [ngClass]="{
+                      'fa-angle-double-down': !rating.showFully,
+                      'fa-angle-double-up': rating.showFully
+                    }"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

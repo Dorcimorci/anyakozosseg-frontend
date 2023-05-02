@@ -1,0 +1,89 @@
+@import "/src/styles/colors";
+
+input {
+  font-size: 1.3vw;
+  width: 100%;
+}
+
+.page-form {
+  background-color: $secondary;
+  padding: 2vw 3vw 2vw 3vw;
+}
+
+.row {
+  height: 2vw;
+  margin-bottom: 1.5vw;
+}
+
+.form-container {
+  height: auto;
+  margin: 2vw 0 2vw 0;
+}
+
+.form-title {
+  color: $primary;
+  margin-top: 1vw;
+}
+
+.add-new-button {
+  border: none;
+  background-color: $primary;
+  color: $secondary;
+  padding: 0.5vw 1.5vw 0.5vw 1.5vw;
+  margin-top: 3vw;
+}
+
+.block {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+.form-label {
+  text-align: left;
+  color: $text;
+}
+
+.uploaded-image-col {
+  width: fit-content;
+}
+
+.uploaded-image {
+  height: 4.75vw;
+  box-sizing: border-box;
+}
+
+.alert {
+  background-color: $text;
+  font-size: 0.7vw;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  color: $secondary;
+  letter-spacing: 0.2vw;
+}
+
+.btn-disabled {
+  background-color: $text;
+}
+
+.upload-btn-row {
+  margin-bottom: 2.25vw;
+}
+
+.file-upload-label {
+  border: none;
+  background-color: $primary;
+  color: $secondary;
+  padding: 0.5vw 1.5vw 0.5vw 1.5vw;
+  margin: 1vw 0 1vw 0;
+  font-size: 1vw;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#file-upload {
+  display: none;
+}

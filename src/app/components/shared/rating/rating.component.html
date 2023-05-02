@@ -1,0 +1,8 @@
+<i
+  *ngFor="let ratingStep of ratingSteps"
+  (click)="onStarClicked(ratingStep)"
+  (mouseenter)="onStarHovered(ratingStep)"
+  (mouseleave)="onStarLeft(ratingStep)"
+  [class]="getStarClass(ratingStep)"
+  [ngClass]="{ 'rating-disabled': isDisabled, rating: !isDisabled }"
+></i>

@@ -1,0 +1,93 @@
+<div class="ingredient-container" *ngIf="ingredient$ | async as ingredient">
+  <div class="row align-items-end">
+    <div class="col-3 mx-auto text-center p-0">
+      <img
+        [src]="ingredient.imageFile"
+        alt=""
+        (error)="showDummyImage($event)"
+      />
+    </div>
+    <div class="col-9 text-center">
+      <div class="ingredient-title">
+        {{ ingredient.name }}
+      </div>
+      <div class="ingredient-property row">
+        <div class="col-3 text-start">FUNKCIÓK</div>
+        <div class="col-9 text-end my-auto function-names">
+          {{ getFunctionNames(ingredient) }}
+        </div>
+      </div>
+      <div class="ingredient-property row">
+        <div class="col-8 text-start">
+          EWG KOCKÁZAT
+          <span class="icon-container">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <div class="info-box">
+              <p>
+                Az EWG által alkalmazott kockázatelemzési módszer az anyagok
+                expozícióját és toxicitását egyaránt figyelembe veszi, és skálán
+                értékeli a termékek biztonságosságát. A skála értékei 1 és 10
+                között mozognak, ahol az 1-es érték a legbiztonságosabb, míg a
+                10-es érték a legveszélyesebb.
+              </p>
+            </div>
+          </span>
+        </div>
+        <div class="col-4 text-end">
+          {{ ingredient.ewgRisk }}
+        </div>
+      </div>
+      <div class="ingredient-property row">
+        <div class="col-8 text-start">
+          KOMEDOGÉN INDEX
+          <span class="icon-container">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <div class="info-box">
+              <p>
+                A komedogén index a kozmetikai termékek és összetevőik eltömítő
+                hatását mutatja a bőr pórusainak szempontjából. A magas
+                komedogén indexű összetevők hajlamosak eltömíteni a bőr
+                pórusait, ami akne kialakulásához vezethet.
+              </p>
+            </div>
+          </span>
+        </div>
+        <div class="col-4 text-end">
+          {{ ingredient.comedogenIndex }}
+        </div>
+      </div>
+      <div class="ingredient-property row">
+        <div class="col-8 text-start">
+          IRRITATÍV INDEX
+          <span class="icon-container">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <div class="info-box">
+              <p>
+                Az irritatív index azon értékelési rendszer, amelyet a különböző
+                anyagok irritációs hatásának jellemzésére használnak. Általában
+                a bőrre vagy a szemre gyakorolt hatást vizsgálják meg, és az
+                irritáció mértékét mutatja be egy skálán.
+              </p>
+            </div>
+          </span>
+        </div>
+        <div class="col-4 text-end">
+          {{ ingredient.irritationIndex }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 info-button-container">
+      <button class="button" [routerLink]="['/guide']">SZERETNÉK MÉG TÖBBET MEGTUDNI EZEKRŐL AZ ADATOKRÓL!</button>
+    </div>
+    <div
+      class="included-in-products"
+      *ngIf="ingredient.includedInProducts.length > 0"
+    >
+      <h2 class="mb-0">MEGTALÁLHATÓ AZ ALÁBBI TERMÉKEKBEN</h2>
+      <hr class="w-75 mx-auto" />
+      <app-product-list
+        [products]="ingredient.includedInProducts"
+      ></app-product-list>
+    </div>
+  </div>
+</div>

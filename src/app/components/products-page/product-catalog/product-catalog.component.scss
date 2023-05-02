@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import "/src/styles/colors";
+
+a {
+  text-decoration: none;
+  font-size: 2vw;
+  font-weight: 300;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $tertiary;
+}
+
+.page-container {
+  margin-bottom: 4vw;
+}
+
+.letter-container:hover,
+.letter-active {
+  cursor: pointer;
+  background-color: $secondary;
+}
+
+.divider {
+  height: 1vw;
+  background-color: $primary;
+}
+
+.letter-col {
+  padding: 0 1vw 0 1vw;
+}
+
+.letter-initial {
+  color: $primary;
+  font-size: 12vw;
+  font-family: "Playfair Display", serif;
+  line-height: 14vw;
+}
+
+.brand {
+  outline: 0.1vw solid $secondary;
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary;
+    outline: 0.1vw solid $text;
+  }
+  &:hover a {
+    color: $tertiary;
+  }
+}
+
+.brand-name {
+  font-weight: 300;
+  font-size: 1.25vw;
+  letter-spacing: 0.3vw;
+  color: $text;
+  text-align: center;
+}
+
+.delete-button-container {
+  margin: auto;
+}
+
+.product-list {
+  margin-top: 1.3vw;
+}
+
+.delete-button {
+  color: $text;
+  background: none;
+  border: none;
+  transition: 0.3s;
+  &:hover {
+    color: $primary;
+    scale: 1.2;
+  }
+}

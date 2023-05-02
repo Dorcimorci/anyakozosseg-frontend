@@ -1,0 +1,80 @@
+@import "/src/styles/colors";
+
+img {
+  max-width: 20vw;
+  max-height: 100%;
+}
+
+.row > * {
+  padding-right: 1vw;
+  padding-left: 1vw;
+}
+
+.image-container {
+  height: 12vw;
+}
+
+.brand-container {
+  margin: 2vw 17vw 0 17vw;
+}
+
+.brand-property {
+  margin: 1vw 0 1vw 0;
+  background-color: $secondary;
+}
+
+.brand-property,
+.brand-title {
+  color: $text;
+  letter-spacing: 0.3vw;
+}
+
+.rating-stars {
+  position: relative;
+  color: $primary !important;
+  padding-left: 0 !important;
+}
+
+.app-rating {
+  cursor: pointer;
+
+  &:hover + .info-box {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.info-box {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 2.5vw;
+  left: 1vw;
+  background: $secondary;
+  color: $text;
+  padding: 0.5vw;
+  margin: 0;
+  border: 0.1vw solid $primary;
+  line-height: normal;
+  border-radius: 0 0.5vw 0.5vw 0.5vw;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.rating-number-label {
+  display: inline;
+  font-size: 0.8vw;
+  letter-spacing: normal;
+  color: $text;
+  padding: 0;
+  margin: 0;
+}
+
+.rating-number {
+  color: $primary;
+  font-weight: bold;
+}
+
+.dummy-column {
+  height: 3.22vw;
+}

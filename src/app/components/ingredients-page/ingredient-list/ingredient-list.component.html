@@ -1,0 +1,35 @@
+<div class="row vw-90">
+  <div
+    class="col-lg-6 col-sm-6 row ingredient-name-row px-4 py-2"
+    *ngFor="let ingredient of ingredientList"
+  >
+    <div class="ingredient row">
+      <div
+        class="col ingredient-name text-center d-flex align-items-center justify-content-center"
+        [ngClass]="{ 'col-10': pageAction !== PageAction.Read }"
+        [routerLink]="['/ingredients/details', ingredient.id]"
+      >
+        <a>{{ ingredient.name }}</a>
+      </div>
+      <div
+        *ngIf="pageAction === PageAction.Update"
+        class="col-2 action-button-container"
+      >
+        <button
+          class="action-button"
+          [routerLink]="['/ingredients/form', PageAction.Update, ingredient.id]"
+        >
+          <i class="fa-solid fa-pen"></i>
+        </button>
+      </div>
+      <div
+        *ngIf="pageAction === PageAction.Delete"
+        class="col-2 action-button-container"
+      >
+        <button class="action-button" (click)="onDelete(ingredient.id)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

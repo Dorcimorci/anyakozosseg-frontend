@@ -1,0 +1,15 @@
+@import "/src/styles/colors";
+
+.rating {
+  color: $primary;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.rating-disabed {
+  color: $primary;
+  &:hover {
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,37 @@
+@import "/src/styles/colors";
+
+$itemWidth: var(--item-width);
+
+.sidebar-item-container {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+}
+
+.sidebar {
+  position: absolute;
+  height: 3vw;
+  transition: 0.3s;
+  margin: 0;
+  left: calc(2.5vw - $itemWidth);
+  text-decoration: none;
+  color: $secondary;
+  background-color: $primary;
+  border: 0.05vw solid $secondary;
+  border-radius: 0 0.2vw 0.2vw 0;
+  &:hover {
+    cursor: pointer;
+    left: 0;
+  }
+}
+
+.sidebar-item,
+.sidebar-icon {
+  white-space: nowrap;
+  font-size: 1vw;
+}
+
+.sidebar-item {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}

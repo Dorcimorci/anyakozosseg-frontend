@@ -1,0 +1,168 @@
+@import "/src/styles/colors";
+
+form {
+  width: 100%;
+}
+
+.row {
+  margin: 0;
+}
+
+.navbar {
+  background-color: white !important;
+  padding: 0;
+}
+
+.navbar-nav {
+  background-color: white;
+}
+
+.list-container {
+  width: 100%;
+  padding-top: 0.3vw;
+  padding-bottom: 1.5vw;
+}
+
+.nav-link {
+  font-size: 1.5vw;
+  background-color: $secondary;
+  text-align: center;
+  letter-spacing: 0.3vw;
+  padding-top: 0.6vw;
+  padding-bottom: 0.45vw;
+  color: $text;
+  &:hover {
+    cursor: pointer;
+    color: $secondary;
+    background-color: #846345;
+  }
+}
+
+.nav-link-active {
+  color: $secondary;
+  background-color: #846345;
+}
+
+.nav-item {
+  padding: 0.7vw;
+}
+
+.search-bar-container {
+  background-color: $primary;
+  width: 100%;
+}
+
+.search-input-container {
+  padding: 0.7vw;
+  line-height: 2.7vw;
+}
+
+.search-btn,
+.search-bar-container {
+  font-size: 1.5vw;
+  color: $secondary;
+  letter-spacing: 0.1vw;
+}
+
+.navbar-toggler {
+  margin: 5vw auto;
+  width: 13vw;
+  height: 13vw;
+  padding: 1vw;
+  font-size: 6vw;
+  border-radius: 2vw;
+  border: 0.5vw solid $secondary;
+  color: $secondary;
+  background-color: transparent;
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    border-color: $secondary;
+    color: $secondary;
+    outline: none;
+    box-shadow: none;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &.navbar-expanded {
+    border-color: $primary;
+    color: $primary;
+    transition: all 0.3s ease;
+
+    .fa-bars {
+      transform: rotate(90deg);
+    }
+  }
+
+  .fa-bars {
+    transition: transform 0.3s ease;
+  }
+}
+
+.brand-icon {
+  width: 10vw;
+  height: 10vw;
+}
+
+.user-icon-container {
+  position: relative;
+}
+
+.user-icon {
+  position: absolute;
+  bottom: 0.5vw;
+  left: 0.4vw;
+  font-size: 8vw;
+  color: $secondary;
+  transition: color 0.3s ease-out;
+}
+
+.login-item {
+  &:hover {
+    cursor: pointer;
+    color: #f7edd5;
+    transition: color 0.3s ease-out;
+  }
+  &:hover .user-icon {
+    cursor: pointer;
+    color: #f7edd5;
+    transition: color 0.3s ease-out;
+  }
+}
+
+.brand-icon-container {
+  justify-content: end;
+}
+
+// applyed for devices width screen size smaller, than 575px
+@media only screen and (max-width: 575px) {
+  .nav-item {
+    width: auto !important;
+  }
+  .brand-icon-container {
+    justify-content: start;
+  }
+  .search-input-container {
+    margin-right: auto;
+  }
+  .list-container {
+    padding-bottom: 6vw;
+  }
+}
+
+// applyed for devices width screen size greater, than 575px
+@media only screen and (min-width: 575px) {
+  .nav-link {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .list-container {
+    align-items: end;
+  }
+}
