@@ -37,10 +37,12 @@
         <li>A termék teljes neve márkanévvel együtt.</li>
         <li>A termék árfekvése. Sajnos pontos összeget nem tudunk írni, hiszen a különböző boltok más-más áron kínálják a termékeket, ám egy körülbelüli árkategóriát minden terméknél megadunk.</li>
         <li>Az adott termék űrtartalma. Ha különböző méretekben is kapható, azt külön termékként tüntetjük fel.</li>
+        <li>A termék funkciója, hogy milyen problémára kínál megoldást.</li>
         <li>Az adott alkategórát találod itt, pl: Szépségápoláson belül a Hajápolás.</li>
+        <li>A termék összetevői, rá kattintva megnyílik az adott összetevő saját adatlapja.</li>
         <li>A termékről írt eddigi vélemények.</li>
         <li>Erre kattintva tudsz véleményt írni, vagy szerkeszteni a múltban adott visszajelzést.</li>
-        <li>Az eddigi összes értékelés száma és átlaga csillagok formájában.</li>
+
       </ol>
       <button class="button" [routerLink]="['/products']">TERMÉKEK</button>
     </div>
@@ -86,7 +88,7 @@
           class="img-fluid"
         />
       </div>
-    
+
     </div>
   </div>
 </div>
@@ -107,8 +109,9 @@
         <li>Az márka logója.</li>
         <li>A márka teljes neve. </li>
         <li>A márka termékeinek átlagos árfekvése.</li>
-        <li>A 'Cruelty Free' kifejezés azt taakrja, hogy a márka nem végez és elhatárolódik az állatokon végzett kísérletektől
-          Fontos azonban tudni, hogy attól még, hogy sok márka maga nem végez állatksérleteket, használ olyan összetevőket amiket
+        <li>A 'Cruelty Free' kifejezés azt takarja, hogy a márka nem végez és elhatárolódik az állatokon végzett kísérletektől
+          Fontos azonban tudni, hogy attól még, hogy bár sok márka maga nem végez állatksérleteket,
+          használ olyan összetevőket amiket
           állatokon tesztelnek.
         </li>
         <li>Azt jelzi, hogy a márka termékei tartalmaznak-e bármilyen állati eredetű összetevőt.</li>
