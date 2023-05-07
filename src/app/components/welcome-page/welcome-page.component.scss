@@ -38,3 +38,9 @@ img {
   letter-spacing: 0.3vw;
   color: $text;
 }
+@media only screen and (max-width: 767px) {
+  .card-title {
+    font-size: 3vw; // new font size when used in mobile smaller
+  }
+}
+
