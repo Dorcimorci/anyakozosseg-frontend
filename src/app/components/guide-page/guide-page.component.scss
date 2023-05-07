@@ -35,5 +35,11 @@ p {
 .icon {
   color: $primary;
 }
-
-
+@media only screen and (max-width: 767px) {
+  .text {
+    font-size: 2vw; // new font size when used in mobile smaller
+  }
+  p {
+    font-size: 2vw; // new font size when used in mobile smaller
+  }
+}
