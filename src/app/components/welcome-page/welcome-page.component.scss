@@ -40,7 +40,11 @@ img {
 }
 @media only screen and (max-width: 767px) {
   .card-title {
-    font-size: 3vw; // new font size when used in mobile smaller
+    font-size: 1.8vw; // new font size when used in mobile device
+  }
+  h1{
+    font-size: 2.5vw; // new font size when used in mobile device
   }
 }
+
 
